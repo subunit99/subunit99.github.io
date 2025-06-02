@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="big5">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>卜卦</title>
+    <style>
+        :root {
+            --dark-blue: #000033;
+            --gold: #FFD700;
+            --text-color: #ffffff;
+            --background-overlay: rgba(0,0,0,0.3);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: var(--dark-blue);
+            color: var(--text-color);
+            font-family: 'Roboto', Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: var(--background-overlay);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        h4 {
+            color: var(--gold);
+            font-size: 1.8em;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+
+        #hexagramDisplay {
+            font-size: 2.5em;
+            color: var(--gold);
+            margin-bottom: 30px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .mystic-cat {
+            width: 80%;
+            max-width: 436px;
+            margin: 0 auto 30px;
+            display: block;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            background-color: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            padding: 15px 30px;
+            text-decoration: none;
+            cursor: pointer;
+            border-radius: 30px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .button:hover {
+            background-color: var(--gold);
+            color: var(--dark-blue);
+            transform: translateY(-3px);
+        }
+
+        #instruction {
+            display: none;
+            color: var(--gold);
+            font-size: 1em;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 10px var(--gold); }
+            to { text-shadow: 0 0 20px var(--gold); }
+        }
+
+        #hexagramDisplay.glowing {
+            animation: glow 1s ease-in-out infinite alternate;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h4>心誠則靈</h4>
+        <div id="hexagramDisplay">易之不易</div>
+        <img class="mystic-cat" src="img/m-cat1.gif" alt="Mystic Cat">
+        
+        <div class="button-container">
+            <a href="../index.html" class="button">回首頁</a>
+            <button class="button" onclick="startCountdown()">取卦</button>
+        </div>
+        
+        <p id="instruction">請點選卦名！觀看卦象!!</p>
+
+        <div class="hexagramMap">
+            <img src="img/64ky.gif" usemap="#MainMap" alt="Hexagram Map">
+            <map name="MainMap">
+                <AREA SHAPE="RECT" COORDS="58,41,103,81" HREF="iching\new_page_99.htm">
+<AREA SHAPE="RECT" COORDS="291,41,336,80" HREF="iching\new_page_107.htm">
+<AREA SHAPE="RECT" COORDS="386,326,434,363" HREF="iching\new_page_100.htm">
+<AREA SHAPE="RECT" COORDS="104,41,147,80" HREF="iching\new_page_108.htm">
+<AREA SHAPE="RECT" COORDS="386,41,434,81" HREF="iching\new_page_109.htm">
+<AREA SHAPE="RECT" COORDS="148,41,192,81" HREF="iching\new_page_110.htm">
+<AREA SHAPE="RECT" COORDS="193,40,239,81" HREF="iching\new_page_111.htm">
+<AREA SHAPE="RECT" COORDS="338,41,384,79" HREF="iching\new_page_112.htm">
+<AREA SHAPE="RECT" COORDS="241,41,289,80" HREF="iching\new_page_113.htm">
+<AREA SHAPE="RECT" COORDS="290,325,337,364" HREF="iching\new_page_114.htm">
+<AREA SHAPE="RECT" COORDS="58,326,102,364" HREF="iching\new_page_115.htm">
+<AREA SHAPE="RECT" COORDS="338,326,383,364" HREF="iching\new_page_116.htm">
+<AREA SHAPE="RECT" COORDS="104,326,146,364" HREF="iching\new_page_117.htm">
+<AREA SHAPE="RECT" COORDS="193,326,239,365" HREF="iching\new_page_118.htm">
+<AREA SHAPE="RECT" COORDS="148,326,192,365" HREF="iching\new_page_119.htm">
+<AREA SHAPE="RECT" COORDS="241,326,289,365" HREF="iching\new_page_120.htm">
+<AREA SHAPE="RECT" COORDS="192,163,240,203" HREF="iching\new_page_101.htm">
+<AREA SHAPE="RECT" COORDS="386,162,434,202" HREF="iching\new_page_121.htm">
+<AREA SHAPE="RECT" COORDS="241,163,288,203" HREF="iching\new_page_122.htm">
+<AREA SHAPE="RECT" COORDS="57,163,103,202" HREF="iching\new_page_123.htm">
+<AREA SHAPE="RECT" COORDS="291,163,336,202" HREF="iching\new_page_124.htm">
+<AREA SHAPE="RECT" COORDS="104,162,147,203" HREF="iching\new_page_125.htm">
+<AREA SHAPE="RECT" COORDS="148,163,190,202" HREF="iching\new_page_126.htm">
+<AREA SHAPE="RECT" COORDS="338,163,384,202" HREF="iching\new_page_127.htm">
+<AREA SHAPE="RECT" COORDS="338,285,385,324" HREF="iching\new_page_102.htm">
+<AREA SHAPE="RECT" COORDS="290,285,336,324" HREF="iching\new_page_129.htm">
+<AREA SHAPE="RECT" COORDS="241,284,289,325" HREF="iching\new_page_130.htm">
+<AREA SHAPE="RECT" COORDS="148,285,191,324" HREF="iching\new_page_131.htm">
+<AREA SHAPE="RECT" COORDS="386,285,434,324" HREF="iching\new_page_132.htm">
+<AREA SHAPE="RECT" COORDS="58,285,102,324" HREF="iching\new_page_133.htm">
+<AREA SHAPE="RECT" COORDS="193,284,239,325" HREF="iching\new_page_134.htm">
+<AREA SHAPE="RECT" COORDS="104,284,147,325" HREF="iching\new_page_135.htm">
+<AREA SHAPE="RECT" COORDS="290,244,336,284" HREF="iching\new_page_103.htm">
+<AREA SHAPE="RECT" COORDS="193,245,240,284" HREF="iching\new_page_136.htm">
+<AREA SHAPE="RECT" COORDS="58,244,103,283" HREF="iching\new_page_137.htm">
+<AREA SHAPE="RECT" COORDS="386,245,434,283" HREF="iching\new_page_138.htm">
+<AREA SHAPE="RECT" COORDS="338,245,384,283" HREF="iching\new_page_139.htm">
+<AREA SHAPE="RECT" COORDS="241,244,290,283" HREF="iching\new_page_140.htm">
+<AREA SHAPE="RECT" COORDS="104,245,146,283" HREF="iching\new_page_141.htm">
+<AREA SHAPE="RECT" COORDS="148,244,192,283" HREF="iching\new_page_142.htm">
+<AREA SHAPE="RECT" COORDS="148,123,191,161" HREF="iching\new_page_104.htm">
+<AREA SHAPE="RECT" COORDS="57,122,102,162" HREF="iching\new_page_143.htm">
+<AREA SHAPE="RECT" COORDS="193,123,240,161" HREF="iching\new_page_144.htm">
+<AREA SHAPE="RECT" COORDS="386,122,434,162" HREF="iching\new_page_145.htm">
+<AREA SHAPE="RECT" COORDS="104,123,147,161" HREF="iching\new_page_146.htm">
+<AREA SHAPE="RECT" COORDS="241,123,289,162" HREF="iching\new_page_147.htm">
+<AREA SHAPE="RECT" COORDS="338,123,384,161" HREF="iching\new_page_148.htm">
+<AREA SHAPE="RECT" COORDS="291,123,337,161" HREF="iching\new_page_149.htm">
+<AREA SHAPE="RECT" COORDS="241,203,289,243" HREF="iching\new_page_105.htm">
+<AREA SHAPE="RECT" COORDS="57,203,103,244" HREF="iching\new_page_150.htm">
+<AREA SHAPE="RECT" COORDS="385,203,434,244" HREF="iching\new_page_151.htm">
+<AREA SHAPE="RECT" COORDS="147,203,192,244" HREF="iching\new_page_152.htm">
+<AREA SHAPE="RECT" COORDS="193,204,239,244" HREF="iching\new_page_153.htm">
+<AREA SHAPE="RECT" COORDS="338,204,384,243" HREF="iching\new_page_154.htm">
+<AREA SHAPE="RECT" COORDS="291,203,336,243" HREF="iching\new_page_155.htm">
+<AREA SHAPE="RECT" COORDS="103,203,146,243" HREF="iching\new_page_156.htm">
+<AREA SHAPE="RECT" COORDS="104,81,146,122" HREF="iching\new_page_106.htm">
+<AREA SHAPE="RECT" COORDS="192,81,239,122" HREF="iching\new_page_157.htm">
+<AREA SHAPE="RECT" COORDS="240,82,290,122" HREF="iching\new_page_158.htm">
+<AREA SHAPE="RECT" COORDS="337,81,385,122" HREF="iching\new_page_159.htm">
+<AREA SHAPE="RECT" COORDS="57,81,103,121" HREF="iching\new_page_160.htm">
+<AREA SHAPE="RECT" COORDS="386,82,433,121" HREF="iching\new_page_161.htm">
+<AREA SHAPE="RECT" COORDS="290,81,336,121" HREF="iching\new_page_162.htm">
+<AREA SHAPE="RECT" COORDS="147,81,191,122" HREF="iching\new_page_163.htm">
+            </map>
+        </div>
+    </div>
+
+    <script>
+        const tips = [
+            "火水末濟卦 64", "乾卦 1", "坤卦 2", "水雷屯卦 3", "山水蒙卦 4", 
+        "水天需卦 5", "天水訟卦 6", "地水師卦 7", "水地比卦 8", "風天小畜卦 9", 
+        "天澤履卦 10", "地天泰卦 11", "天地否卦 12", "天火同人卦 13", "火天大有卦 14", 
+        "地山謙卦 15", "雷地豫卦 16", "澤雷隨卦 17", "山風蠱卦 18", "地澤臨卦 19", 
+        "風地觀卦 20", "火雷噬嗑卦 21", "山火賁卦 22", "山地剝卦 23", "地雷復卦 24", 
+        "天雷旡妄卦 25", "山天大畜卦 26", "山雷頤卦 27", "澤風大過卦 28", "坎 卦 29", 
+        "離 卦 30", "澤山咸卦 31", "雷風恆卦 32", "天山遯卦 33", "雷天大壯卦 34", 
+        "火地晉卦 35", "地火明夷卦 36", "風火家人卦 37", "火澤睽卦 38", "水山蹇卦 39", 
+        "雷水解卦 40", "山澤損卦 41", "風雷益卦 42", "澤天夬卦 43", "天風姤卦 44", 
+        "澤地萃卦 45", "地風升卦 46", "澤水困卦 47", "水風井卦 48", "澤火革卦 49", 
+        "火風鼎卦 50", "震 卦 51", "艮 卦 52", "風雷益卦 42", "雷澤歸妹卦 54", 
+        "雷火豐卦 55", "火山旅卦 56", "巽 卦 57", "兌 卦 58", "風水渙卦 59", 
+        "水澤節卦 60", "風澤中孚卦 61", "雷山小過卦 62", "水火既濟卦 63"
+        ];
+function startCountdown() {
+    let seconds = 1; // Start from 1
+    const hexagramElement = document.getElementById('hexagramDisplay');
+    hexagramElement.textContent = '';  // Clear initial text
+    hexagramElement.classList.remove('glowing');
+
+    const countdownInterval = setInterval(() => {
+        hexagramElement.textContent = `輕搖擲出中...第${seconds}爻`;
+        seconds++;
+
+        if (seconds > 7) {
+            clearInterval(countdownInterval);
+            displayHexagram();
+        }
+    }, 1000);
+}
+
+        function displayHexagram() {
+            const index = Math.floor(Math.random() * tips.length);
+            const hexagramElement = document.getElementById('hexagramDisplay');
+            hexagramElement.textContent = tips[index];
+            hexagramElement.classList.add('glowing');
+            document.getElementById('instruction').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

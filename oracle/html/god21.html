@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第二十一籤 丁巳 - 籤詩解說</title>
+    <!-- 引入 Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --background-color: #fdfbf4; /* 類似羊皮紙的淺米色 */
+            --text-color: #4a2c2a; /* 深棕色文字 */
+            --primary-color: #8B4513; /* 詩文、標題用色 (SaddleBrown) */
+            --secondary-color: #a0522d; /* 解曰類別用色 (Sienna) */
+            --explanation-color: #5a3a38; /* 解說文字 */
+            --border-color: #dcd0b8; /* 邊框色 */
+            --font-serif: 'Noto Serif TC', serif;
+            --font-sans: 'Noto Sans TC', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: var(--font-sans);
+            background-color: var(--background-color);
+            /* background-image: url('images/parchment_background.jpg'); */
+            background-size: cover;
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .poem-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .poem-lines p {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            line-height: 1.8;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .explanation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .explanation-item p {
+            margin: 0 0 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .explanation-item .category {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-right: 5px;
+        }
+
+        .main-explanation h2 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .main-explanation p {
+            text-indent: 2em;
+            margin-bottom: 15px;
+            color: var(--explanation-color);
+            font-size: 1rem;
+            text-align: justify;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .poem-lines p {
+                font-size: 1.1rem;
+            }
+            .main-explanation h2 {
+                font-size: 1.3rem;
+            }
+            .main-explanation p {
+                font-size: 0.95rem;
+            }
+             .explanation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>第二十一籤 丁巳</h1>
+
+    <div class="poem-section">
+        <div class="poem-lines">
+            <p>十方佛法有靈通</p>
+            <p>大難禍患不相同</p>
+            <p>紅日當空常照耀</p>
+            <p>還有貴人到家堂</p>
+        </div>
+    </div>
+
+    <div class="explanation-grid">
+        <div class="explanation-item">
+            <p><span class="category">討海：</span>先微後利</p>
+            <p><span class="category">作塭：</span>有利可得</p>
+            <p><span class="category">魚苗：</span>慢則有財</p>
+            <p><span class="category">求財：</span>先無後有</p>
+            <p><span class="category">耕作：</span>平平晚收</p>
+            <p><span class="category">經商：</span>先難後吉</p>
+            <p><span class="category">月令：</span>有貴人吉</p>
+            <p><span class="category">六甲：</span>先難後女</p>
+            <p><span class="category">婚姻：</span>難成</p>
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">家運：</span>必得吉昌</p>
+            <p><span class="category">失物：</span>可在</p> <!-- 指尋得回 -->
+            <p><span class="category">尋人：</span>在</p>
+            <p><span class="category">遠信：</span>速至有喜</p>
+            <p><span class="category">六畜：</span>納之可喜</p>
+            <p><span class="category">築室：</span>必有餘慶</p>
+            <p><span class="category">移居：</span>適宜大吉</p>
+            <p><span class="category">墳墓：</span><span title="雖有險阻但終能福蔭子孫">險裕后昆</span></p> <!-- 照錄原文 -->
+            <p><span class="category">出外：</span>緩有貴人</p> <!-- 指稍待會有貴人 -->
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">行舟：</span>無大利</p>
+            <p><span class="category">凡事：</span>貴人扶持</p>
+            <p><span class="category">治病：</span>大命險</p> <!-- 指病情危重 -->
+            <p><span class="category">做事：</span>和大吉</p> <!-- 指以和為貴則吉 -->
+            <p><span class="category">官事：</span>有貴人脫</p> <!-- 指有貴人相助可脫困 -->
+            <p><span class="category">家事：</span>可恭可喜</p>
+            <p><span class="category">求兒：</span>好</p>
+            <p><span class="category">功名：</span><span title="需待日後評斷">望后料</span></p> <!-- 照錄原文 -->
+        </div>
+    </div>
+
+    <div class="main-explanation">
+        <h2>籤詩詳解</h2>
+        <p>
+            佛法廣大無邊，遍及十方世界，具有靈驗的感應。雖然人生中可能遭遇各種大大小小的災難禍患，但每個人的因緣果報不同，最終的結局也自然會有所差異。只要您心地正直、向善，如同「吉人自有天相」一般，自然能夠逢凶化吉、化險為夷。更何況，就像紅日當空、陽光普照一樣，您還有貴人來到家中給予扶持與保佑呢！
+        </p>
+        <p>
+            這首籤詩表示，您目前可能正遭遇一些困難，但不必過於擔憂。只要您能秉持虔誠、正直的態度去行事，以堅定的毅力去努力，自然能夠克服眼前的困境，最終獲得成功。人生在世，難免會遇到挑戰與困難，關鍵在於如何應對，以及付出的努力程度，這些因素將決定最終的結果。
+        </p>
+        <p>
+            若問求財，顯示會先經歷困難，然後逐漸獲得利益。若問功名，只要能夠修養品德、多行善事，自然會得到神明的幫助。若問婚姻，則可能需要他人（媒人或貴人）从中撮合方能成功。若問官司訴訟，初期可能較為不利，但最終會轉為吉利。若考慮外出或搬家移居，運勢普通平穩，可以進行。
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

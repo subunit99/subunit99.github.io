@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第八籤 乙卯 - 籤詩解說</title>
+    <!-- 引入 Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --background-color: #fdfbf4; /* 類似羊皮紙的淺米色 */
+            --text-color: #4a2c2a; /* 深棕色文字 */
+            --primary-color: #8B4513; /* 詩文、標題用色 (SaddleBrown) */
+            --secondary-color: #a0522d; /* 解曰類別用色 (Sienna) */
+            --explanation-color: #5a3a38; /* 解說文字 */
+            --border-color: #dcd0b8; /* 邊框色 */
+            --font-serif: 'Noto Serif TC', serif;
+            --font-sans: 'Noto Sans TC', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: var(--font-sans);
+            background-color: var(--background-color);
+            /* background-image: url('images/parchment_background.jpg'); */
+            background-size: cover;
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .poem-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .poem-lines p {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            line-height: 1.8;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .explanation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .explanation-item p {
+            margin: 0 0 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .explanation-item .category {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-right: 5px;
+        }
+
+        .main-explanation h2 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .main-explanation p {
+            text-indent: 2em;
+            margin-bottom: 15px;
+            color: var(--explanation-color);
+            font-size: 1rem;
+            text-align: justify;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .poem-lines p {
+                font-size: 1.1rem;
+            }
+            .main-explanation h2 {
+                font-size: 1.3rem;
+            }
+            .main-explanation p {
+                font-size: 0.95rem;
+            }
+             .explanation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>第八籤 乙卯</h1>
+
+    <div class="poem-section">
+        <div class="poem-lines">
+            <p>禾稻看看結成完</p>
+            <p>此事必定兩相全</p>
+            <p>回到家中寬心坐</p>
+            <p>妻兒<span title="豉腹，或指鼓腹，意為飽食滿足">豉腹</span>樂團圓</p> <!-- 豉腹可能指鼓腹 -->
+        </div>
+    </div>
+
+    <div class="explanation-grid">
+        <div class="explanation-item">
+            <p><span class="category">討海：</span>好</p>
+            <p><span class="category">作塭：</span>允收</p>
+            <p><span class="category">魚苗：</span>大利</p>
+            <p><span class="category">求財：</span>下半年好</p>
+            <p><span class="category">耕作：</span>下半年好</p>
+            <p><span class="category">經商：</span>有利必得</p>
+            <p><span class="category">月令：</span>破財</p>
+            <p><span class="category">六甲：</span>頭男.二女</p>
+            <p><span class="category">婚姻：</span>成.大吉</p>
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">家運：</span>適宜平安</p>
+            <p><span class="category">失物：</span>速尋有在</p>
+            <p><span class="category">尋人：</span>速至</p>
+            <p><span class="category">遠信：</span>速至</p>
+            <p><span class="category">六畜：</span>大吉</p>
+            <p><span class="category">築室：</span>鼓員固美</p> <!-- 照錄原文 -->
+            <p><span class="category">移居：</span>大吉</p>
+            <p><span class="category">墳墓：</span>地理有合</p>
+            <p><span class="category">出外：</span>到處都可</p>
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">行舟：</span>得財</p>
+            <p><span class="category">凡事：</span>合得不合失</p>
+            <p><span class="category">治病：</span>少安老不好</p>
+            <p><span class="category">做事：</span>先難後興</p>
+            <p><span class="category">官事：</span>2次完.破財</p> <!-- 照錄原文 -->
+            <p><span class="category">家事：</span>進益..完美</p>
+            <p><span class="category">求兒：</span>吉</p>
+            <p><span class="category">功名：</span>2次得近</p> <!-- 照錄原文 -->
+        </div>
+    </div>
+
+    <div class="main-explanation">
+        <h2>籤詩詳解</h2>
+        <p>
+            看看田裡的稻禾已經結實纍纍，飽滿成熟，知道今年的收成一定非常豐碩。這象徵著辛勤的付出與豐盛的回報是相輔相成的，努力耕耘必定會換來美好的結果。看見這樣的好收成，心中充滿了喜悅，可以寬心地回到家中，與妻兒共享天倫之樂，一家人溫飽滿足、歡喜團圓。
+        </p>
+        <p>
+            抽到這支籤，表示運勢的走向大體上是先經歷一番辛苦努力，然後才能享受到甜美的果實（先苦後甘）。若問婚姻，是個好兆頭，意味著有情人終能締結良緣，共組美滿家庭。若問事業，則需要腳踏實地、按部就班地去經營，切勿心存僥倖、投機取巧，否則容易招致失敗。
+        </p>
+        <p>
+            若問功名，如果在秋季參加考試或評定，則有較大的希望；如果在冬季，則可能時機未到，需要再接再厲、充實自己，等待來年的機會。總體而言，此籤預示著只要付出努力，最終必能獲得圓滿的成果與家庭和樂。
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

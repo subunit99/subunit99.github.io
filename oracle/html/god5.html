@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第五籤 甲申 - 籤詩解說</title>
+    <!-- 引入 Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --background-color: #fdfbf4; /* 類似羊皮紙的淺米色 */
+            --text-color: #4a2c2a; /* 深棕色文字 */
+            --primary-color: #8B4513; /* 詩文、標題用色 (SaddleBrown) */
+            --secondary-color: #a0522d; /* 解曰類別用色 (Sienna) */
+            --explanation-color: #5a3a38; /* 解說文字 */
+            --border-color: #dcd0b8; /* 邊框色 */
+            --font-serif: 'Noto Serif TC', serif;
+            --font-sans: 'Noto Sans TC', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: var(--font-sans);
+            background-color: var(--background-color);
+            /* background-image: url('images/parchment_background.jpg'); */
+            background-size: cover;
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .poem-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .poem-lines p {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            line-height: 1.8;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .explanation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .explanation-item p {
+            margin: 0 0 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .explanation-item .category {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-right: 5px;
+        }
+
+        .main-explanation h2 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .main-explanation p {
+            text-indent: 2em;
+            margin-bottom: 15px;
+            color: var(--explanation-color);
+            font-size: 1rem;
+            text-align: justify;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .poem-lines p {
+                font-size: 1.1rem;
+            }
+            .main-explanation h2 {
+                font-size: 1.3rem;
+            }
+            .main-explanation p {
+                font-size: 0.95rem;
+            }
+             .explanation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>第五籤 甲申</h1>
+
+    <div class="poem-section">
+        <div class="poem-lines">
+            <p>只恐前途命有變</p>
+            <p>勸君做急可宜先</p>
+            <p>且守長江無大事</p>
+            <p>命逢太白守身邊</p>
+        </div>
+    </div>
+
+    <div class="explanation-grid">
+        <div class="explanation-item">
+            <p><span class="category">討海：</span>邪病臨身</p>
+            <p><span class="category">作塭：</span>先難後得</p>
+            <p><span class="category">魚苗：</span>先無後有</p>
+            <p><span class="category">求財：</span>得失</p>
+            <p><span class="category">耕作：</span>空思妄想</p>
+            <p><span class="category">經商：</span>後遇貴人</p>
+            <p><span class="category">月令：</span>淡淡</p>
+            <p><span class="category">六甲：</span>女女求神</p> <!-- 原文女女，照錄 -->
+            <p><span class="category">婚姻：</span>多口舌</p>
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">家運：</span>先邪後吉</p>
+            <p><span class="category">失物：</span>急尋在</p>
+            <p><span class="category">尋人：</span>待慢</p>
+            <p><span class="category">遠信：</span>必阻遲滯</p>
+            <p><span class="category">六畜：</span>不瑞</p>
+            <p><span class="category">築室：</span>不吉</p>
+            <p><span class="category">移居：</span>不可</p>
+            <p><span class="category">墳墓：</span>先平後佳</p>
+            <p><span class="category">出外：</span>下半年好</p>
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">行舟：</span>外出有災</p>
+            <p><span class="category">凡事：</span>待時機</p>
+            <p><span class="category">治病：</span>光癒暗不吉</p> <!-- 照錄原文，可能指白天好轉晚上加重 -->
+            <p><span class="category">做事：</span>前凶後吉</p>
+            <p><span class="category">官事：</span>被官欺</p>
+            <p><span class="category">家事：</span>貴人團圓</p>
+            <p><span class="category">求兒：</span>不佳</p>
+            <!-- 原文缺少功名，故省略 -->
+        </div>
+    </div>
+
+    <div class="main-explanation">
+        <h2>籤詩詳解</h2>
+        <p>
+            恐怕未來前行的道路上會出現意想不到的變化或阻礙，奉勸您對於想做的事情，若是急迫重要的，或許可以先行處理。然而，若非萬分緊急，則不妨暫且安守在目前的情況下（如同守著長江），靜觀其變，因為您的命中有太白金星（吉星）的守護，自然不會發生太過嚴重的事情。
+        </p>
+        <p>
+            抽到這支籤，指示所謀求的事情不宜過於急躁，所謂「欲速則不達」，必須耐心等待合適的時機。若問婚姻，可能暗示對方心中另有對象，或者時機未到，目前成功的希望不大。若問官司訴訟，則以和解為最佳策略。若問疾病，建議多多祈求神明保佑，尋求心靈寄託與庇護。對於參加考試或追求功名，雖有希望，但切記不可心浮氣躁，需沉穩應對。
+        </p>
+         <p>
+            求財方面運勢平平，沒有太大的起色。若經營事業，應該按部就班、穩紮穩打，不可懷有不切實際的幻想或目標（好高騖遠），以免招致失敗。若考慮遷移、搬家或變動職位，目前並非良機，建議暫緩。總而言之，此籤的核心建議是保持冷靜，不要輕舉妄動，專注於修養自身品德、端正心念，自然能夠保持安泰。
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

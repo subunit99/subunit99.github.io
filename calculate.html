@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>計算機</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .calculator {
+            background: #222;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly enhanced shadow */
+            width: 400px;
+        }
+        .display {
+            background: #333;
+            border-radius: 5px;
+            margin-bottom: 15px; /* Increased margin */
+            padding: 10px;
+            text-align: right;
+            color: #fff;
+            font-size: 2.2em; /* Slightly larger font */
+            height: 65px;    /* Adjusted height */
+            line-height: 65px;/* Adjusted line-height */
+            overflow: hidden; /* Prevent text overflow */
+        }
+        .display input {
+            background: transparent;
+            border: none;
+            color: inherit;
+            font-size: inherit;
+            width: 100%;
+            text-align: right;
+            padding-right: 5px; /* Ensure text doesn't touch the edge */
+            box-sizing: border-box;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 8px; /* Slightly increased gap */
+        }
+        .button {
+            background: #505050;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            font-size: 1.4em; /* Adjusted font size for consistency */
+            padding: 15px 0; /* Adjusted padding */
+            transition: background 0.2s ease, transform 0.1s ease; /* Added transform transition */
+            text-align: center;
+            user-select: none; /* Prevent text selection on click */
+        }
+        .button:active {
+            background: #6a6a6a; /* Lighten active state a bit */
+            transform: scale(0.98); /* Slight press effect */
+        }
+        .operator {
+            background: #ff9800;
+        }
+        .operator:active {
+            background: #e68a00;
+            transform: scale(0.98);
+        }
+        .function {
+            background: #4CAF50;
+        }
+        .function:active {
+            background: #45a049;
+            transform: scale(0.98);
+        }
+        /* Removed unused #table1 styles */
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display">
+            <!-- The JavaScript will now target this input field directly -->
+            <input type="text" id="calculatorDisplay" readonly>
+        </div>
+        <div class="buttons">
+            <button class="button function" onclick="func('log')">log</button>
+            <button class="button function" onclick="func('ln')">ln</button>
+            <button class="button function" onclick="func('log2')">log2</button>
+            <button class="button function" onclick="window.location.href='calculate.html'">New</button>
+            <button class="button function" onclick="window.location.href='index.html'">Off</button>
+
+            <button class="button function" onclick="inv()">INV</button>
+            <button class="button function" onclick="func('sin')">sin</button>
+            <button class="button function" onclick="func('cos')">cos</button>
+            <button class="button function" onclick="func('tan')">tan</button>
+            <button class="button function" onclick="func('pi')">π</button>
+
+            <button class="button function" onclick="operator('pow')">^</button>
+            <button class="button function" onclick="func('n!')">n!</button>
+            <button class="button function" onclick="func('sqrt')">√</button>
+            <button class="button function" onclick="func('1/x')">1/x</button>
+            <button class="button function" onclick="func('swap')">Swap</button>
+
+            <button class="button function" onclick="openp()"> ( </button>
+            <button class="button function" onclick="closep()"> ) </button>
+            <button class="button function" onclick="func('Min')">M-</button> <!-- Assuming Min is M- as in memory subtract -->
+            <button class="button function" onclick="func('MR')">MR</button>
+            <button class="button function" onclick="func('M+')">M+</button>
+
+            <button class="button" onclick="digit(7)">7</button>
+            <button class="button" onclick="digit(8)">8</button>
+            <button class="button" onclick="digit(9)">9</button>
+            <button class="button operator" onclick="clear()">C</button>
+            <button class="button operator" onclick="clearAll()">AC</button>
+
+            <button class="button" onclick="digit(4)">4</button>
+            <button class="button" onclick="digit(5)">5</button>
+            <button class="button" onclick="digit(6)">6</button>
+            <button class="button operator" onclick="operator('*')">*</button>
+            <button class="button operator" onclick="operator('/')">/</button>
+
+            <button class="button" onclick="digit(1)">1</button>
+            <button class="button" onclick="digit(2)">2</button>
+            <button class="button" onclick="digit(3)">3</button>
+            <button class="button operator" onclick="operator('+')">+</button>
+            <button class="button operator" onclick="operator('-')">-</button>
+
+            <button class="button" onclick="digit(0)">0</button>
+            <button class="button" onclick="period()">.</button>
+            <button class="button function" onclick="exp()">Exp</button>
+            <button class="button function" onclick="sign()">±</button>
+            <button class="button operator" onclick="equals()">=</button>
+        </div>
+    </div>
+
+<script>
+// Javascript scientific calculator (4 March 1996)
+// (C) Copyright Rolf Howarth 1996
+// rolf@insect.demon.co.uk
+// Simplified by Fuyau Lin (August 1996)
+// Modernized for HTML input by AI (Year 2023+)
+
+var NDIGITS = 16; // Max digits to display
+var STACKSIZE = 12;
+
+var value = 0;           // current value in display
+var memory = Gookie("CalcMemory"); // current value in memory
+if (memory === null || isNaN(parseFloat(memory))) memory = 0; else memory = parseFloat(memory);
+
+
+var level = 0;           // no. of items on stack
+var entered = true;      // has value on display been 'entered'?
+var decimal = 0;         // has decimal point been entered?
+var fixed = 0;           // force trailing zero display for fixed point
+var exponent = false;    // currently entering exponent?
+var expval = 0;          // value of exponent
+var digits = 0;          // number of digits entered
+var inverse = false;     // has the INV key been pressed?
+
+function stackItem(){
+   this.value = 0;
+   this.op = "";
+   this.prec = 0; // Precedence of operator
+}
+
+// Initialize stack
+var stack = [];
+for (let i = 0; i < STACKSIZE; i++) {
+    stack[i] = new stackItem();
+}
+
+// DOM element for display
+var displayElement; // Will be assigned in DOMContentLoaded
+
+function push(val, op, prec){
+   if (level == STACKSIZE)
+      return false; // Stack overflow
+   stack[level].value = val;
+   stack[level].op = op;
+   stack[level].prec = prec;
+   level++;
+   return true;
+}
+
+function pop(){
+   if (level == 0)
+      return false; // Stack underflow
+   level--;
+   return true;
+}
+
+function format(valToFormat){
+   var valStr = "" + valToFormat;
+   if (valStr.indexOf("N") >= 0 || valStr.toLowerCase().indexOf("infinity") >=0 || isNaN(valToFormat)) {
+      return "Error ";
+   }
+
+   var i = valStr.indexOf("e");
+   if (i >= 0) { // Scientific notation
+      var expStr = valStr.substring(i + 1);
+      var mantStr = valStr.substring(0, i);
+      
+      if (mantStr.length > NDIGITS - expStr.length - 2) {
+          mantStr = parseFloat(mantStr).toPrecision(NDIGITS - expStr.length - 3); // Adjust precision
+      }
+      // Ensure 'e' is included if number is very large/small and needs it
+      return parseFloat(valToFormat).toExponential(NDIGITS - 7); // Approximate for display
+   } else {
+      var valNeg = false;
+      if (valToFormat < 0) {
+         valToFormat = -valToFormat;
+         valNeg = true;
+      }
+
+      var valIntStr = "" + Math.floor(valToFormat);
+      var prec = NDIGITS - valIntStr.length - 1; // Max fractional digits
+      if (fixed > 0 && !entered) prec = fixed;
+      if (prec < 0) prec = 0;
+
+
+      // Round to available precision
+      var roundedVal = parseFloat(valToFormat.toFixed(Math.max(0, prec)));
+      valStr = roundedVal.toString();
+
+      if (valNeg) valStr = "-" + valStr;
+
+      // Ensure decimal point is shown if needed (e.g. after pressing '.')
+      if ((entered || decimal > 0 || fixed > 0) && valStr.indexOf('.') === -1 && valStr !== "Error ") {
+          if (!exponent) valStr += '.';
+      }
+       // Trim if too long, but try to preserve important part
+      if (valStr.length > NDIGITS) {
+          if (valStr.indexOf('.') > NDIGITS -1 && valStr.indexOf('.') !== -1) {
+              valStr = valStr.substring(0, valStr.indexOf('.'));
+          } else if (valStr.indexOf('.') !== -1) {
+             valStr = parseFloat(valStr).toPrecision(NDIGITS - (valStr.startsWith("-")?1:0) -1 );
+          }
+           else {
+             valStr = parseFloat(valStr).toPrecision(NDIGITS-(valStr.startsWith("-")?1:0));
+          }
+           if (valStr.length > NDIGITS && valStr.includes('e')) {
+            // if toPrecision resulted in 'e', then good
+           } else if (valStr.length > NDIGITS) {
+            // if still too long, use exponential.
+            return parseFloat(valToFormat * (valNeg?-1:1) ).toExponential(NDIGITS - 7);
+           }
+      }
+
+   }
+   return valStr;
+}
+
+function refresh(){
+    if (!displayElement) return;
+    var displayText = format(value);
+    if (exponent) {
+        if (expval < 0)
+            displayText += " " + expval;
+        else
+            displayText += " +" + expval;
+    }
+    // Padding is less critical with a fixed-size input, but good for alignment
+    // displayText = ("               " + displayText).slice(-NDIGITS-1); 
+    displayElement.value = displayText;
+    inverse = false; // INV usually applies to the next function key only
+}
+
+function clearAll(){
+   level = 0;
+   clear(); // Clear also calls refresh
+}
+
+function clear(){
+   exponent = false;
+   expval = 0;
+   value = 0;
+   digits = 0; // Reset digit count
+   enter();    // Sets entered=true, exponent=false, decimal=0, fixed=0
+   refresh();
+}
+
+function evalx(){
+   if (level==0) return false;
+
+   var op = stack[level-1].op;
+   var sval = stack[level-1].value;
+
+   if (op == "+") value = sval + value;
+   else if (op == '-') value = sval - value;
+   else if (op == '*') value = sval * value;
+   else if (op == '/') {
+       if (value === 0) { value = "NAN"; return true;} // Division by zero
+       value = sval / value;
+   }
+   else if (op == 'pow') value = Math.pow(sval, value);
+
+   pop();
+   return op !== '('; // Continue evaluation unless we hit an open parenthesis
+
+}
+
+function openp(){
+   enter();
+   if (!push(0, '(', 0)) { // 0 is a dummy value, '(' is operator, 0 is precedence
+      value = "NAN"; // Error state
+   }
+   refresh();
+}
+
+function closep(){
+   enter();
+   while (evalx()); // Evaluate until matching open parenthesis is processed or stack empty
+   refresh();
+}
+
+function operator(op){
+   enter();
+   var prec;
+   if (op == '+' || op == '-') prec = 1;
+   else if (op == '*' || op == '/') prec = 2;
+   else if (op == "pow") prec = 3;
+   else prec = 0; // Should not happen for these ops
+
+   // Evaluate higher or equal precedence operators on stack
+   while (level > 0 && stack[level-1].op !== '(' && prec <= stack[level-1].prec) {
+      if (!evalx()) break; // Stop if evalx returns false (e.g. '(' found)
+   }
+
+   if (!push(value, op, prec)) {
+      value = "NAN"; // Error state
+   }
+   entered = true; // After an operator, the next number will be new input
+   refresh();
+}
+
+function enter(){
+   if (exponent) {
+      value = value * Math.pow(10, expval);
+   }
+   entered = true;
+   exponent = false;
+   decimal = 0;
+   fixed = 0;
+   // digits = 0; // Resetting digits here might be too soon for some flows
+}
+
+function equals(){
+   enter();
+   while (level > 0) {
+      if (!evalx()) break; // Stop if evalx returns false (e.g. stack empty or '(')
+   }
+   refresh();
+}
+
+function digit(n){
+   if (entered) {
+      value = 0;
+      digits = 0;
+      entered = false;
+      decimal = 0; // Reset decimal status for new number
+      fixed = 0;
+   }
+
+   if (exponent) {
+      if (digits < 3) { // Limit exponent digits
+         expval = expval * 10 + (expval < 0 ? -n : n) ;
+         ++digits;
+         refresh();
+      }
+      return;
+   }
+
+   if (digits < NDIGITS - (decimal > 0 ? 1 : 0) - (value < 0 || (value === 0 && n < 0) ? 1:0)) { // Check total digits
+      if (decimal > 0) {
+         value = parseFloat(value.toString() + '.' + n.toString()); // More robust decimal handling
+         decimal = value.toString().length - value.toString().indexOf('.') -1; // update decimal places
+         fixed = decimal; // Keep track of fixed decimal places entered
+         digits++; // Count digits after decimal
+      } else {
+         value = value * 10 + (value < 0 ? -n : n);
+      }
+      digits++;
+   }
+   refresh();
+}
+
+function sign(){
+   if (entered && value === 0) { // If entered and value is 0, don't make it -0
+       refresh();
+       return;
+   }
+   if (exponent) {
+      expval = -expval;
+   } else {
+      value = -value;
+   }
+   refresh();
+}
+
+function period(){
+   if (entered) {
+      value = 0;
+      digits = 0; // Allow 0.xxx
+      entered = false;
+   }
+   if (decimal === 0 && !exponent) { // Only add decimal if not already there and not in exponent mode
+      // Handled by format function's display logic
+      decimal = 1; // Mark that decimal point has been pressed
+   }
+   refresh(); // Refresh to show the decimal point
+}
+
+function exp(){
+   if (entered || exponent) return; // Can't start exponent if already entered or in exponent mode
+   exponent = true;
+   expval = 0;
+   digits = 0; // Reset digits for exponent entry
+   decimal = 0; // No decimals in exponent
+   refresh();
+}
+
+function inv(){
+   inverse = !inverse;
+   // Typically, INV would highlight on the calculator display or change button text.
+   // For this version, we just toggle the flag. Refresh might change if INV state was shown.
+   // refresh(); // Not strictly needed unless display indicates INV state
+}
+
+function func(f){
+   enter(); // Process any pending exponent or number entry
+   var prevValue = value; // For potential error recovery or inverse ops
+
+   if (f == "1/x") {
+      if (value === 0) { value = "NAN"; } else { value = 1 / value; }
+   } else if (f == "swap") {
+      if (level == 0 || stack[level-1].op === '(') { // Cannot swap if stack is empty or top is '('
+         value = "NAN";
+      } else {
+         var tmp = value;
+         value = stack[level-1].value; // Take value from stack top
+         stack[level-1].value = tmp; // Put current value onto stack top
+      }
+   } else if (f == 'n!') {
+      if (value < 0 || value > 170 || value !== Math.round(value)) { // Max factorial before Infinity for double
+         value = "NAN";
+      } else {
+         var n = 1;
+         for (var i = 1; i <= value; i++) n *= i;
+         value = n;
+      }
+   } else if (f == "MR") {
+      value = memory;
+   } else if (f == "M+") {
+      memory += value;
+      Sookie("CalcMemory", memory.toString());
+   } else if (f == "Min") { // Assuming "Min" means M- (subtract from memory)
+      memory -= value; // Changed from memory = value to memory -= value
+      Sookie("CalcMemory", memory.toString());
+   } else if (inverse) {
+      if (f == "sin") value = Math.asin(value) * 180 / Math.PI;
+      else if (f == "cos") value = Math.acos(value) * 180 / Math.PI;
+      else if (f == "tan") value = Math.atan(value) * 180 / Math.PI;
+      else if (f == "log") value = Math.pow(10, value); // 10^x
+      else if (f == "log2") value = Math.pow(2, value); // 2^x
+      else if (f == "ln") value = Math.exp(value);    // e^x
+      else if (f == "sqrt") value = value * value;    // x^2
+      else if (f == "pi") value = Math.E; // Inverse of PI is E
+      // else inverse = false; // Consume inverse state for other functions if needed
+   } else { // Not inverse
+      if (f == "sin") value = Math.sin(value / 180 * Math.PI);
+      else if (f == "cos") value = Math.cos(value / 180 * Math.PI);
+      else if (f == "tan") value = Math.tan(value / 180 * Math.PI);
+      else if (f == "log") { // Base 10 log
+         if (value <= 0) { value = "NAN"; } else { value = Math.log10(value); }
+      }
+      else if (f == "log2") { // Base 2 log
+          if (value <= 0) { value = "NAN"; } else { value = Math.log2(value); }
+      }
+      else if (f == "ln") { // Natural log
+          if (value <= 0) { value = "NAN"; } else { value = Math.log(value); }
+      }
+      else if (f == "sqrt") {
+          if (value < 0) { value = "NAN"; } else { value = Math.sqrt(value); }
+      }
+      else if (f == "pi") value = Math.PI;
+   }
+   // Check for errors from Math functions (e.g. log(-1))
+   if (isNaN(value) && typeof value !== 'string') value = "NAN";
+
+   entered = true; // Result of a function is an "entered" value
+   refresh();
+}
+
+//  Cookie Functions - Bill Dortch (21-Jan-96)
+//  Slightly adapted.
+function GookieVal(offset) {
+   var endstr = document.cookie.indexOf (";", offset);
+   if (endstr == -1) endstr = document.cookie.length;
+   return unescape(document.cookie.substring(offset, endstr));
+}
+function Gookie(name) {
+   var arg = name + "=";
+   var alen = arg.length;
+   var clen = document.cookie.length;
+   var i = 0;
+   while (i < clen) {
+      var j = i + alen;
+      if (document.cookie.substring(i, j) == arg) return GookieVal (j);
+      i = document.cookie.indexOf(" ", i) + 1;
+      if (i == 0) break;
+   }
+   return null;
+}
+function Sookie(name, val, expires, path, domain, secure) {
+   document.cookie = name + "=" + escape (val) +
+      ((expires == null) ? "" : ("; expires=" + expires.toGMTString())) +
+      ((path == null) ? "" : ("; path=" + path)) +
+      ((domain == null) ? "" : ("; domain=" + domain)) +
+      ((secure == true) ? "; secure" : "");
+}
+// Dookie (Delete cookie) is not used in the original calculator logic directly,
+// but can be defined if needed.
+// function Dookie(name) { ... }
+
+
+// Initialize display when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    displayElement = document.getElementById('calculatorDisplay');
+    if (!displayElement) {
+        console.error("Calculator display element not found!");
+        return;
+    }
+    // Retrieve memory from cookie if it exists
+    var savedMemory = Gookie("CalcMemory");
+    if (savedMemory !== null) {
+        memory = parseFloat(savedMemory);
+        if (isNaN(memory)) memory = 0;
+    } else {
+        memory = 0;
+    }
+    refresh(); // Initial display update
+});
+
+</script>
+</body>
+</html>

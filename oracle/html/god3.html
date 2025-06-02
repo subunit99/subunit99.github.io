@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第三籤 甲辰 - 籤詩解說</title>
+    <!-- 引入 Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --background-color: #fdfbf4; /* 類似羊皮紙的淺米色 */
+            --text-color: #4a2c2a; /* 深棕色文字 */
+            --primary-color: #8B4513; /* 詩文、標題用色 (SaddleBrown) */
+            --secondary-color: #a0522d; /* 解曰類別用色 (Sienna) */
+            --explanation-color: #5a3a38; /* 解說文字 */
+            --border-color: #dcd0b8; /* 邊框色 */
+            --font-serif: 'Noto Serif TC', serif;
+            --font-sans: 'Noto Sans TC', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: var(--font-sans);
+            background-color: var(--background-color);
+            /* 如果您有背景圖片，請取消註解下一行並確保路徑正確 */
+            /* background-image: url('images/parchment_background.jpg'); */
+            background-size: cover;
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.8); /* 半透明白色背景，如果用了背景圖 */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .poem-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .poem-lines p {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            line-height: 1.8;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .explanation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 響應式網格 */
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .explanation-item p {
+            margin: 0 0 5px 0; /* 調整段落間距 */
+            font-size: 0.9rem;
+        }
+
+        .explanation-item .category {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-right: 5px;
+        }
+
+        .main-explanation h2 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .main-explanation p {
+            text-indent: 2em; /* 段首縮排 */
+            margin-bottom: 15px;
+            color: var(--explanation-color);
+            font-size: 1rem;
+            text-align: justify; /* 左右對齊 */
+        }
+
+        /* 響應式調整 */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .poem-lines p {
+                font-size: 1.1rem;
+            }
+            .main-explanation h2 {
+                font-size: 1.3rem;
+            }
+            .main-explanation p {
+                font-size: 0.95rem;
+            }
+             .explanation-grid {
+                grid-template-columns: 1fr; /* 小螢幕單欄 */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>第三籤 甲辰</h1>
+
+    <div class="poem-section">
+        <div class="poem-lines">
+            <p>勸君把定心莫虛</p>
+            <p>天註衣祿自有餘</p>
+            <p>和合重重常吉慶</p>
+            <p>時來終遇得明珠</p>
+        </div>
+    </div>
+
+    <div class="explanation-grid">
+        <div class="explanation-item">
+            <p><span class="category">討海：</span>晚有大利</p>
+            <p><span class="category">作塭：</span>合者獲利</p>
+            <p><span class="category">魚苗：</span>後得大利</p>
+            <p><span class="category">求財：</span>後遇貴人</p>
+            <p><span class="category">耕作：</span>下冬好</p>
+            <p><span class="category">經商：</span>先平後發</p>
+            <p><span class="category">月令：</span>漸得春風</p>
+            <p><span class="category">六甲：</span>先男後女</p>
+            <p><span class="category">婚姻：</span>大吉</p>
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">家運：</span>和氣得瑞</p>
+            <p><span class="category">失物：</span>月光必在</p>
+            <p><span class="category">尋人：</span>能回</p>
+            <p><span class="category">遠信：</span>守候佳音</p>
+            <p><span class="category">六畜：</span>可納</p>
+            <p><span class="category">築室：</span>大吉</p>
+            <p><span class="category">移居：</span>後吉</p>
+            <p><span class="category">墳墓：</span>永裕後崑</p> <!-- 注意: 原文崑字可能有誤或為特殊用法 -->
+            <p><span class="category">出外：</span>貴人南方</p>
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">行舟：</span>漸得大財</p>
+            <p><span class="category">凡事：</span>吉</p>
+            <p><span class="category">治病：</span>命不畏平安</p>
+            <p><span class="category">做事：</span>必成</p>
+            <p><span class="category">官事：</span>不畏破財完局</p>
+            <p><span class="category">家事：</span>餘慶且喜</p>
+            <p><span class="category">求兒：</span>吉</p>
+            <p><span class="category">功名：</span>科甲連登</p>
+        </div>
+    </div>
+
+    <div class="main-explanation">
+        <h2>籤詩詳解</h2>
+        <p>
+            奉勸您應該堅定自己的心意，不要再猶豫不決、心猿意馬了。上天註定的福分和緣分，自然會有，不必過於強求。只要能保持和合、專注的態度，好事自然會接連而來，時機成熟時，最終會遇到那屬於您的珍寶（無論是姻緣或事業上的成就）。
+        </p>
+        <p>
+            抽到這支籤，若問婚姻，籤詩是告訴您感情要專一，不要三心二意，只要緣分到了，自然會有情人終成眷屬。俗話說：「有緣千里來相會，無緣對面不相逢」，這是天作之合，不必強求。若問事業，則是提醒您要專心致志於目前的工作或方向，不可輕易變換跑道，否則容易「十做九不成」。即使遭遇挫折，也應堅持下去，再接再厲，最終必能獲得成功；如果輕言放棄，則永遠沒有成功的機會。若問求財，往外發展或尋求外地機會較為有利。若問疾病，狀況可能較不穩定，需多加注意。若問搬家或移居，可以得到平安順利。
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

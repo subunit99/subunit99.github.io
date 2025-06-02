@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第七籤 乙丑 - 籤詩解說</title>
+    <!-- 引入 Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --background-color: #fdfbf4; /* 類似羊皮紙的淺米色 */
+            --text-color: #4a2c2a; /* 深棕色文字 */
+            --primary-color: #8B4513; /* 詩文、標題用色 (SaddleBrown) */
+            --secondary-color: #a0522d; /* 解曰類別用色 (Sienna) */
+            --explanation-color: #5a3a38; /* 解說文字 */
+            --border-color: #dcd0b8; /* 邊框色 */
+            --font-serif: 'Noto Serif TC', serif;
+            --font-sans: 'Noto Sans TC', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: var(--font-sans);
+            background-color: var(--background-color);
+            /* background-image: url('images/parchment_background.jpg'); */
+            background-size: cover;
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .poem-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .poem-lines p {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            line-height: 1.8;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .explanation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .explanation-item p {
+            margin: 0 0 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .explanation-item .category {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-right: 5px;
+        }
+
+        .main-explanation h2 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .main-explanation p {
+            text-indent: 2em;
+            margin-bottom: 15px;
+            color: var(--explanation-color);
+            font-size: 1rem;
+            text-align: justify;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .poem-lines p {
+                font-size: 1.1rem;
+            }
+            .main-explanation h2 {
+                font-size: 1.3rem;
+            }
+            .main-explanation p {
+                font-size: 0.95rem;
+            }
+             .explanation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>第七籤 乙丑</h1>
+
+    <div class="poem-section">
+        <div class="poem-lines">
+            <p>雲開月出正分明</p>
+            <p>不需進退問前程</p>
+            <p>婚姻皆由天注定</p>
+            <p>和合清吉萬事成</p>
+        </div>
+    </div>
+
+    <div class="explanation-grid">
+        <div class="explanation-item">
+            <p><span class="category">討海：</span>合吉單凶</p>
+            <p><span class="category">作塭：</span>須防風水</p>
+            <p><span class="category">魚苗：</span>月中吉</p>
+            <p><span class="category">求財：</span>大進</p>
+            <p><span class="category">耕作：</span>有收</p>
+            <p><span class="category">經商：</span>成者大吉</p>
+            <p><span class="category">月令：</span>淡淡</p>
+            <p><span class="category">六甲：</span>生女</p>
+            <p><span class="category">婚姻：</span>光成暗敗</p> <!-- 照錄原文 -->
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">家運：</span>漸漸平安</p>
+            <p><span class="category">失物：</span>日在暗無</p>
+            <p><span class="category">尋人：</span>月中遇</p>
+            <p><span class="category">遠信：</span>可喜</p>
+            <p><span class="category">六畜：</span>合者興旺</p>
+            <p><span class="category">築室：</span>月中好</p>
+            <p><span class="category">移居：</span>不吉</p>
+            <p><span class="category">墳墓：</span>地勢甚美</p>
+            <p><span class="category">出外：</span>滿路異香</p>
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">行舟：</span>須預防</p>
+            <p><span class="category">凡事：</span>後成</p>
+            <p><span class="category">治病：</span>女安男差</p>
+            <p><span class="category">做事：</span>合吉不合凶</p>
+            <p><span class="category">官事：</span>破財</p>
+            <p><span class="category">家事：</span>冒險平安</p>
+            <p><span class="category">求兒：</span>好</p>
+            <p><span class="category">功名：</span>難進</p>
+        </div>
+    </div>
+
+    <div class="main-explanation">
+        <h2>籤詩詳解</h2>
+        <p>
+            如同烏雲散去，月亮重新顯現，大放光明，前方的道路已經清晰明瞭，不必再猶豫不決、躊躇著該前進還是後退了，可以堅定地向著目標前進。人生中的婚姻緣分大多是由上天安排註定好的，只要是天作之合的良緣，自然會和諧美滿，諸事順利成功。
+        </p>
+        <p>
+            抽到這支籤，若是詢問運勢，意味著困頓的時期已經過去，好運即將來臨（否極泰來）。如同被遮蔽的月亮重放光明，過去的不順遂都將煙消雲散，現在開始將會步入順境。若是詢問婚姻，表示這是天賜的良緣，只要時機成熟，有情人終能成為眷屬。若問謀事或創業，只要方向正確，努力去做，終能成功。
+        </p>
+         <p>
+             若問求財，將開始獲得利潤，財運轉佳。但若問外出遠行或搬家移居，則較為不利，建議暫緩或多加考慮。若問疾病，雖可能經歷一些波折或驚險，但最終能夠平安無事。若問官司訴訟，以和解為最佳方式，可以避免更多麻煩。
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

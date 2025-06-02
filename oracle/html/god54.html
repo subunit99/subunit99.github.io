@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第五十四籤 壬戌 - 籤詩解說</title>
+    <!-- 引入 Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --background-color: #fdfbf4; /* 類似羊皮紙的淺米色 */
+            --text-color: #4a2c2a; /* 深棕色文字 */
+            --primary-color: #8B4513; /* 詩文、標題用色 (SaddleBrown) */
+            --secondary-color: #a0522d; /* 解曰類別用色 (Sienna) */
+            --explanation-color: #5a3a38; /* 解說文字 */
+            --border-color: #dcd0b8; /* 邊框色 */
+            --font-serif: 'Noto Serif TC', serif;
+            --font-sans: 'Noto Sans TC', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: var(--font-sans);
+            background-color: var(--background-color);
+            /* background-image: url('images/parchment_background.jpg'); */
+            background-size: cover;
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .poem-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .poem-lines p {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            line-height: 1.8;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .explanation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .explanation-item p {
+            margin: 0 0 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .explanation-item .category {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-right: 5px;
+        }
+
+        .main-explanation h2 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .main-explanation p {
+            text-indent: 2em;
+            margin-bottom: 15px;
+            color: var(--explanation-color);
+            font-size: 1rem;
+            text-align: justify;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .poem-lines p {
+                font-size: 1.1rem;
+            }
+            .main-explanation h2 {
+                font-size: 1.3rem;
+            }
+            .main-explanation p {
+                font-size: 0.95rem;
+            }
+             .explanation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>第五十四籤 壬戌</h1>
+
+    <div class="poem-section">
+        <div class="poem-lines">
+            <p>孤燈寂寂夜沉沉</p>
+            <p>萬事清吉萬事成</p>
+            <p>若逢陰中有善果</p> <!-- 指暗中積有善因 -->
+            <p>燒得好香達神明</p>
+        </div>
+    </div>
+
+    <div class="explanation-grid">
+        <div class="explanation-item">
+            <p><span class="category">討海：</span>小利</p>
+            <p><span class="category">作塭：</span>小得微利</p>
+            <p><span class="category">魚苗：</span>小利</p>
+            <p><span class="category">求財：</span>先無利</p>
+            <p><span class="category">耕作：</span>有收成</p>
+            <p><span class="category">經商：</span>合夥必失</p>
+            <p><span class="category">月令：</span>求神庇佑</p>
+            <p><span class="category">六甲：</span>弄璋之慶</p> <!-- 指生男孩 -->
+            <p><span class="category">婚姻：</span>有福可成</p>
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">家運：</span>門庭興旺</p>
+            <p><span class="category">失物：</span>尋能回</p>
+            <p><span class="category">尋人：</span>祈求自回</p>
+            <p><span class="category">遠信：</span>音信即至</p>
+            <p><span class="category">六畜：</span>小利益</p>
+            <p><span class="category">築室：</span>小吉</p>
+            <p><span class="category">移居：</span>不可</p> <!-- 注意與家運興旺的矛盾 -->
+            <p><span class="category">墳墓：</span>地氣亨通</p>
+            <p><span class="category">出外：</span>須靠自己成</p>
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">行舟：</span>微利</p>
+            <p><span class="category">凡事：</span>清吉</p>
+            <p><span class="category">治病：</span>祈神</p>
+            <p><span class="category">做事：</span>難成.</p> <!-- 注意與整體吉兆的矛盾 -->
+            <p><span class="category">官事：</span>拖尾得勝</p> <!-- 指拖延後勝訴 -->
+            <p><span class="category">家事：</span>望神保佑</p>
+            <p><span class="category">求兒：</span>大吉</p> <!-- 注意與六甲弄璋的一致性 -->
+            <p><span class="category">功名：</span>半吉</p>
+        </div>
+    </div>
+
+    <div class="main-explanation">
+        <h2>籤詩詳解</h2>
+        <p>
+            在寂靜沉沉的夜晚，您或許感到孤獨，對著一盞孤燈沉思，心中期望著萬事都能清淨吉祥、順利成功。籤詩告訴您，如果您在過去或暗中有累積善行、種下好的因果（"陰中有善果"），並且平日裡心存虔誠、燒好香敬奉神明，那麼您的心意就能上達天聽，獲得神明的暗中助力，最終得以完成您的願望。
+        </p>
+        <p>
+            這首籤詩的核心在於強調「因果報應」與「平日修福」的重要性。運氣的好壞與自身的行為和心念息息相關。若問財利，不可期望不勞而獲，只要願意辛勤工作、努力付出，必定能夠獲得收穫；但如果只是坐等好運降臨，則難免會感到失望。若問功名，也是同樣的道理，平時若不努力用功、積累實力（如同"平時不燒香"的比喻），自然難以取得好成績。
+        </p>
+        <p>
+            若問謀事，可能會遇到一些困難，需要展現出毅力與恆心才能克服。出外發展是可行的，但需要依靠自身的努力才能成功。若問官司訴訟，以和為貴是較好的選擇。若問婚姻，則是大吉之兆，是有福氣的良緣。此籤提醒當事人，平日的善行與虔誠之心是獲得好運與神助的關鍵。
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

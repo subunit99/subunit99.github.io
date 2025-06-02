@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第一籤 甲子 - 籤詩解說</title>
+    <!-- 引入 Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --background-color: #fdfbf4; /* 類似羊皮紙的淺米色 */
+            --text-color: #4a2c2a; /* 深棕色文字 */
+            --primary-color: #8B4513; /* 詩文、標題用色 (SaddleBrown) */
+            --secondary-color: #a0522d; /* 解曰類別用色 (Sienna) */
+            --explanation-color: #5a3a38; /* 解說文字 */
+            --border-color: #dcd0b8; /* 邊框色 */
+            --font-serif: 'Noto Serif TC', serif;
+            --font-sans: 'Noto Sans TC', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: var(--font-sans);
+            background-color: var(--background-color);
+            /* 如果您有背景圖片，請取消註解下一行並確保路徑正確 */
+            /* background-image: url('images/parchment_background.jpg'); */
+            background-size: cover;
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.8); /* 半透明白色背景，如果用了背景圖 */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .poem-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .poem-lines p {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            line-height: 1.8;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .explanation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* 響應式網格 */
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .explanation-item p {
+            margin: 0 0 5px 0; /* 調整段落間距 */
+            font-size: 0.9rem;
+        }
+
+        .explanation-item .category {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-right: 5px;
+        }
+
+        .main-explanation h2 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .main-explanation p {
+            text-indent: 2em; /* 段首縮排 */
+            margin-bottom: 15px;
+            color: var(--explanation-color);
+            font-size: 1rem;
+            text-align: justify; /* 左右對齊 */
+        }
+
+        /* 響應式調整 */
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .poem-lines p {
+                font-size: 1.1rem;
+            }
+            .main-explanation h2 {
+                font-size: 1.3rem;
+            }
+            .main-explanation p {
+                font-size: 0.95rem;
+            }
+             .explanation-grid {
+                grid-template-columns: 1fr; /* 小螢幕單欄 */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>第一籤 甲子</h1>
+
+    <div class="poem-section">
+        <div class="poem-lines">
+            <p>日出便見風雲散</p>
+            <p>光明清靜照世間</p>
+            <p>一向前途通大道</p>
+            <p>萬世清吉保平安</p>
+        </div>
+    </div>
+
+    <div class="explanation-grid">
+        <div class="explanation-item">
+            <p><span class="category">討海：</span>漸漸得利</p>
+            <p><span class="category">作塭：</span>大吉利</p>
+            <p><span class="category">魚苗：</span>不畏</p>
+            <p><span class="category">求財：</span>大進後小利</p>
+            <p><span class="category">耕作：</span>得利</p>
+            <p><span class="category">經商：</span>如意</p>
+            <p><span class="category">月令：</span>不遂</p>
+            <p><span class="category">六甲：</span>頭男.二女</p>
+            <p><span class="category">婚姻：</span>可合</p>
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">家運：</span>平安大吉</p>
+            <p><span class="category">失物：</span>東尋能回</p>
+            <p><span class="category">尋人：</span>能回</p>
+            <p><span class="category">遠信：</span>速至</p>
+            <p><span class="category">六畜：</span>好</p>
+            <p><span class="category">築室：</span>清吉光明</p>
+            <p><span class="category">移居：</span>大吉</p>
+            <p><span class="category">墳墓：</span>地穴大吉</p>
+            <p><span class="category">出外：</span>平安</p>
+        </div>
+         <div class="explanation-item">
+            <p><span class="category">行舟：</span>有大財</p>
+            <p><span class="category">凡事：</span>有大吉昌</p>
+            <p><span class="category">治病：</span>未日痊安</p>
+            <p><span class="category">做事：</span>難成.成者大吉</p>
+            <p><span class="category">官事：</span>理斷分明</p>
+            <p><span class="category">家事：</span>無憂</p>
+            <p><span class="category">求兒：</span>大吉</p>
+        </div>
+    </div>
+
+    <div class="main-explanation">
+        <h2>籤詩詳解</h2>
+        <p>
+            只要太陽一出來，一切的風風雨雨、烏雲阻礙自然就會消散；光明的陽光將會清淨地照耀著整個世間。未來的前途將會是一條暢通無阻的大道，只要走在正途上，世世代代都能清淨吉祥，並且得到平安順遂的庇佑。
+        </p>
+        <p>
+            抽到這支籤，表示目前所謀求的事情或許會遇到一些困難或挑戰，但千萬不可因此灰心喪志。只要能夠秉持恆心毅力，堅持不懈地繼續追求、認真努力，最終會有成功的一天。若問財運與交易，初期可能利潤不高，但終會有所獲。若問功名，只要有志向，終能成功。若問婚姻，若有對象，將會是好的緣分，有情人終成眷屬。若問訴訟，如果是遭受冤屈，最終能獲得清白；如果是民事糾紛，則以和解為最佳策略。
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

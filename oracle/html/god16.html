@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第十六籤 丙午 - 籤詩解說</title>
+    <!-- 引入 Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --background-color: #fdfbf4; /* 類似羊皮紙的淺米色 */
+            --text-color: #4a2c2a; /* 深棕色文字 */
+            --primary-color: #8B4513; /* 詩文、標題用色 (SaddleBrown) */
+            --secondary-color: #a0522d; /* 解曰類別用色 (Sienna) */
+            --explanation-color: #5a3a38; /* 解說文字 */
+            --border-color: #dcd0b8; /* 邊框色 */
+            --font-serif: 'Noto Serif TC', serif;
+            --font-sans: 'Noto Sans TC', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: var(--font-sans);
+            background-color: var(--background-color);
+            /* background-image: url('images/parchment_background.jpg'); */
+            background-size: cover;
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .poem-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .poem-lines p {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            line-height: 1.8;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .explanation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .explanation-item p {
+            margin: 0 0 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .explanation-item .category {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-right: 5px;
+        }
+
+        .main-explanation h2 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .main-explanation p {
+            text-indent: 2em;
+            margin-bottom: 15px;
+            color: var(--explanation-color);
+            font-size: 1rem;
+            text-align: justify;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .poem-lines p {
+                font-size: 1.1rem;
+            }
+            .main-explanation h2 {
+                font-size: 1.3rem;
+            }
+            .main-explanation p {
+                font-size: 0.95rem;
+            }
+             .explanation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>第十七籤 丙午</h1>
+
+    <div class="poem-section">
+        <div class="poem-lines">
+            <p>不須作福不須求</p>
+            <p>用盡心機總未休</p>
+            <p>陽<span title="事不知">世不知</span>陰世事</p> <!-- 原文 "事不之"，推測為"事不知" -->
+            <p>官法如爐不自由</p>
+        </div>
+    </div>
+
+    <div class="explanation-grid">
+        <div class="explanation-item">
+            <p><span class="category">討海：</span>陰鬼難得</p> <!-- 指收穫受無形干擾 -->
+            <p><span class="category">作塭：</span>難如意</p>
+            <p><span class="category">魚苗：</span>不如意</p>
+            <p><span class="category">求財：</span>春夏好秋冬呆</p>
+            <p><span class="category">耕作：</span>無收</p>
+            <p><span class="category">經商：</span>難就了錢</p> <!-- 難成功且虧損 -->
+            <p><span class="category">月令：</span>了錢</p> <!-- 指本月不利財 -->
+            <p><span class="category">六甲：</span>子女<span title="鳥須/烏虛? 意指空虛或不祥">鳥須</span></p> <!-- 照錄原文，意不明確 -->
+            <p><span class="category">婚姻：</span>不合</p>
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">家運：</span>求神解決</p>
+            <p><span class="category">失物：</span>運途難移</p> <!-- 指找回機會渺茫 -->
+            <p><span class="category">尋人：</span>遲慢</p>
+            <p><span class="category">遠信：</span>必有失音</p> <!-- 指收不到消息 -->
+            <p><span class="category">六畜：</span>不可納</p>
+            <p><span class="category">築室：</span>不可</p>
+            <p><span class="category">移居：</span>不可</p>
+            <p><span class="category">墳墓：</span>地勢不佳</p>
+            <p><span class="category">出外：</span>防險</p>
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">行舟：</span>不如意</p>
+            <p><span class="category">凡事：</span><span title="不恐/不可?">不恐</span>防風</p> <!-- 照錄原文，可能指不可不防風波 -->
+            <p><span class="category">治病：</span>日過不畏</p> <!-- 指過一段時日後較無礙 -->
+            <p><span class="category">做事：</span>退步</p>
+            <p><span class="category">官事：</span>緊防刑事</p> <!-- 需謹慎提防刑事訴訟 -->
+            <p><span class="category">家事：</span>恐防有變</p>
+            <p><span class="category">求兒：</span>不可</p>
+            <p><span class="category">功名：</span>難得</p>
+        </div>
+    </div>
+
+    <div class="main-explanation">
+        <h2>籤詩詳解</h2>
+        <p>
+            人生的福分，不是刻意去製造或強求就能得到的。即使您費盡了心思計謀去追求，最終可能還是會感到失望，難以達成目標。因為陽世間的人往往不完全了解陰間善惡果報的法則，而您今生的福分，其實與您累世所積的善因善果有關。人在陽世間的一言一行，到了陰間都會受到審判，作惡多端的人最終難逃懲罰，如同官府的刑法如熔爐般嚴厲，不是自己能夠隨意掌控或逃避的。
+        </p>
+        <p>
+            這首籤詩主要在提示求籤者，一個人的運氣好壞並非全由自己祈求或算計而來，很大程度上是上天根據您心地的好壞與行為的善惡所做的安排與報償。所謂：「積善之家，必有餘慶；積不善之家，必有餘殃。」以及「善有善報，惡有惡報；不是不報，時候未到。」因此，如果您目前尚未得到好的回報，所謀求的事情未能如願，財富也未獲得，不必過於強求，更無需怨天尤人。當下應該做的，是更加努力行善積德，修養心性，最終必能感動上天，賜予您好的運氣與轉機。
+        </p>
+        <p>
+            若問目前的運勢，呈現起伏不定、不明朗的狀態。若問功名，恐怕難有進展。若問婚姻，表示緣分尚未到來，談婚論嫁難以成功。若考慮搬家移居或出外發展，都不是好的時機，保持現狀、以靜制動較為適宜。若問官司訴訟，必須修心養性，不可意氣用事，應抱持「得饒人處且饒人」的態度，盡量以和解為最高原則。
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

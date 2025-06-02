@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第四十七籤 辛酉 - 籤詩解說</title>
+    <!-- 引入 Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --background-color: #fdfbf4; /* 類似羊皮紙的淺米色 */
+            --text-color: #4a2c2a; /* 深棕色文字 */
+            --primary-color: #8B4513; /* 詩文、標題用色 (SaddleBrown) */
+            --secondary-color: #a0522d; /* 解曰類別用色 (Sienna) */
+            --explanation-color: #5a3a38; /* 解說文字 */
+            --border-color: #dcd0b8; /* 邊框色 */
+            --font-serif: 'Noto Serif TC', serif;
+            --font-sans: 'Noto Sans TC', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: var(--font-sans);
+            background-color: var(--background-color);
+            /* background-image: url('images/parchment_background.jpg'); */
+            background-size: cover;
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .poem-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .poem-lines p {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            line-height: 1.8;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .explanation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .explanation-item p {
+            margin: 0 0 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .explanation-item .category {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-right: 5px;
+        }
+
+        .main-explanation h2 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .main-explanation p {
+            text-indent: 2em;
+            margin-bottom: 15px;
+            color: var(--explanation-color);
+            font-size: 1rem;
+            text-align: justify;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .poem-lines p {
+                font-size: 1.1rem;
+            }
+            .main-explanation h2 {
+                font-size: 1.3rem;
+            }
+            .main-explanation p {
+                font-size: 0.95rem;
+            }
+             .explanation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>第四十七籤 辛酉</h1>
+
+    <div class="poem-section">
+        <div class="poem-lines">
+            <p>君爾何須問聖跡</p>
+            <p>自己身中皆有益</p>
+            <p>於今且看月中旬</p>
+            <p>凶事脫出化成吉</p>
+        </div>
+    </div>
+
+    <div class="explanation-grid">
+        <div class="explanation-item">
+            <p><span class="category">討海：</span>春夏大吉</p>
+            <p><span class="category">作塭：</span>得利</p>
+            <p><span class="category">魚苗：</span>先凶後吉</p>
+            <p><span class="category">求財：</span>後吉</p>
+            <p><span class="category">耕作：</span>晚冬好</p>
+            <p><span class="category">經商：</span>經營利市</p>
+            <p><span class="category">月令：</span>不遂</p>
+            <p><span class="category">六甲：</span>先男後女</p>
+            <p><span class="category">婚姻：</span>可合</p>
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">家運：</span>門庭小吉</p>
+            <p><span class="category">失物：</span>子日在</p> <!-- 指子日可尋 -->
+            <p><span class="category">尋人：</span>慢回</p>
+            <p><span class="category">遠信：</span>近日就至</p>
+            <p><span class="category">六畜：</span>安</p>
+            <p><span class="category">築室：</span><span title="格局合宜，不必畏懼">有合不畏</span></p> <!-- 照錄原文 -->
+            <p><span class="category">移居：</span>大吉</p>
+            <p><span class="category">墳墓：</span>地勢大吉</p>
+            <p><span class="category">出外：</span>先壞後好</p>
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">行舟：</span>春夏好</p>
+            <p><span class="category">凡事：</span>先壞後好</p>
+            <p><span class="category">治病：</span>未日痊安</p> <!-- 指未日可痊癒 -->
+            <p><span class="category">做事：</span>二次即成</p>
+            <p><span class="category">官事：</span>了錢</p> <!-- 指花錢可了事 -->
+            <p><span class="category">家事：</span>得宜</p>
+            <p><span class="category">求兒：</span>好</p>
+            <p><span class="category">功名：</span>後科得進</p> <!-- 指下次考試有機會 -->
+        </div>
+    </div>
+
+    <div class="main-explanation">
+        <h2>籤詩詳解</h2>
+        <p>
+            您又何必到處去探問神明的指示或奇蹟呢？解決問題的關鍵其實就在您自己身上（"自己身中皆有益"）。只要您能反求諸己、心存善念、行事端正，自然會對您有益。對於目前所擔憂的事情，暫且看看這個月的中旬（約農曆十五左右）吧，到那時，原本不利的凶險之事將會逐漸消散脫離，轉化為吉祥的局面。
+        </p>
+        <p>
+            這支籤詩告訴當事人，不必過於外求或擔憂，解決問題的力量往往源於自身。只要能保持內心的光明磊落，積極努力去做自己該做的事，運勢自然會好轉。目前所遇到的困難或煩惱，將會在月中迎來轉機，逢凶化吉。
+        </p>
+        <p>
+            若問財利，只要認真經營，必定能夠獲利。若問功名，這次考試可能未能中榜，但只要再接再厲，下次考試必定大有希望。若問婚姻，過了月中之後，持續努力推進，有情人終能成為眷屬。若問官司訴訟，可能需要一些時間拖延，但最終能夠化解危機、轉為有利。對於搬家移居或外出發展等事宜，狀況尚可，可以進行。
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

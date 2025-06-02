@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第二十八籤 戊午 - 籤詩解說</title>
+    <!-- 引入 Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --background-color: #fdfbf4; /* 類似羊皮紙的淺米色 */
+            --text-color: #4a2c2a; /* 深棕色文字 */
+            --primary-color: #8B4513; /* 詩文、標題用色 (SaddleBrown) */
+            --secondary-color: #a0522d; /* 解曰類別用色 (Sienna) */
+            --explanation-color: #5a3a38; /* 解說文字 */
+            --border-color: #dcd0b8; /* 邊框色 */
+            --font-serif: 'Noto Serif TC', serif;
+            --font-sans: 'Noto Sans TC', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: var(--font-sans);
+            background-color: var(--background-color);
+            /* background-image: url('images/parchment_background.jpg'); */
+            background-size: cover;
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .poem-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .poem-lines p {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            line-height: 1.8;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .explanation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .explanation-item p {
+            margin: 0 0 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .explanation-item .category {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-right: 5px;
+        }
+
+        .main-explanation h2 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .main-explanation p {
+            text-indent: 2em;
+            margin-bottom: 15px;
+            color: var(--explanation-color);
+            font-size: 1rem;
+            text-align: justify;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .poem-lines p {
+                font-size: 1.1rem;
+            }
+            .main-explanation h2 {
+                font-size: 1.3rem;
+            }
+            .main-explanation p {
+                font-size: 0.95rem;
+            }
+             .explanation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>第二十八籤 戊午</h1>
+
+    <div class="poem-section">
+        <div class="poem-lines">
+            <p>於今莫作此當時</p>
+            <p>虎落平陽被犬欺</p>
+            <p>世間凡事何難定</p>
+            <p>千山萬水也<span title="遲疑/莫遲疑?">遲疑</span></p> <!-- 照錄原文，但與解說似有矛盾 -->
+        </div>
+    </div>
+
+    <div class="explanation-grid">
+        <div class="explanation-item">
+            <p><span class="category">討海：</span>無利可得</p>
+            <p><span class="category">作塭：</span>防口舌</p>
+            <p><span class="category">魚苗：</span>不利</p>
+            <p><span class="category">求財：</span>不得</p>
+            <p><span class="category">耕作：</span>半收</p>
+            <p><span class="category">經商：</span>難如意</p>
+            <p><span class="category">月令：</span>防人欺</p>
+            <p><span class="category">六甲：</span>須防難產</p>
+            <p><span class="category">婚姻：</span><span title="可能指女方個性強勢或命帶刑剋">女帶殺氣</span></p> <!-- 照錄原文 -->
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">家運：</span><span title="指家中有人搬弄是非或作祟">人作怪</span></p> <!-- 照錄原文 -->
+            <p><span class="category">失物：</span>無處可尋</p>
+            <p><span class="category">尋人：</span>難得</p>
+            <p><span class="category">遠信：</span>沒消息</p>
+            <p><span class="category">六畜：</span>不安</p>
+            <p><span class="category">築室：</span>犯殺</p> <!-- 指時機或方位帶煞氣 -->
+            <p><span class="category">移居：</span>大不好</p>
+            <p><span class="category">墳墓：</span>快遷</p>
+            <p><span class="category">出外：</span>被人欺</p>
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">行舟：</span>了錢</p> <!-- 指虧損 -->
+            <p><span class="category">凡事：</span>後吉</p>
+            <p><span class="category">治病：</span>不好</p>
+            <p><span class="category">做事：</span>難成</p>
+            <p><span class="category">官事：</span>被官欺了錢</p> <!-- 指遭官方欺壓且破財 -->
+            <p><span class="category">家事：</span>防大害</p>
+            <p><span class="category">求兒：</span>不吉</p>
+            <p><span class="category">功名：</span>無好時機</p>
+        </div>
+    </div>
+
+    <div class="main-explanation">
+        <h2>籤詩詳解</h2>
+        <p>
+            英雄好漢不應總是沉湎於過去的輝煌（"莫提當年勇"），現在的時勢與當年已經不同（"此一時，彼一時"），不要拿眼前的現實狀況與過去的風光歲月相比。這就好比威猛的老虎一旦落入了平坦的原野，失去了山林的優勢，連小狗都敢上前欺負牠（"虎落平陽被犬欺"），真是英雄無用武之地。然而，世間的事情又有什麼難以決定的呢？即使前方有千山萬水的阻礙與困難，也不必猶豫不決，應當下定決心，勇往直前地去面對和克服。（註：籤詩末句"也遲疑"與解說"也不必遲疑"意思相反，解讀時需注意可能存在的矛盾或不同角度的詮釋。）
+        </p>
+        <p>
+            抽到這支籤，若是詢問財運，解說者認為應該積極進取，克服困難，最終財源便能如千山萬水般源源而來。但籤詩本身及多數解曰偏向保守，暗示目前時運不佳，可能更適合守成或謹慎行事。
+        </p>
+        <p>
+            若問功名，則有懷才不遇、英雄無用武之地的感慨，時機尚未到來。若問婚姻，恐怕會遇到重重阻礙，不易談成，建議考慮另尋對象。對於搬家移居或外出發展，皆不吉利，如果不是非常緊急必要的事情，最好暫緩行動，保持現狀較為穩妥。此籤提醒當事人認清現實，調整心態，避免沉溺過去，同時也要審慎評估當前局勢，不可貿然躁進。
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

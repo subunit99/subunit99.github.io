@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第五十八籤 癸未 - 籤詩解說</title>
+    <!-- 引入 Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --background-color: #fdfbf4; /* 類似羊皮紙的淺米色 */
+            --text-color: #4a2c2a; /* 深棕色文字 */
+            --primary-color: #8B4513; /* 詩文、標題用色 (SaddleBrown) */
+            --secondary-color: #a0522d; /* 解曰類別用色 (Sienna) */
+            --explanation-color: #5a3a38; /* 解說文字 */
+            --border-color: #dcd0b8; /* 邊框色 */
+            --font-serif: 'Noto Serif TC', serif;
+            --font-sans: 'Noto Sans TC', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: var(--font-sans);
+            background-color: var(--background-color);
+            /* background-image: url('images/parchment_background.jpg'); */
+            background-size: cover;
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .poem-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .poem-lines p {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            line-height: 1.8;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .explanation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .explanation-item p {
+            margin: 0 0 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .explanation-item .category {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-right: 5px;
+        }
+
+        .main-explanation h2 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .main-explanation p {
+            text-indent: 2em;
+            margin-bottom: 15px;
+            color: var(--explanation-color);
+            font-size: 1rem;
+            text-align: justify;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .poem-lines p {
+                font-size: 1.1rem;
+            }
+            .main-explanation h2 {
+                font-size: 1.3rem;
+            }
+            .main-explanation p {
+                font-size: 0.95rem;
+            }
+             .explanation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>第五十八籤 癸未</h1>
+
+    <div class="poem-section">
+        <div class="poem-lines">
+            <p>蛇身意欲變成龍</p>
+            <p>只恐命內運未通</p>
+            <p>久病且作寬心坐</p>
+            <p>言語雖多不可從</p>
+        </div>
+    </div>
+
+    <div class="explanation-grid">
+        <div class="explanation-item">
+            <p><span class="category">討海：</span>可得小利</p>
+            <p><span class="category">作塭：</span>無財利</p>
+            <p><span class="category">魚苗：</span>不可採買</p>
+            <p><span class="category">求財：</span>不可求</p>
+            <p><span class="category">耕作：</span>不可</p>
+            <p><span class="category">經商：</span>無利可求</p>
+            <p><span class="category">月令：</span>破財多</p>
+            <p><span class="category">六甲：</span>祈禱</p> <!-- 指需祈求神明保佑 -->
+            <p><span class="category">婚姻：</span><span title="大吉/不可?">大吉</span></p> <!-- 注意與解說"不易成功"的矛盾 -->
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">家運：</span>不能順序</p>
+            <p><span class="category">失物：</span>慢慢追尋</p>
+            <p><span class="category">尋人：</span>辰日在</p> <!-- 指龍日可尋 -->
+            <p><span class="category">遠信：</span>等待音信</p>
+            <p><span class="category">六畜：</span>無財利</p>
+            <p><span class="category">築室：</span>且待<span title="擇/移?">擇</span>日</p> <!-- 原作'移'，改為'擇'較合理 -->
+            <p><span class="category">移居：</span>不可</p>
+            <p><span class="category">墳墓：</span>穴地平安</p>
+            <p><span class="category">出外：</span>無時機</p>
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">行舟：</span>無利益</p>
+            <p><span class="category">凡事：</span>不好難成</p>
+            <p><span class="category">治病：</span>拖尾</p> <!-- 指病程拖延 -->
+            <p><span class="category">做事：</span><span title="抽取佣金有利?">抽成好</span></p> <!-- 照錄原文，語意不明 -->
+            <p><span class="category">官事：</span>恐生禍端</p>
+            <p><span class="category">家事：</span><span title="漸待/且待?">漸待</span>莫得</p> <!-- 照錄原文，意不明 -->
+            <p><span class="category">求兒：</span>不可</p>
+            <p><span class="category">功名：</span>不能進</p>
+        </div>
+    </div>
+
+    <div class="main-explanation">
+        <h2>籤詩詳解</h2>
+        <p>
+            如同蛇想要蛻變成龍一般，心中雖有遠大的抱負與期望，但只恐怕命中註定的時機尚未到來，運勢還不通暢。就像久病纏身的人一樣，目前最好還是放寬心情、靜心休養、等待康復。對於外界紛雜的言語和意見，雖然很多，但不可隨意聽從、盲目行動。
+        </p>
+        <p>
+            這支籤詩比喻當事人目前可能懷有過高的期望或不切實際的想法（"蛇身意欲變成龍"），但現實條件或時機尚未成熟（"命內運未通"）。如同久病之人需要靜養一般，現在最適合的方式是保持冷靜、安守本分、寬心等待。不要被外界的紛擾或建議所迷惑（"言語雖多不可從"），應堅持自己的判斷，審慎行事。
+        </p>
+        <p>
+            若問求財，可能只有微薄的小利，難有大的收穫。若問功名，時運不濟，成功的希望不大。若問婚姻，則障礙較多，不易成功，若是強求，也難以獲得美滿的結果。若問官司訴訟，則會拖延時間，勝負難料，反覆不定。對於出外發展或搬家移居等事宜，皆不吉利。此籤強調安守、等待、不宜妄動的重要性。
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

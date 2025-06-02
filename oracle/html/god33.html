@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第三十三籤 己巳 - 籤詩解說</title>
+    <!-- 引入 Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --background-color: #fdfbf4; /* 類似羊皮紙的淺米色 */
+            --text-color: #4a2c2a; /* 深棕色文字 */
+            --primary-color: #8B4513; /* 詩文、標題用色 (SaddleBrown) */
+            --secondary-color: #a0522d; /* 解曰類別用色 (Sienna) */
+            --explanation-color: #5a3a38; /* 解說文字 */
+            --border-color: #dcd0b8; /* 邊框色 */
+            --font-serif: 'Noto Serif TC', serif;
+            --font-sans: 'Noto Sans TC', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: var(--font-sans);
+            background-color: var(--background-color);
+            /* background-image: url('images/parchment_background.jpg'); */
+            background-size: cover;
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .poem-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .poem-lines p {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            line-height: 1.8;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .explanation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .explanation-item p {
+            margin: 0 0 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .explanation-item .category {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-right: 5px;
+        }
+
+        .main-explanation h2 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .main-explanation p {
+            text-indent: 2em;
+            margin-bottom: 15px;
+            color: var(--explanation-color);
+            font-size: 1rem;
+            text-align: justify;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .poem-lines p {
+                font-size: 1.1rem;
+            }
+            .main-explanation h2 {
+                font-size: 1.3rem;
+            }
+            .main-explanation p {
+                font-size: 0.95rem;
+            }
+             .explanation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>第三十三籤 己巳</h1>
+
+    <div class="poem-section">
+        <div class="poem-lines">
+            <p>欲去長江水闊茫</p>
+            <p>行舟把定未遭風</p>
+            <p>戶內用心再作福</p>
+            <p>看看魚水得相逢</p>
+        </div>
+    </div>
+
+    <div class="explanation-grid">
+        <div class="explanation-item">
+            <p><span class="category">討海：</span>得財</p>
+            <p><span class="category">作塭：</span>漸漸得財</p>
+            <p><span class="category">魚苗：</span>好</p>
+            <p><span class="category">求財：</span>先微後有</p>
+            <p><span class="category">耕作：</span>有收成</p>
+            <p><span class="category">經商：</span>安分待時</p>
+            <p><span class="category">月令：</span>不安</p>
+            <p><span class="category">六甲：</span>先男後女</p> <!-- 注意與求兒"且慢"有出入 -->
+            <p><span class="category">婚姻：</span>大吉</p> <!-- 注意與解說"不易成功"有出入 -->
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">家運：</span>門庭興旺</p>
+            <p><span class="category">失物：</span>晚者用心</p> <!-- 指晚點用心尋找 -->
+            <p><span class="category">尋人：</span>未日在</p> <!-- 指未日可尋獲 -->
+            <p><span class="category">遠信：</span>音信遲延</p>
+            <p><span class="category">六畜：</span>小吉</p>
+            <p><span class="category">築室：</span>把定後日</p> <!-- 指確定後擇日進行 -->
+            <p><span class="category">移居：</span>二次成吉</p> <!-- 指第二次嘗試才吉利 -->
+            <p><span class="category">墳墓：</span>地運小吉</p>
+            <p><span class="category">出外：</span>平安</p>
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">行舟：</span>末日風波</p> <!-- 指月底可能有風波 -->
+            <p><span class="category">凡事：</span>不可急進</p>
+            <p><span class="category">治病：</span>拖尾破財</p> <!-- 指病程拖延且花錢 -->
+            <p><span class="category">做事：</span>二次成功</p> <!-- 指需嘗試第二次 -->
+            <p><span class="category">官事：</span>先壞後好</p>
+            <p><span class="category">家事：</span>門庭缺<span title="陷/憾?">陷</span>後團圓</p> <!-- 照錄原文，可能指先有缺憾後團圓 -->
+            <p><span class="category">求兒：</span>且慢後日</p> <!-- 指暫緩，日後再求 -->
+            <p><span class="category">功名：</span>望後科</p> <!-- 指下次考試機會較大 -->
+        </div>
+    </div>
+
+    <div class="main-explanation">
+        <h2>籤詩詳解</h2>
+        <p>
+            想要前往寬闊的長江，卻見江水茫茫遼闊，不知彼岸在何方。雖然穩穩地駕著船（"行舟把定"），卻未遇到順風（"未遭風"），難以前進。與其如此，不如回到家中，安守本分，用心經營家業，多行善積福（"戶內用心再作福"）。耐心等待，看看時機一到，自然會遇到如同魚得到水一般的大好機緣（"魚水得相逢"）。
+        </p>
+        <p>
+            抽到這支籤，表示目前的情況是「一動不如一靜」。尤其不適合出外遠行或拓展新業務，因為可能會遇到較多阻礙，難以達到預期的目標，建議暫緩或終止相關計畫。最好的策略是採取退守的方針，言行舉止要謹慎，處理事務要小心，以此來求得安穩與平順。
+        </p>
+        <p>
+            若問財運，總體來說是會有的，但不應操之過急。經營固定店面（門市生意）會比較好，若要出外經營則可能難以如意。若問功名，恐怕需要經過一番努力，甚至可能要再次嘗試（第二次）才有希望成功。若問婚姻，解說者認為不易成功，但若能展現熱情與恆心持續努力，或許還有希望；然而若雙方缺乏真感情，則建議及早另尋對象。（註：此婚姻解說與解曰中的"大吉"有所出入，需謹慎判斷）。
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

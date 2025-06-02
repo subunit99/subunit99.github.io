@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第三十九籤 庚辰 - 籤詩解說</title>
+    <!-- 引入 Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --background-color: #fdfbf4; /* 類似羊皮紙的淺米色 */
+            --text-color: #4a2c2a; /* 深棕色文字 */
+            --primary-color: #8B4513; /* 詩文、標題用色 (SaddleBrown) */
+            --secondary-color: #a0522d; /* 解曰類別用色 (Sienna) */
+            --explanation-color: #5a3a38; /* 解說文字 */
+            --border-color: #dcd0b8; /* 邊框色 */
+            --font-serif: 'Noto Serif TC', serif;
+            --font-sans: 'Noto Sans TC', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: var(--font-sans);
+            background-color: var(--background-color);
+            /* background-image: url('images/parchment_background.jpg'); */
+            background-size: cover;
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .poem-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .poem-lines p {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            line-height: 1.8;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .explanation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .explanation-item p {
+            margin: 0 0 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .explanation-item .category {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-right: 5px;
+        }
+
+        .main-explanation h2 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .main-explanation p {
+            text-indent: 2em;
+            margin-bottom: 15px;
+            color: var(--explanation-color);
+            font-size: 1rem;
+            text-align: justify;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .poem-lines p {
+                font-size: 1.1rem;
+            }
+            .main-explanation h2 {
+                font-size: 1.3rem;
+            }
+            .main-explanation p {
+                font-size: 0.95rem;
+            }
+             .explanation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>第三十九籤 庚辰</h1>
+
+    <div class="poem-section">
+        <div class="poem-lines">
+            <p>意中若問神仙路</p>
+            <p>勸爾且退望高樓</p>
+            <p>寬心且守寬心坐</p>
+            <p>必然遇得貴人扶</p>
+        </div>
+    </div>
+
+    <div class="explanation-grid">
+        <div class="explanation-item">
+            <p><span class="category">討海：</span>先不利後小利</p>
+            <p><span class="category">作塭：</span>先不利後有利</p>
+            <p><span class="category">魚苗：</span>失前利後</p>
+            <p><span class="category">求財：</span>先無後有</p>
+            <p><span class="category">耕作：</span>依舊好</p> <!-- 指維持現狀較好 -->
+            <p><span class="category">經商：</span>先平後利</p>
+            <p><span class="category">月令：</span>不遂了財</p> <!-- 指本月不順且破財 -->
+            <p><span class="category">六甲：</span>子息晚</p>
+            <p><span class="category">婚姻：</span>二次成好</p> <!-- 指可能需第二次才成功 -->
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">家運：</span>漸漸平安</p>
+            <p><span class="category">失物：</span>晚來尋在</p> <!-- 指晚點尋找可得 -->
+            <p><span class="category">尋人：</span>難在</p> <!-- 指不易尋獲 -->
+            <p><span class="category">遠信：</span>緩緩就至</p>
+            <p><span class="category">六畜：</span>不好</p>
+            <p><span class="category">築室：</span>後好</p>
+            <p><span class="category">移居：</span>平安</p>
+            <p><span class="category">墳墓：</span>地勢允好</p> <!-- 指風水尚可 -->
+            <p><span class="category">出外：</span>必遇貴人</p>
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">行舟：</span>小利平平</p>
+            <p><span class="category">凡事：</span>漸應</p> <!-- 指逐漸有感應、好轉 -->
+            <p><span class="category">治病：</span>少好老拖</p> <!-- 指年輕者好，年老者拖延 -->
+            <p><span class="category">做事：</span>有貴人</p>
+            <p><span class="category">官事：</span>後有貴人</p>
+            <p><span class="category">家事：</span>永獲吉慶</p>
+            <p><span class="category">求兒：</span>不可<span title="有事/或指不宜?">有事</span></p> <!-- 照錄原文，意不明 -->
+            <p><span class="category">功名：</span>望後科</p> <!-- 指下次考試機會較大 -->
+        </div>
+    </div>
+
+    <div class="main-explanation">
+        <h2>籤詩詳解</h2>
+        <p>
+            如果您心中想要探問的是那遙不可及、如同神仙般的境界或目標（比喻過高的期望），那麼我奉勸您還是暫且退一步，不要好高騖遠，看看眼前的高樓（比喻現實的基礎與界限）吧！與其不切實際地空想，不如放寬心，安守本分，靜心等待機會的到來，時候到了，自然會有賞識您或幫助您的貴人出現。
+        </p>
+        <p>
+            抽到這支籤，表示您目前的運氣可能並不理想，不適合積極向前衝刺，反而應該採取退守、穩固基礎的策略，耐心等待運勢好轉。不要總想著一步登天，做任何事情都要衡量自身的能力與條件（量力而為）。只要能安分守己、沉潛修煉，自然會有人看到您的價值並給予提拔。
+        </p>
+        <p>
+            此籤暗示著「一動不如一靜」，因此若考慮出外發展或搬家移居，都必須審慎重新考慮。若問求財，超出本分或能力的額外要求恐怕難以達成。若問功名，可能只是虛名或時機未到，必須先充實自我，才能做到名實相符。若問官司訴訟，與人相爭對您不利，以和為貴是最好的處理方式。若問謀事，會有長輩或貴人提拔的機會，應多聽取並尊重他人的意見。若問婚姻，不必心急，若是有緣分，自然會結為夫妻，切勿強求。
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>

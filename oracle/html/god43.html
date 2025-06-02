@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第四十三籤 辛丑 - 籤詩解說</title>
+    <!-- 引入 Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Noto+Sans+TC:wght@400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --background-color: #fdfbf4; /* 類似羊皮紙的淺米色 */
+            --text-color: #4a2c2a; /* 深棕色文字 */
+            --primary-color: #8B4513; /* 詩文、標題用色 (SaddleBrown) */
+            --secondary-color: #a0522d; /* 解曰類別用色 (Sienna) */
+            --explanation-color: #5a3a38; /* 解說文字 */
+            --border-color: #dcd0b8; /* 邊框色 */
+            --font-serif: 'Noto Serif TC', serif;
+            --font-sans: 'Noto Sans TC', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: var(--font-sans);
+            background-color: var(--background-color);
+            /* background-image: url('images/parchment_background.jpg'); */
+            background-size: cover;
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        h1 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .poem-section {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .poem-lines p {
+            font-family: var(--font-serif);
+            font-size: 1.3rem;
+            color: var(--primary-color);
+            line-height: 1.8;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .explanation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .explanation-item p {
+            margin: 0 0 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .explanation-item .category {
+            font-weight: bold;
+            color: var(--secondary-color);
+            margin-right: 5px;
+        }
+
+        .main-explanation h2 {
+            font-family: var(--font-serif);
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .main-explanation p {
+            text-indent: 2em;
+            margin-bottom: 15px;
+            color: var(--explanation-color);
+            font-size: 1rem;
+            text-align: justify;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .poem-lines p {
+                font-size: 1.1rem;
+            }
+            .main-explanation h2 {
+                font-size: 1.3rem;
+            }
+            .main-explanation p {
+                font-size: 0.95rem;
+            }
+             .explanation-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <h1>第四十三籤 辛丑</h1>
+
+    <div class="poem-section">
+        <div class="poem-lines">
+            <p>一年做事急如飛</p>
+            <p>君爾寬心莫遲疑</p>
+            <p>貴人還在千里外</p>
+            <p>音信月終<span title="漸漸知/漸漸之">漸漸之</span></p> <!-- 照錄原文 -->
+        </div>
+    </div>
+
+    <div class="explanation-grid">
+        <div class="explanation-item">
+            <p><span class="category">討海：</span>月半大進</p>
+            <p><span class="category">作塭：</span>後有大利</p>
+            <p><span class="category">魚苗：</span>月半有利</p>
+            <p><span class="category">求財：</span>時<span title="機到/月半?">月半</span>合</p> <!-- 照錄原文，可能指時機到或月半 -->
+            <p><span class="category">耕作：</span>小收成</p>
+            <p><span class="category">經商：</span>先無後有</p>
+            <p><span class="category">月令：</span>了錢</p> <!-- 指本月不利財 -->
+            <p><span class="category">六甲：</span>先男後女</p>
+            <p><span class="category">婚姻：</span>平平</p>
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">家運：</span>光耀門庭</p>
+            <p><span class="category">失物：</span>月光在</p> <!-- 指夜晚或月半可尋 -->
+            <p><span class="category">尋人：</span>月光過知</p> <!-- 指月半後可知消息 -->
+            <p><span class="category">遠信：</span>中旬可至</p>
+            <p><span class="category">六畜：</span>緩日即好</p> <!-- 指過些時日漸好 -->
+            <p><span class="category">築室：</span>好</p>
+            <p><span class="category">移居：</span>後日即可</p> <!-- 指過些時日即可 -->
+            <p><span class="category">墳墓：</span>吉地吉穴</p>
+            <p><span class="category">出外：</span>慢遇貴人</p> <!-- 指稍待可遇貴人 -->
+        </div>
+        <div class="explanation-item">
+            <p><span class="category">行舟：</span>小利益</p>
+            <p><span class="category">凡事：</span>貴人成</p> <!-- 指需靠貴人方成 -->
+            <p><span class="category">治病：</span>有貴人</p>
+            <p><span class="category">做事：</span>月半好</p>
+            <p><span class="category">官事：</span><span title="人情介入或第三方調解可了?">人斷</span>完局</p> <!-- 照錄原文 -->
+            <p><span class="category">家事：</span>喜遇貴人</p>
+            <p><span class="category">求兒：</span>且候寬緩</p> <!-- 指需耐心等待 -->
+            <p><span class="category">功名：</span>得意亢進</p> <!-- 指順利且持續進步 -->
+        </div>
+    </div>
+
+    <div class="main-explanation">
+        <h2>籤詩詳解</h2>
+        <p>
+            過去一年，您做事可能過於急躁，如同飛馳一般。現在籤詩勸您應該放寬心，從容不迫，同時也要果斷行事，不再猶豫遲疑。能夠幫助您的貴人目前還遠在千里之外，尚未出現，但關於您所期盼的消息或進展，到了這個月月底的時候就會逐漸明朗、有所眉目了。
+        </p>
+        <p>
+            這支籤詩明確地指示當事人，過去的行事風格可能過於急躁（急如飛），或者過於猶豫不決（遲疑），這兩種極端都應該避免，才能減少失敗的可能。過去的就讓它過去吧，從現在開始，應該學會從容不迫地應對，同時在需要決策時要勇敢果斷。
+        </p>
+        <p>
+             雖然籤詩提到目前可能缺乏貴人直接的幫助，導致過去做事不盡理想，但只要自己肯努力，並且調整好心態與作法，未來仍然會有好消息傳來。若問求財，目前可能尚有欠缺，但將來很有機會獲得不錯的財力。若問功名，還需要繼續努力充實自己，才有獲得成功的希望。若問婚姻，只要肯努力、有恆心，最終還是能夠成功的。
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>
