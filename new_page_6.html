@@ -1,0 +1,158 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>留言</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="none, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body background="images/bg_w2.jpg">
+
+<style> 
+.spanstyle{position:absolute;visibility:visible;top:-50px;font-size:10pt;font-family:Verdana;font-weight:bold;color:white} 
+</style> 
+<script> 
+var x,y 
+var step=20 
+var flag=0 
+var message="你來了啊...常來坐喲.." 
+message=message.split("") 
+var xpos=new Array() 
+for (i=0;i<=message.length;i++) { 
+xpos[i]=-50 
+} 
+var ypos=new Array() 
+for (i=0;i<=message.length;i++) { 
+ypos[i]=-50 
+} 
+function handlerMM(e){ 
+x = (document.layers) ? e.pageX : document.body.scrollLeft+event.clientX 
+y = (document.layers) ? e.pageY : document.body.scrollTop+event.clientY 
+flag=1 
+} 
+function makesnake() { 
+if (flag==1 && document.all) { 
+for (i=message.length; i>=1; i--) { 
+xpos[i]=xpos[i-1]+step 
+ypos[i]=ypos[i-1] 
+} 
+xpos[0]=x+step 
+ypos[0]=y 
+
+for (i=0; i<message.length; i++) { 
+var thisspan = eval("span"+(i)+".style") 
+thisspan.posLeft=xpos[i] 
+thisspan.posTop=ypos[i] 
+} 
+} 
+
+else if (flag==1 && document.layers) { 
+for (i=message.length; i>=1; i--) { 
+xpos[i]=xpos[i-1]+step 
+ypos[i]=ypos[i-1] 
+} 
+xpos[0]=x+step 
+ypos[0]=y 
+
+for (i=0; i<message.length; i++) { 
+var thisspan = eval("document.span"+i) 
+thisspan.left=xpos[i] 
+thisspan.top=ypos[i] 
+} 
+} 
+var timer=setTimeout("makesnake()",30) 
+} 
+</script> 
+ 
+<body onload="makesnake()"> 
+
+<script> 
+<!-- 
+for (i=0;i<=message.length;i++) { 
+document.write("<span id='span"+i+"' class='spanstyle'>") 
+document.write(message[i]) 
+document.write("</span>") 
+} 
+if (document.layers){ 
+document.captureEvents(Event.MOUSEMOVE); 
+} 
+document.onmousemove = handlerMM; 
+--> 
+</script> 
+
+<p align="center">
+
+ <font face="標楷體" size="6">留&nbsp;&nbsp; 言&nbsp;&nbsp; 簿</font></p>
+
+<p align="center">
+
+ <font color="#000080">
+
+ <table>
+ <tr>
+ <td bgColor="#f5fd99">
+ <script language=JavaScript> 
+
+var today = new Date () 
+var hours = today.getHours(); 
+document.write( "<font size=2 color=#000080 face='標楷體'>"); 
+if (hours <=0) document.write("嗨!!『十二點多了!!明天不用上班/上學嗎??還不睡??』"); 
+else if (hours <= 1) document.write("嗨!!『凌晨一點多了，還不想睡嗎??那陪我剛好.』"); 
+else if (hours <= 2) document.write("嗨!!『就快三點啦，該是睡覺時候了!!還沒過癮!?』"); 
+else if (hours <= 3) document.write("嗨!!『三點多了，你還不覺得睏嗎??哈..zZＺＺ』"); 
+else if (hours <= 4) document.write("嗨!!『四點多了，還來這玩，那麼喜歡我啊!!』"); 
+else if (hours <= 5) document.write("嗨!!『五點幾了，想通宵呀??保重龍體..!!』"); 
+else if (hours <= 6) document.write("嗨!!『早晨六點了，剛起身還是未睡呀??』"); 
+else if (hours <= 7) document.write("嗨!!『早安!!吃了早餐沒??一天之計在於晨!!』"); 
+else if (hours <= 8) document.write("嗨!!『八點幾啦!!還來這玩，今天不用上班/上學嗎??』"); 
+else if (hours <= 9) document.write("嗨!!『歡迎光臨!!想買早餐??你是否找錯地方呀??』"); 
+else if (hours <= 10) document.write("嗨!!『十點多些，打混啊呀??現在來這!!』"); 
+else if (hours <= 11) document.write("嗨!!『十一點幾，還沒吃飯時間吧!!就來打混...』"); 
+else if (hours <= 12) document.write("嗨!!『十二點幾啦!!開飯沒??專心吃飯..別吃到蟑螂都不知道!!』"); 
+else if (hours <= 13) document.write("嗨!!『一點多了!!吃飽飯沒??想睡午覺嗎??』"); 
+else if (hours <= 14) document.write("嗨!!『兩點幾，下午茶時間還沒到..別打混喲!!』"); 
+else if (hours <= 15) document.write("嗨!!『三點多了!!去吃個下午茶吧,記得帶我一起去!!』"); 
+else if (hours <= 16) document.write("嗨!!『四點多了!!正是偷懶的好時候啊!!』"); 
+else if (hours <= 17) document.write("嗨!!『五點鐘!!快下班了，晚上要去那約會啊??』"); 
+else if (hours <= 18) document.write("嗨!!『快七點了!!不去約會..還在這??認真的小孩!!』"); 
+else if (hours <= 19) document.write("嗨!!『七點多，吃飽了沒??吃飽記得收拾碗筷..別偷懶喲!!』"); 
+else if (hours <= 20) document.write("嗨!!『八點多了，還不出門!!看來你又要陪我孤單一個晚上了!!』"); 
+else if (hours <= 22) document.write("嗨!!『九點、十點快睡著了，現在才來這!!真是的』"); 
+else if (hours <= 23) document.write("『十一點幾，夜遊神出動了喲??別到處亂逛,小心踩到槍!!』"); 
+
+ </script>
+ </td>
+ </tr>
+ </table
+
+
+　</font></p>
+<p align="center"><font face="標楷體" color="#000080">
+<img alt="images/lin-tree.gif (2260 bytes)" src="images/lin-tree.gif" width="560" height="29"></font></p>
+<p align="center"><font face="標楷體" color="#000080">你想和我說說話嗎? 也許是你心情不好..</font></p>
+<p align="center"><font face="標楷體" color="#000080">也許你正沉浸在幸福的感受中..</font></p>
+<p align="center"><font face="標楷體" color="#000080">但千萬不要不要忘了我這來自遠方的祝福與掛念..</font></p>
+<div align="center">
+  <center>
+  <table width="30%" border="0">
+    <tr>
+      <td width="50%" bgColor="#f5fd99">
+      <p align="center"><font color="#ffffff" face="標楷體">
+      <a href="http://tw.home.yahoo.com/member/cgi-bin/board.z?tid=cloverleaflike@B1022226299&rand=1022226549&m=S">我要留言</a>
+      </font></td>
+      <td width="50%" bgColor="#f5fd99">
+      <p align="center"><font color="#ffffff" face="標楷體">
+      <a href="http://tw.reg.yahoo.com/cgi-bin/login.cgi?srv=home&from=http://tw.home.yahoo.com">管理留言 
+      </a> </font></td>
+    </tr>
+  </table>
+  </center>
+</div>
+<p align="center"><img alt="lin-tree.gif (2260 bytes)" src="images/lin-tree.gif" width="560" height="29"> </p>
+
+</body>
+
+</html>

@@ -1,0 +1,229 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="zh-tw">
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>札記7</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="none, default">
+<meta name="Microsoft Border" content="none, default">
+<style>
+<!--
+.new {  font-family: "標楷體"; font-size: 11pt; line-height: 20pt}
+-->
+</style>
+<bgsound src="midi/drama.mid" loop="-1">
+
+<SCRIPT language=JavaScript>
+<!--
+	var layers = document.layers, style = document.all, both = layers || style, idme=908601;
+	if (layers) { layerRef = 'document.layers'; styleRef = ''; } if (style) { layerRef = 'document.all'; styleRef = '.style'; }
+	function writeOnText(obj, str) {
+  if (layers) with (document[obj]) { document.open();  document.write(str); document.close(); }
+  if (style) eval(obj+'.innerHTML= str');
+	}
+	//以下是輸出的內容，自己修改即可。
+	var dispStr = new Array(
+		"<font color=white size=4>台北下雨了...</font><br><br><font color=white size=3>初夏的雨寂寥地打在黝黑的夜色裡   <br>我在雨中的窗裡寫下名字..  <br>總在寂寞的心中出現那些塵封已久的往事  <br>我的臉 像在陳黃的燈光下 靈魂 在孤獨的夜裡飛翔  <br>當我舉目望向天際 一種凜冽的凄涼 滲入靈魂  <br>從來沒有如此強烈的孤獨感  <br>仿佛一個被大地遺棄的魂  <br>我陷入沉思  <br><br>人們啊 都以為我的選擇理所當然..  <br>在拉扯推拒與追逐逃避間  <br>我走過星月流轉的每一夜 走過澄澈隱約的溫馨與失落 <br>開始相信 幸福不是必然的  <br>試著抖散一身塵埃 我鎖上了過去的記憶 <br>若有一天 不小心又憶起 希望我的心  <br>有重獲自由的 簡單 與 快意....  <br><br>台北              下       雨       了...  </font>"
+	);
+	var overMe=0;
+	function txtTyper(str, idx, idObj, spObj, clr1, clr2, delay, plysnd) {
+	  var tmp0 = tmp1 = '', skip = 0;
+	    if (both && idx <= str.length) {
+		if (str.charAt(idx) == '<') { while (str.charAt(idx) != '>') idx++; idx++; }
+		if (str.charAt(idx) == '&' && str.charAt(idx+1) != ' ') { while (str.charAt(idx) != ';') idx++; idx++; }
+		tmp0 = str.slice(0,idx);
+		tmp1 = str.charAt(idx++);
+		if (overMe==0 && plysnd==1) {
+		  if (navigator.plugins[0]) {
+		    if (navigator.plugins["LiveAudio"][0].type=="audio/basic" && navigator.javaEnabled()) {
+			document.embeds[0].stop();
+			setTimeout("document.embeds[0].play(false)",100); }
+		  } else if (document.all) {
+			ding.Stop();
+			setTimeout("ding.Run()",100);
+		  }
+		  overMe=1;
+		} else overMe=0;
+		writeOnText(idObj, "<span class="+spObj+"><font color='"+clr1+"'>"+tmp0+"</font><font color='"+clr2+"'>"+tmp1+"</font></span>");
+		setTimeout("txtTyper('"+str+"', "+idx+", '"+idObj+"', '"+spObj+"', '"+clr1+"', '"+clr2+"', "+delay+" ,"+plysnd+")",delay);
+	  }
+	}
+	function init() {
+		txtTyper(dispStr[0], 0, 'ttl0', 'ttl1', '#000000', '#000000', 150, 0);
+	}
+// -->
+</SCRIPT>
+
+</head>
+
+<body onload="onload=init()">
+<body background="images/grid.gif">
+<p align="center">
+<DIV class=ttl1 id=ttl0>　</DIV></td>
+
+<script language="JavaScript">
+<!--wenchin
+if (document.all){
+kg=new Image();
+kg.src="aring.gif";
+document.write('<span id="rings" style="position:absolute;top:0px;left:0px">'
++'<img src="Aring.gif" name="kg" style="position:relative"></span>');
+var TimeLinethree = 85;
+var TimeLineTwo = 0;
+var TimeLineOne = 0;
+var ThreeStep = 2.1;
+var TwoStep = 5.5;
+var OneStep = 2.5;
+var xp = 100;
+var yp = 100;
+function SmokeRing(){
+
+document.all.rings.document.images["kg"].style.filter='alpha(opacity='+TimeLinethree+')';
+document.all.rings.document.images["kg"].style.top=yp + (-TimeLineOne);
+document.all.rings.document.images["kg"].style.left=xp + (-TimeLineOne);
+document.all.rings.document.images["kg"].width=TimeLineTwo;
+document.all.rings.document.images["kg"].height=TimeLineTwo;
+
+TimeLinethree-=ThreeStep;
+TimeLineTwo+=TwoStep;
+TimeLineOne+=OneStep;
+setTimeout('SmokeRing()',10);
+if ((TimeLineTwo > 380) || (TimeLineOne > 380) || (TimeLinethree < 0))
+{TimeLineTwo=0;TimeLineOne=0;TimeLinethree=85;
+
+
+stop=window.document.body.clientHeight-280;
+sleft=window.document.body.clientWidth/2.5;//?
+yp=Math.round(Math.random()*stop);
+xp=Math.round(Math.random()*sleft);
+document.all.rings.style.top=yp+document.body.scrollTop;
+document.all.rings.style.left=xp+document.body.scrollLeft;
+}
+if ((yp < 80) || (xp < 80))
+{
+yp+=80;
+xp+=80;
+} 
+}
+}
+if (document.all)SmokeRing();
+// -->
+</script>
+
+<SCRIPT LANGUAGE="JavaScript">
+<!-- annie
+var no = 5;
+var speed = 1;
+var ns4up = (document.layers) ? 1 : 0;
+var ie4up = (document.all) ? 1 : 0;
+var s, x, y, sn, cs;
+var a, r, cx, cy;
+var i, doc_width = 800, doc_height = 600;
+if (ns4up) {
+doc_width = self.innerWidth;
+doc_height = self.innerHeight;
+}
+else
+if (ie4up) {
+doc_width = document.body.clientWidth;
+doc_height = document.body.clientHeight;
+}
+x = new Array();
+y = new Array();
+r = new Array();
+cx = new Array();
+cy = new Array();
+s = 8;
+for (i = 0; i < no; ++ i) {
+initRain();
+if (ns4up) {
+if (i == 0) {
+document.write("<layer name=\"dot"+ i +"\" left=\"1\" ");
+document.write("top=\"1\" visibility=\"show\"><font color=\"white\">"); //你可修改下雨符號的顏色
+document.write("☆</font></layer>"); //你可以修改下雨的符號
+}
+else {
+document.write("<layer name=\"dot"+ i +"\" left=\"1\" ");
+document.write("top=\"1\" visibility=\"show\"><font color=\"white\">"); //你可修改下雨符號的顏色
+document.write("☆</font></layer>"); //你可以修改下雨的符號
+}
+}
+else 
+if (ie4up) {
+if (i == 0) {
+document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
+document.write("visible; TOP: 15px; LEFT: 15px;\"><font color=\"white\">"); //你可修改下雨符號的顏色
+document.write(".</font></div>");  //你可以修改下雨的符號
+}
+else {
+document.write("<div id=\"dot"+ i +"\" style=\"POSITION: ");
+document.write("absolute; Z-INDEX: "+ i +"; VISIBILITY: ");
+document.write("visible; TOP: 15px; LEFT: 15px;\"><font color=\"white\">"); //你可修改下雨符號的顏色
+document.write(".</font></div>");  //你可以修改下雨的符號
+}
+}
+}
+function initRain() {
+a = 6;
+r[i] = 1;
+sn = Math.sin(a);
+cs = Math.cos(a);
+cx[i] = Math.random() * doc_width + 1;
+cy[i] = Math.random() * doc_height + 1;
+x[i] = r[i] * sn + cx[i];
+y[i] = cy[i];
+}
+function makeRain() {
+r[i] = 1;
+cx[i] = Math.random() * doc_width + 1;
+cy[i] = 1;
+x[i] = r[i] * sn + cx[i];
+y[i] = r[i] * cs + cy[i];
+}
+function updateRain() {
+r[i] += s;
+x[i] = r[i] * sn + cx[i];
+y[i] = r[i] * cs + cy[i];
+}
+function raindropNS() {
+for (i = 0; i < no; ++ i) {
+updateRain();
+if ((x[i] <= 1) || (x[i] >= (doc_width - 20)) || (y[i] >= (doc_height - 20))) {
+makeRain();
+doc_width = self.innerWidth;
+doc_height = self.innerHeight;
+}
+document.layers["dot"+i].top = y[i];
+document.layers["dot"+i].left = x[i];
+}
+setTimeout("raindropNS()", speed);
+}
+function raindropIE() {
+for (i = 0; i < no; ++ i) {
+updateRain();
+if ((x[i] <= 1) || (x[i] >= (doc_width - 20)) || (y[i] >= (doc_height - 20))) {
+makeRain();
+doc_width = document.body.clientWidth;
+doc_height = document.body.clientHeight;
+}
+document.all["dot"+i].style.pixelTop = y[i];
+document.all["dot"+i].style.pixelLeft = x[i];
+}
+setTimeout("raindropIE()", speed);
+}
+if (ns4up) {
+raindropNS();
+}
+else
+if (ie4up) {
+raindropIE();
+}
+//annie -->
+</script>
+
+</body>
+
+</html>

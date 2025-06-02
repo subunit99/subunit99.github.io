@@ -1,0 +1,167 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Language" content="en-us">
+<meta http-equiv="Content-Type" content="text/html; charset=big5">
+<title>速記</title>
+<meta name="GENERATOR" content="Microsoft FrontPage 5.0">
+<meta name="ProgId" content="FrontPage.Editor.Document">
+<meta name="Microsoft Theme" content="none, default">
+<meta name="Microsoft Border" content="none, default">
+</head>
+
+<body text="#FFFFFF" bgcolor="#000000">
+
+<script language="JavaScript1.2">  
+
+  //更改以下之圖檔聯結
+  var snowsrc="images/snow.gif"
+  // 更改以下之雪花數目
+  var no = 10;
+
+  var ns4up = (document.layers) ? 1 : 0;  
+     var ie4up = (document.all) ? 1 : 0;
+
+  var dx, xp, yp;    
+  var am, stx, sty;  
+  var i, doc_width = 800, doc_height = 600;
+  
+  if (ns4up) {
+    doc_width = self.innerWidth;
+    doc_height = self.innerHeight;
+  } else if (ie4up) {
+    doc_width = document.body.clientWidth;
+    doc_height = document.body.clientHeight;
+  }
+
+  dx = new Array();
+  xp = new Array();
+  yp = new Array();
+  am = new Array();
+  stx = new Array();
+  sty = new Array();
+  
+  for (i = 0; i < no; ++ i) {  
+    dx[i] = 0;                        
+    xp[i] = Math.random()*(doc_width-50);  
+    yp[i] = Math.random()*doc_height;
+    am[i] = Math.random()*20;         
+    stx[i] = 0.02 + Math.random()/10; 
+    sty[i] = 0.7 + Math.random();     
+    if (ns4up) {                      
+      if (i == 0) {
+        document.write("<layer name=\"dot"+ i +"\" left=\"15\" top=\"15\" visibility=\"show\"><a href=\"http://dynamicdrive.com/\"><img src='"+snowsrc+"' border=\"0\"></a></layer>");
+      } else {
+        document.write("<layer name=\"dot"+ i +"\" left=\"15\" top=\"15\" visibility=\"show\"><img src='"+snowsrc+"' border=\"0\"></layer>");
+      }
+    } else if (ie4up) {
+      if (i == 0) {
+        document.write("<div id=\"dot"+ i +"\" style=\"POSITION: absolute; Z-INDEX: "+ i +"; VISIBILITY: visible; TOP: 15px; LEFT: 15px;\"><a href=\"http://dynamicdrive.com\"><img src='"+snowsrc+"' border=\"0\"></a></div>");
+      } else {
+        document.write("<div id=\"dot"+ i +"\" style=\"POSITION: absolute; Z-INDEX: "+ i +"; VISIBILITY: visible; TOP: 15px; LEFT: 15px;\"><img src='"+snowsrc+"' border=\"0\"></div>");
+      }
+    }
+  }
+  
+  function snowNS() {  // Netscape main animation function
+    for (i = 0; i < no; ++ i) {  
+      yp[i] += sty[i];
+      if (yp[i] > doc_height-50) {
+        xp[i] = Math.random()*(doc_width-am[i]-30);
+        yp[i] = 0;
+        stx[i] = 0.02 + Math.random()/10;
+        sty[i] = 0.7 + Math.random();
+        doc_width = self.innerWidth;
+        doc_height = self.innerHeight;
+      }
+      dx[i] += stx[i];
+      document.layers["dot"+i].top = yp[i];
+      document.layers["dot"+i].left = xp[i] + am[i]*Math.sin(dx[i]);
+    }
+    setTimeout("snowNS()", 10);
+  }
+
+  function snowIE() {  
+    for (i = 0; i < no; ++ i) {  
+      yp[i] += sty[i];
+      if (yp[i] > doc_height-50) {
+        xp[i] = Math.random()*(doc_width-am[i]-30);
+        yp[i] = 0;
+        stx[i] = 0.02 + Math.random()/10;
+        sty[i] = 0.7 + Math.random();
+        doc_width = document.body.clientWidth;
+        doc_height = document.body.clientHeight;
+      }
+      dx[i] += stx[i];
+      document.all["dot"+i].style.pixelTop = yp[i];
+      document.all["dot"+i].style.pixelLeft = xp[i] + am[i]*Math.sin(dx[i]);
+    }
+    setTimeout("snowIE()", 10);
+  }
+
+  if (ns4up) {
+    snowNS();
+  } else if (ie4up) {
+    snowIE();
+  }
+
+</script>
+
+
+<div align="center">
+ 
+　<table border="0" cellpadding="0" cellspacing="0" style="border-collapse: collapse" width="100%" id="AutoNumber1">
+  <tr>
+    <td width="50%">
+    <p align="right">
+ 
+<embed src="swf/rain.swf" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="408" height="291">
+    <td align="left" vlign="bottom" width="50%">
+    <pre><font color="#FFFFFF" face="標楷體" size="1">
+
+
+ 
+ 蒼穹揮洒下濛濛的細雨 我佇立海邊 
+ 雨中的海 飄渺朦朧 為我的眸子染上一層淡淡的憂愁
+ 輕鬆的哼唱從遠處飄來 化作真切的波動 漾入我的心中
+    
+ 伴著海洋雄渾的交響樂 
+ 我感覺到超脫凡俗的寧靜  與  駕馭命運的勇氣
+    
+ 你的笑聲從不可知的地方傳來 感染了我敏感而孤寂的心靈
+ 當我慨嘆於茫茫人海的沉悶 你的神態卻鮮明地攫住了我的眼神 
+    
+ 於是 我們凝視著 空濛的境界自有它靜謐迷人的美
+ 任何的一個字 都會將這份神聖和莊嚴褻瀆
+    </font></pre>
+    </td>
+  </tr>
+  <tr>
+    <td width="40%">
+    <p align="center">　</p>
+    <p align="center"><font face="標楷體" size="4"><b>
+<font color="#FFFFFF">
+<a href="http://gb.elecity.net/gb.php?id=subunit">
+<font color="#FFFFFF">留言</font></a> </font></b></font></td>
+    <td width="60%">
+    <p align="center">　</p>
+    <p align="center"><font face="標楷體" size="4"><b>
+<font color="#FFFFFF">
+<a href="notes\checkpw.htm">
+<font color="#FFFFFF">記事</font></a></font></b></font></td>
+  </tr>
+</table>
+
+
+</div>
+<div align="center">
+  <pre>　</pre>
+</div>
+
+<p align="center"><font face="標楷體" size="4"><b>
+<font color="#FFFFFF">
+&nbsp;&nbsp;&nbsp;&nbsp; </font></b></font></p>
+
+</body>
+
+</html>

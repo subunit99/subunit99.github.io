@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>精美翻頁相冊 - 自動與隨機播放</title>
+    <!-- 引入 Font Awesome 圖標庫 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* --- 保留之前的 CSS 樣式 --- */
+        :root {
+            --book-bg-color: #ffffff;
+            --page-border-color: #e0e0e0;
+            --shadow-color: rgba(0, 0, 0, 0.15);
+            --control-bg-color: #4a90e2;
+            --control-hover-bg-color: #357abd;
+            --control-text-color: #ffffff;
+            --spine-color: #d0d0d0;
+            --overlay-bg-color: rgba(0, 0, 0, 0.8);
+            --random-play-bg-color: #50c878;
+            --random-play-hover-bg-color: #3a9d5a;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            min-height: 100vh; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex; flex-direction: column; align-items: center;
+            width: 90vw; max-width: 1000px; margin: 20px 0;
+        }
+
+        h1 { color: #333; margin-bottom: 15px; }
+
+        .book {
+            width: 100%; aspect-ratio: 16 / 10; max-height: 70vh;
+            position: relative; display: flex; background: var(--book-bg-color);
+            box-shadow: 0 8px 25px var(--shadow-color); border-radius: 8px;
+            border-left: 3px solid var(--spine-color); border-right: 3px solid var(--spine-color);
+        }
+
+        .book::before {
+            content: ''; position: absolute; left: 50%; top: 0; bottom: 0;
+            width: 2px; background-color: var(--spine-color);
+            transform: translateX(-50%); z-index: 1;
+        }
+
+        .page {
+            width: 50%; height: 100%; overflow: hidden;
+            display: flex; justify-content: center; align-items: center;
+            position: relative; border: 1px solid var(--page-border-color); box-sizing: border-box;
+        }
+        #leftPage { border-radius: 8px 0 0 8px; border-right: none; }
+        #rightPage { border-radius: 0 8px 8px 0; border-left: 1px solid var(--page-border-color); }
+
+        .page img {
+            display: block; max-width: 95%; max-height: 95%; object-fit: contain;
+            cursor: pointer; border-radius: 4px; opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .page img.loaded { opacity: 1; }
+
+        .controls {
+            margin-top: 20px; text-align: center; display: flex; flex-wrap: wrap;
+            justify-content: center; align-items: center; gap: 8px 12px;
+            width: 100%; max-width: 800px;
+        }
+
+        .controls button, .controls .jump-button {
+            padding: 8px 15px; margin: 0; cursor: pointer;
+            background-color: var(--control-bg-color); color: var(--control-text-color);
+            border: none; border-radius: 20px; font-size: 14px;
+            transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.3s ease;
+            display: inline-flex; align-items: center; gap: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .controls button:hover, .controls .jump-button:hover {
+            transform: translateY(-1px); box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+        .controls button:active, .controls .jump-button:active {
+             transform: translateY(0px); box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+         }
+        .controls button:disabled, .controls .jump-button:disabled {
+             opacity: 0.6; cursor: not-allowed; transform: none;
+             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+         }
+        #randomPlayBtn { background-color: var(--random-play-bg-color); }
+        #randomPlayBtn:hover:not(:disabled) { background-color: var(--random-play-hover-bg-color); }
+
+        #pageInfo { font-size: 14px; color: #555; padding: 0 10px; white-space: nowrap; }
+        .jump-controls { display: flex; align-items: center; gap: 5px; }
+        .jump-input {
+            width: 50px; padding: 8px; border: 1px solid #ccc;
+            border-radius: 15px; text-align: center; font-size: 14px;
+        }
+
+        .lightbox {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: var(--overlay-bg-color);
+            display: flex; justify-content: center; align-items: center;
+            z-index: 1000; opacity: 0; visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .lightbox.show { opacity: 1; visibility: visible; }
+        .lightbox img {
+            max-width: 90%; max-height: 90%; object-fit: contain;
+            border-radius: 5px; box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+        }
+        .lightbox-close {
+            position: absolute; top: 20px; right: 30px; font-size: 30px;
+            color: #fff; cursor: pointer; background: none; border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>相冊</h1>
+        <div class="book">
+            <div class="page" id="leftPage"></div>
+            <div class="page" id="rightPage"></div>
+        </div>
+        <div class="controls">
+            <button id="prevBtn" title="上一頁"><i class="fas fa-chevron-left"></i></button>
+            <span id="pageInfo"></span>
+            <button id="nextBtn" title="下一頁"><i class="fas fa-chevron-right"></i></button>
+            <div class="jump-controls">
+                <input type="number" id="jumpPage" class="jump-input" min="1" placeholder="頁碼">
+                <button id="jumpBtn" class="jump-button" title="跳轉"><i class="fas fa-paper-plane"></i></button>
+            </div>
+            <button id="autoPlayBtn" title="自動循序播放"><i class="fas fa-play"></i> 自動播放</button>
+            <button id="randomPlayBtn" title="自動隨機播放"><i class="fas fa-random"></i> 隨機播放</button>
+        </div>
+    </div>
+
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose">&times;</button>
+        <img src="" alt="全屏圖片" id="lightboxImg">
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- 配置 ---
+            const imagePathPrefix = 'pic/';
+            const imageExtension = '.jpg';
+            const totalPics = 42;
+            const picsPerPage = 2;
+            const playDelay = 3000;
+            // --- END 配置 ---
+
+            let currentPage = 1;
+            let playInterval = null;
+            let playMode = 'none';
+            const totalPages = Math.ceil(totalPics / picsPerPage);
+
+            const leftPage = document.getElementById('leftPage');
+            const rightPage = document.getElementById('rightPage');
+            const pageInfo = document.getElementById('pageInfo');
+            const jumpInput = document.getElementById('jumpPage');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const jumpBtn = document.getElementById('jumpBtn');
+            const autoPlayBtn = document.getElementById('autoPlayBtn');
+            const randomPlayBtn = document.getElementById('randomPlayBtn');
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const lightboxClose = document.getElementById('lightboxClose');
+
+            function updatePages() {
+                leftPage.innerHTML = '';
+                rightPage.innerHTML = '';
+
+                const leftPicNum = (currentPage - 1) * picsPerPage + 1;
+                const rightPicNum = leftPicNum + 1;
+
+                if (leftPicNum <= totalPics) loadImage(leftPage, leftPicNum);
+                if (rightPicNum <= totalPics) loadImage(rightPage, rightPicNum);
+
+                pageInfo.textContent = `第 ${currentPage} / ${totalPages} 頁`;
+                jumpInput.max = totalPages;
+                jumpInput.placeholder = `1-${totalPages}`;
+
+                prevBtn.disabled = currentPage === 1;
+                nextBtn.disabled = currentPage === totalPages;
+                 // Also update button visual state for disabled
+                 prevBtn.style.opacity = prevBtn.disabled ? 0.6 : 1;
+                 nextBtn.style.opacity = nextBtn.disabled ? 0.6 : 1;
+
+            }
+
+            function loadImage(pageElement, picNum) {
+                const img = document.createElement('img');
+                // *** 修改這裡 ***
+                img.src = `${imagePathPrefix}pic (${picNum})${imageExtension}`;
+                img.alt = `圖片 ${picNum}`;
+                img.style.opacity = 0;
+                img.onload = () => {
+                    setTimeout(() => { img.style.opacity = 1; img.classList.add('loaded'); }, 50);
+                };
+                img.onerror = () => {
+                     // *** 同步修改錯誤提示 ***
+                    pageElement.innerHTML = `<p style="color:red; font-size:12px;">圖片 pic (${picNum})${imageExtension} 加載失敗</p>`;
+                };
+                img.onclick = () => openFullImage(picNum);
+                pageElement.appendChild(img);
+            }
+
+            function prevPage() {
+                stopPlayback();
+                if (currentPage > 1) {
+                    currentPage--;
+                    updatePages();
+                }
+            }
+
+            function nextPage() {
+                stopPlayback();
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    updatePages();
+                }
+            }
+
+            function jumpToPage() {
+                stopPlayback();
+                const page = parseInt(jumpInput.value);
+                if (!isNaN(page) && page >= 1 && page <= totalPages) {
+                    currentPage = page;
+                    updatePages();
+                    jumpInput.value = '';
+                } else {
+                    alert(`請輸入 1 到 ${totalPages} 之間的有效頁碼。`);
+                    jumpInput.value = '';
+                }
+            }
+
+            function openFullImage(picNum) {
+                stopPlayback();
+                // *** 修改這裡 ***
+                lightboxImg.src = `${imagePathPrefix}pic (${picNum})${imageExtension}`;
+                lightbox.classList.add('show');
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove('show');
+                setTimeout(() => { lightboxImg.src = ""; }, 300);
+            }
+
+            function stopPlayback() {
+                if (playInterval) {
+                    clearInterval(playInterval);
+                    playInterval = null;
+                }
+                playMode = 'none';
+                autoPlayBtn.innerHTML = '<i class="fas fa-play"></i> 自動播放';
+                randomPlayBtn.innerHTML = '<i class="fas fa-random"></i> 隨機播放';
+                autoPlayBtn.title = "自動循序播放";
+                randomPlayBtn.title = "自動隨機播放";
+            }
+
+            function startPlayback(mode) {
+                stopPlayback();
+                playMode = mode;
+
+                if (mode === 'sequential') {
+                    autoPlayBtn.innerHTML = '<i class="fas fa-pause"></i> 暫停播放';
+                     autoPlayBtn.title = "暫停播放";
+                    playInterval = setInterval(() => {
+                        currentPage = (currentPage % totalPages) + 1; // 循環邏輯
+                        updatePages();
+                    }, playDelay);
+                } else if (mode === 'random') {
+                    randomPlayBtn.innerHTML = '<i class="fas fa-pause"></i> 停止隨機';
+                    randomPlayBtn.title = "停止隨機播放";
+                     playInterval = setInterval(() => {
+                         currentPage = getRandomPage();
+                         updatePages();
+                     }, playDelay);
+                }
+            }
+
+            function getRandomPage() {
+                if (totalPages <= 1) return 1;
+                let newPage;
+                do {
+                    newPage = Math.floor(Math.random() * totalPages) + 1;
+                } while (newPage === currentPage);
+                return newPage;
+            }
+
+            function toggleAutoPlay() {
+                if (playMode === 'sequential') {
+                    stopPlayback();
+                } else {
+                    startPlayback('sequential');
+                }
+            }
+
+            function toggleRandomPlay() {
+                 if (playMode === 'random') {
+                     stopPlayback();
+                 } else {
+                     currentPage = getRandomPage();
+                     updatePages();
+                     setTimeout(() => startPlayback('random'), 500);
+                 }
+            }
+
+            prevBtn.addEventListener('click', prevPage);
+            nextBtn.addEventListener('click', nextPage);
+            jumpBtn.addEventListener('click', jumpToPage);
+            jumpInput.addEventListener('keypress', (event) => {
+                if (event.key === 'Enter') jumpToPage();
+            });
+            autoPlayBtn.addEventListener('click', toggleAutoPlay);
+            randomPlayBtn.addEventListener('click', toggleRandomPlay);
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (event) => {
+                if (event.target === lightbox) closeLightbox();
+            });
+            document.addEventListener('keydown', (event) => {
+                if (document.activeElement !== jumpInput && !lightbox.classList.contains('show')) {
+                    if (event.key === 'ArrowLeft') prevPage();
+                    else if (event.key === 'ArrowRight') nextPage();
+                }
+                 if (event.key === 'Escape' && lightbox.classList.contains('show')) {
+                    closeLightbox();
+                }
+            });
+
+            updatePages();
+        });
+    </script>
+</body>
+</html>
