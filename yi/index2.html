@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="big5">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>¤R¨ö</title>
+    <title>åœå¦</title>
     <style>
         :root {
             --dark-blue: #000033;
@@ -99,16 +99,16 @@
 </head>
 <body>
     <div class="container">
-        <h4>¤ß¸Û«hÆF</h4>
-        <div id="hexagramDisplay">©ö¤§¤£©ö</div>
+        <h4>å¿ƒèª å‰‡éˆ</h4>
+        <div id="hexagramDisplay">æ˜“ä¹‹ä¸æ˜“</div>
         <img class="mystic-cat" src="img/m-cat1.gif" alt="Mystic Cat">
         
         <div class="button-container">
-            <a href="../index.html" class="button">¦^­º­¶</a>
-            <button class="button" onclick="startCountdown()">¨ú¨ö</button>
+            <a href="../index.html" class="button">å›žé¦–é </a>
+            <button class="button" onclick="startCountdown()">å–å¦</button>
         </div>
         
-        <p id="instruction">½ÐÂI¿ï¨ö¦W¡IÆ[¬Ý¨ö¶H!!</p>
+        <p id="instruction">è«‹é»žé¸å¦åï¼è§€çœ‹å¦è±¡!!</p>
 
         <div class="hexagramMap">
             <img src="img/64ky.gif" usemap="#MainMap" alt="Hexagram Map">
@@ -183,19 +183,19 @@
 
     <script>
         const tips = [
-            "¤õ¤ô¥½ÀÙ¨ö 64", "°®¨ö 1", "©[¨ö 2", "¤ô¹p¤Ù¨ö 3", "¤s¤ô»X¨ö 4", 
-        "¤ô¤Ñ»Ý¨ö 5", "¤Ñ¤ô³^¨ö 6", "¦a¤ô®v¨ö 7", "¤ô¦a¤ñ¨ö 8", "­·¤Ñ¤p¯b¨ö 9", 
-        "¤Ñ¿A¼i¨ö 10", "¦a¤Ñ®õ¨ö 11", "¤Ñ¦a§_¨ö 12", "¤Ñ¤õ¦P¤H¨ö 13", "¤õ¤Ñ¤j¦³¨ö 14", 
-        "¦a¤sÁ¾¨ö 15", "¹p¦a¿Ý¨ö 16", "¿A¹pÀH¨ö 17", "¤s­·ÅÛ¨ö 18", "¦a¿AÁ{¨ö 19", 
-        "­·¦aÆ[¨ö 20", "¤õ¹p¾½¶ß¨ö 21", "¤s¤õ¶N¨ö 22", "¤s¦a­é¨ö 23", "¦a¹p´_¨ö 24", 
-        "¤Ñ¹pÉ^¦k¨ö 25", "¤s¤Ñ¤j¯b¨ö 26", "¤s¹pÀ[¨ö 27", "¿A­·¤j¹L¨ö 28", "§¢ ¨ö 29", 
-        "Â÷ ¨ö 30", "¿A¤s«w¨ö 31", "¹p­·«í¨ö 32", "¤Ñ¤sèQ¨ö 33", "¹p¤Ñ¤j§§¨ö 34", 
-        "¤õ¦a®Ê¨ö 35", "¦a¤õ©ú¦i¨ö 36", "­·¤õ®a¤H¨ö 37", "¤õ¿AºÌ¨ö 38", "¤ô¤sî¿¨ö 39", 
-        "¹p¤ô¸Ñ¨ö 40", "¤s¿A·l¨ö 41", "­·¹p¯q¨ö 42", "¿A¤ÑÉ[¨ö 43", "¤Ñ­·Îl¨ö 44", 
-        "¿A¦aµÑ¨ö 45", "¦a­·¤É¨ö 46", "¿A¤ô§x¨ö 47", "¤ô­·¤«¨ö 48", "¿A¤õ­²¨ö 49", 
-        "¤õ­·¹©¨ö 50", "¾_ ¨ö 51", "¦á ¨ö 52", "­·¹p¯q¨ö 42", "¹p¿AÂk©f¨ö 54", 
-        "¹p¤õÂ×¨ö 55", "¤õ¤s®È¨ö 56", "´S ¨ö 57", "§I ¨ö 58", "­·¤ôµA¨ö 59", 
-        "¤ô¿A¸`¨ö 60", "­·¿A¤¤§·¨ö 61", "¹p¤s¤p¹L¨ö 62", "¤ô¤õ¬JÀÙ¨ö 63"
+            "ç«æ°´æœ«æ¿Ÿå¦ 64", "ä¹¾å¦ 1", "å¤å¦ 2", "æ°´é›·å±¯å¦ 3", "å±±æ°´è’™å¦ 4", 
+        "æ°´å¤©éœ€å¦ 5", "å¤©æ°´è¨Ÿå¦ 6", "åœ°æ°´å¸«å¦ 7", "æ°´åœ°æ¯”å¦ 8", "é¢¨å¤©å°ç•œå¦ 9", 
+        "å¤©æ¾¤å±¥å¦ 10", "åœ°å¤©æ³°å¦ 11", "å¤©åœ°å¦å¦ 12", "å¤©ç«åŒäººå¦ 13", "ç«å¤©å¤§æœ‰å¦ 14", 
+        "åœ°å±±è¬™å¦ 15", "é›·åœ°è±«å¦ 16", "æ¾¤é›·éš¨å¦ 17", "å±±é¢¨è ±å¦ 18", "åœ°æ¾¤è‡¨å¦ 19", 
+        "é¢¨åœ°è§€å¦ 20", "ç«é›·å™¬å—‘å¦ 21", "å±±ç«è³å¦ 22", "å±±åœ°å‰å¦ 23", "åœ°é›·å¾©å¦ 24", 
+        "å¤©é›·æ—¡å¦„å¦ 25", "å±±å¤©å¤§ç•œå¦ 26", "å±±é›·é ¤å¦ 27", "æ¾¤é¢¨å¤§éŽå¦ 28", "åŽ å¦ 29", 
+        "é›¢ å¦ 30", "æ¾¤å±±å’¸å¦ 31", "é›·é¢¨æ†å¦ 32", "å¤©å±±é¯å¦ 33", "é›·å¤©å¤§å£¯å¦ 34", 
+        "ç«åœ°æ™‰å¦ 35", "åœ°ç«æ˜Žå¤·å¦ 36", "é¢¨ç«å®¶äººå¦ 37", "ç«æ¾¤ç½å¦ 38", "æ°´å±±è¹‡å¦ 39", 
+        "é›·æ°´è§£å¦ 40", "å±±æ¾¤æå¦ 41", "é¢¨é›·ç›Šå¦ 42", "æ¾¤å¤©å¤¬å¦ 43", "å¤©é¢¨å§¤å¦ 44", 
+        "æ¾¤åœ°èƒå¦ 45", "åœ°é¢¨å‡å¦ 46", "æ¾¤æ°´å›°å¦ 47", "æ°´é¢¨äº•å¦ 48", "æ¾¤ç«é©å¦ 49", 
+        "ç«é¢¨é¼Žå¦ 50", "éœ‡ å¦ 51", "è‰® å¦ 52", "é¢¨é›·ç›Šå¦ 42", "é›·æ¾¤æ­¸å¦¹å¦ 54", 
+        "é›·ç«è±å¦ 55", "ç«å±±æ—…å¦ 56", "å·½ å¦ 57", "å…Œ å¦ 58", "é¢¨æ°´æ¸™å¦ 59", 
+        "æ°´æ¾¤ç¯€å¦ 60", "é¢¨æ¾¤ä¸­å­šå¦ 61", "é›·å±±å°éŽå¦ 62", "æ°´ç«æ—¢æ¿Ÿå¦ 63"
         ];
 function startCountdown() {
     let seconds = 1; // Start from 1
@@ -204,7 +204,7 @@ function startCountdown() {
     hexagramElement.classList.remove('glowing');
 
     const countdownInterval = setInterval(() => {
-        hexagramElement.textContent = `»´·nÂY¥X¤¤...²Ä${seconds}¤ø`;
+        hexagramElement.textContent = `è¼•æ–æ“²å‡ºä¸­...ç¬¬${seconds}çˆ»`;
         seconds++;
 
         if (seconds > 7) {
