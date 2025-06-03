@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="抽籤程式, 抽獎, 隨機">
+    <title>幸運抽籤機</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-bg-color: #f0f4f8; /* Light grayish blue */
+            --container-bg-color: #ffffff;
+            --text-color: #333;
+            --primary-color: #007bff; /* Vivid Blue */
+            --primary-dark-color: #0056b3;
+            --secondary-color: #6c757d; /* Gray */
+            --secondary-dark-color: #545b62;
+            --accent-color: #28a745; /* Green for success/highlight */
+            --highlight-color: #e83e8c; /* Playful Pink */
+            --border-color: #ced4da;
+            --input-focus-border: #80bdff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+        
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: var(--main-bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        
+        .lottery-container {
+            background-color: var(--container-bg-color);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px var(--shadow-color);
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 0.6rem;
+            font-weight: 500;
+            color: #555;
+            text-align: left;
+        }
+        
+        input[type='number'], textarea#lst {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            margin-bottom: 1.2rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            text-align: left;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        input[type='number'] {
+            text-align: center;
+        }
+        
+        input[type='number']:focus, textarea#lst:focus {
+            border-color: var(--input-focus-border);
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            outline: none;
+        }
+        
+        textarea#lst {
+            height: 160px;
+            resize: vertical;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+        
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem; /* Increased gap */
+            margin-bottom: 1.5rem;
+        }
+        
+        .button { /* Changed from input to button for better styling flexibility */
+            flex: 1;
+            padding: 0.8rem 1rem;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        .button:active {
+            transform: scale(0.98);
+        }
+        .button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        #drawButton {
+            background-color: var(--primary-color);
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+        }
+        #drawButton:hover:not(:disabled) {
+            background-color: var(--primary-dark-color);
+            box-shadow: 0 6px 12px rgba(0, 123, 255, 0.3);
+        }
+        
+        #resetButton {
+            background-color: var(--secondary-color);
+            box-shadow: 0 4px 10px rgba(108, 117, 125, 0.2);
+        }
+        #resetButton:hover:not(:disabled) {
+            background-color: var(--secondary-dark-color);
+            box-shadow: 0 6px 12px rgba(108, 117, 125, 0.3);
+        }
+
+        #statusMessage {
+            min-height: 24px;
+            margin-bottom: 1rem;
+            font-weight: 500;
+            color: var(--primary-color);
+            font-size: 1rem;
+        }
+        
+        .result-area {
+            margin-top: 1rem;
+        }
+        .result-area h2 {
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            color: var(--accent-color);
+        }
+        
+        #resultDisplay {
+            background-color: #f8f9fa;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 1rem;
+            min-height: 100px;
+            text-align: left;
+            font-size: 1rem;
+        }
+        #resultDisplay ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        #resultDisplay li {
+            padding: 0.6rem 0.2rem;
+            border-bottom: 1px dashed #e0e0e0;
+            color: var(--text-color);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInEntry 0.5s forwards;
+        }
+        #resultDisplay li:last-child {
+            border-bottom: none;
+        }
+        #resultDisplay li strong {
+            color: var(--highlight-color);
+            font-weight: 700;
+        }
+
+        @keyframes fadeInEntry {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Confetti Styles */
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden; /* Important */
+        }
+        .confetti-piece {
+            position: absolute;
+            width: 10px;
+            height: 20px;
+            background: var(--primary-color);
+            top: -20px; /* Start off screen */
+            opacity: 0;
+        }
+        .confetti-piece:nth-child(odd) {
+            background: var(--accent-color);
+        }
+        .confetti-piece:nth-child(3n) {
+            background: var(--highlight-color);
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .confetti-piece:nth-child(4n) {
+             background: #ffc107; /* Yellow */
+        }
+    </style>
+</head>
+<body>
+    <noscript>抱歉，您的網頁未支援 Script，此 JavaScript 筆記網頁將無法正常執行。</noscript>
+
+    <div class="lottery-container">
+        <h1>幸運抽籤機</h1>
+        <form id='lotteryForm'>
+            <label for='count'>抽出數量：</label>
+            <input type='number' name='count' id='count' min='1' max='100' value='1'>
+            
+            <label for='lst'>待抽名單：（每行一位）</label>
+            <textarea name='lst' id='lst'>王昭君
+西施
+陳圓圓
+楊玉環
+趙飛燕
+貂蟬
+大喬
+小喬
+甄姬</textarea>
+            
+            <div class="button-group">
+                <button type="button" id="drawButton" class="button">開獎！</button>
+                <button type="reset" id="resetButton" class="button">全部重置</button>
+            </div>
+            
+            <div id="statusMessage" aria-live="polite"></div>
+
+            <div class="result-area">
+                <h2>中獎名單：</h2>
+                <div id="resultDisplay">
+                    <ul></ul>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="confetti" id="confettiContainer"></div>
+
+    <script>
+        const lotteryForm = document.getElementById('lotteryForm');
+        const countInput = document.getElementById('count');
+        const listTextarea = document.getElementById('lst');
+        const drawButton = document.getElementById('drawButton');
+        const resetButton = document.getElementById('resetButton');
+        const statusMessage = document.getElementById('statusMessage');
+        const resultDisplayUl = document.querySelector('#resultDisplay ul');
+        const confettiContainer = document.getElementById('confettiContainer');
+
+        const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+        async function doAllot() {
+            drawButton.disabled = true;
+            resetButton.disabled = true;
+            resultDisplayUl.innerHTML = ''; // Clear previous results
+            statusMessage.textContent = '準備抽獎中... 請稍候 ✨';
+            await sleep(1000);
+
+            let entries = listTextarea.value.trim().split('\n').map(s => s.trim()).filter(Boolean);
+            
+            if (entries.length === 0) {
+                statusMessage.textContent = '請先輸入待抽名單！';
+                drawButton.disabled = false;
+                resetButton.disabled = false;
+                return;
+            }
+
+            let count = parseInt(countInput.value) || 1;
+            count = Math.max(1, Math.min(count, entries.length));
+            countInput.value = count; // Update input if adjusted
+
+            statusMessage.textContent = `將抽出 ${count} 位幸運兒... 🎲`;
+            await sleep(1500); // Suspense
+
+            const winners = [];
+            for (let i = 0; i < count; i++) {
+                if (entries.length === 0) break; // Should not happen if count is capped by entries.length
+
+                const randomIndex = Math.floor(Math.random() * entries.length);
+                const winner = entries.splice(randomIndex, 1)[0]; // Draw without replacement
+                winners.push(winner);
+
+                statusMessage.textContent = `正在抽出第 ${i + 1} 位...`;
+                await sleep(800); // Suspense for each draw
+
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `第 ${i + 1} 位：<strong>${winner}</strong>`;
+                listItem.style.animationDelay = `${i * 0.1}s`; // Stagger animation slightly
+                resultDisplayUl.appendChild(listItem);
+                
+                // Scroll to the latest winner
+                resultDisplayUl.scrollTop = resultDisplayUl.scrollHeight;
+            }
+
+            statusMessage.textContent = '🎉 抽獎完成！恭喜中獎者！ 🎉';
+            triggerConfetti();
+            
+            drawButton.disabled = false;
+            resetButton.disabled = false;
+        }
+
+        function handleReset() {
+            resultDisplayUl.innerHTML = '';
+            statusMessage.textContent = '';
+            // listTextarea.value = ''; // Uncomment to clear the list too
+            // countInput.value = '1'; // Uncomment to reset count
+            drawButton.disabled = false;
+            if (confettiContainer) confettiContainer.innerHTML = ''; // Clear confetti
+        }
+
+        drawButton.addEventListener('click', doAllot);
+        resetButton.addEventListener('click', handleReset);
+        
+        // Prevent default form submission if an enter key is pressed in an input field
+        lotteryForm.addEventListener('submit', (e) => e.preventDefault());
+
+
+        // --- Confetti ---
+        function triggerConfetti() {
+            if (!confettiContainer) return;
+            confettiContainer.innerHTML = ''; // Clear previous confetti
+            const confettiCount = 100;
+            const fragment = document.createDocumentFragment();
+
+            for (let i = 0; i < confettiCount; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti-piece';
+                piece.style.left = Math.random() * 100 + '%';
+                piece.style.animation = `fall ${Math.random() * 3 + 2}s ${Math.random() * 2}s linear infinite, rotate ${Math.random() * 2 + 1}s linear infinite`;
+                // Corrected: Define fall and rotate animations in CSS or here dynamically
+                // For simplicity, let's add a basic fall animation directly via JS (not ideal for complex animations)
+                piece.style.transition = `transform ${Math.random() * 3 + 2}s linear, opacity ${Math.random() * 3 + 2}s linear`;
+                piece.style.transform = `translateY(-20px) rotate(${Math.random() * 360}deg)`; // Initial state
+                
+                fragment.appendChild(piece);
+            }
+            confettiContainer.appendChild(fragment);
+
+            // Trigger animation
+            // We need a proper CSS keyframe animation for fall and rotate
+            // Let's define them in the style tag first.
+            // If keyframes are defined, we just need to add the pieces.
+            // For dynamic animation via JS (simpler approach for this snippet without altering <style>):
+            setTimeout(() => {
+                const pieces = confettiContainer.querySelectorAll('.confetti-piece');
+                pieces.forEach(p => {
+                    p.style.transform = `translateY(100vh) rotate(${Math.random() * 720 + 360}deg) translateX(${Math.random() * 60 - 30}vw)`;
+                    p.style.opacity = '0';
+                });
+            }, 50); // Small delay to ensure pieces are in DOM
+
+             // Cleanup confetti after animation
+            setTimeout(() => {
+                confettiContainer.innerHTML = '';
+            }, 5000); // Adjust time based on longest animation
+        }
+        
+        // Add keyframes to style for confetti if not already present (better approach)
+        if (!document.querySelector('style#confetti-animations')) {
+            const styleSheet = document.createElement("style");
+            styleSheet.id = "confetti-animations";
+            styleSheet.textContent = `
+                @keyframes fall {
+                    to { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+                }
+                @keyframes rotate { /* For more complex rotation if needed */
+                    0% { transform: rotate(0deg); }
+                    100% { transform: rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(styleSheet);
+        }
+        // With the keyframes in CSS, the JS for confetti becomes simpler:
+        // Just add the elements with the animation property set.
+        // The dynamic JS animation above is a quick-fix if not adding to <style>
+    </script>
+</body>
+</html>

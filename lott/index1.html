@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>幸運隨機選號</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #007bff; /* 亮藍色 */
+            --primary-dark-color: #0056b3;
+            --secondary-color: #6c757d; /* 灰色 */
+            --success-color: #28a745; /* 綠色 */
+            --success-dark-color: #1e7e34;
+            --danger-color: #dc3545; /* 紅色 */
+            --light-bg-color: #f8f9fa;
+            --dark-text-color: #343a40;
+            --light-text-color: #ffffff;
+            --border-color: #ced4da;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: var(--light-bg-color);
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            color: var(--dark-text-color);
+        }
+
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px var(--shadow-color);
+            padding: 25px 30px;
+            width: 100%;
+            max-width: 400px; /* 稍微加寬以容納內容 */
+            text-align: left; /* 改為左對齊，更符合表單習慣 */
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            font-size: 0.95em;
+        }
+
+        input[type="number"], input[type="range"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 1em;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        input[type="number"] {
+            text-align: center;
+        }
+
+        input[type="number"]:focus, input[type="range"]:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            outline: none;
+        }
+
+        .countdown-slider-container {
+            display: flex;
+            align-items: center;
+            gap: 15px; /* 增加滑桿和數字間距 */
+        }
+
+        #countdownInput { /* Range slider */
+            flex-grow: 1;
+        }
+
+        #countdownValueDisplay { /* Was #countdownValue */
+            font-weight: 500;
+            color: var(--primary-color);
+            min-width: 50px; /* 確保寬度一致 */
+            text-align: right;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px; /* 與上方間距 */
+            padding: 8px;
+            border-radius: 6px;
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+        }
+        .checkbox-group label {
+            margin-bottom: 0; /* 移除checkbox label的下邊距 */
+            font-weight: normal;
+            cursor: pointer;
+        }
+        #sort {
+            width: auto; /* 讓checkbox恢復預設寬度 */
+            margin-right: 5px; /* 和文字間距 */
+            accent-color: var(--primary-color);
+        }
+
+
+        #actionButton { /* Was just button */
+            width: 100%;
+            padding: 12px;
+            background-color: var(--success-color);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+            font-size: 1.1em;
+            font-weight: 500;
+            margin-top: 25px; /* 與上方元素間距 */
+            box-shadow: 0 4px 10px rgba(40, 167, 69, 0.2);
+        }
+
+        #actionButton:hover:not(:disabled) {
+            background-color: var(--success-dark-color);
+            box-shadow: 0 6px 12px rgba(40, 167, 69, 0.3);
+        }
+        #actionButton:active:not(:disabled) {
+            transform: scale(0.98);
+        }
+        #actionButton:disabled {
+            background-color: var(--secondary-color);
+            cursor: not-allowed;
+            opacity: 0.7;
+            box-shadow: none;
+        }
+
+        #statusArea, #resultArea { /* Was #countdown, #result */
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 6px;
+            min-height: 2em; /* 避免內容跳動 */
+        }
+        #statusArea {
+            font-weight: 500;
+            color: var(--primary-color);
+        }
+        #resultArea {
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        .result-numbers-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .result-number {
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            padding: 8px 15px;
+            border-radius: 50px; /* 圓形或膠囊形 */
+            font-size: 1.3em;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            opacity: 0;
+            transform: scale(0.5) translateY(20px);
+            animation: popInNumber 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
+        }
+        
+        @keyframes popInNumber {
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        @keyframes numberShuffle {
+            0% { opacity: 0.5; transform: translateY(5px); }
+            25% { opacity: 1; transform: translateY(-5px); }
+            50% { opacity: 0.5; transform: translateY(5px); }
+            75% { opacity: 1; transform: translateY(-5px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .shuffling-number { /* 用於洗牌效果 */
+            display: inline-block;
+            font-size: 1.8em;
+            font-weight: bold;
+            color: var(--secondary-color);
+            padding: 5px;
+            animation: numberShuffle 0.1s linear infinite;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>幸運隨機選號</h1>
+        <form id="randomNumberForm">
+            <div class="form-group">
+                <label for="min">最小號碼：</label>
+                <input type="number" id="min" name="min" value="1">
+            </div>
+            
+            <div class="form-group">
+                <label for="max">最大號碼：</label>
+                <input type="number" id="max" name="max" value="60">
+            </div>
+            
+            <div class="form-group">
+                <label for="count">抽取數量：</label>
+                <input type="number" id="count" name="count" value="1" min="1">
+            </div>
+            
+            <div class="form-group">
+                <label for="countdownInput">倒數秒數設定：</label>
+                <div class="countdown-slider-container">
+                    <input type="range" id="countdownInput" name="countdown" min="0" max="10" value="3" oninput="updateCountdownValueDisplay(this.value)">
+                    <span id="countdownValueDisplay">3 秒</span>
+                </div>
+            </div>
+            
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="sort" name="sort">
+                <label for="sort">抽出號碼後自動排序</label>
+            </div>
+            
+            <button type="button" id="actionButton" onclick="prepareAndStart()">抽取幸運號碼</button>
+            <div id="statusArea" aria-live="polite"></div>
+            <div id="resultArea">
+                <!-- 號碼將顯示在這裡 -->
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const minInput = document.getElementById('min');
+        const maxInput = document.getElementById('max');
+        const countInput = document.getElementById('count');
+        const countdownInput = document.getElementById('countdownInput');
+        const countdownValueDisplay = document.getElementById('countdownValueDisplay');
+        const sortCheckbox = document.getElementById('sort');
+        const actionButton = document.getElementById('actionButton');
+        const statusArea = document.getElementById('statusArea');
+        const resultArea = document.getElementById('resultArea');
+        
+        let countdownInterval;
+        let shufflingInterval;
+
+        function updateCountdownValueDisplay(value) {
+            countdownValueDisplay.innerText = value + ' 秒';
+        }
+
+        function validateInputs() {
+            const min = parseInt(minInput.value);
+            const max = parseInt(maxInput.value);
+            const count = parseInt(countInput.value);
+
+            if (isNaN(min) || isNaN(max) || isNaN(count)) {
+                statusArea.textContent = '請確保所有數字欄位都已正確填寫！';
+                statusArea.style.color = 'var(--danger-color)';
+                return false;
+            }
+            if (min >= max) {
+                statusArea.textContent = '最小號碼必須小於最大號碼！';
+                statusArea.style.color = 'var(--danger-color)';
+                return false;
+            }
+            if (count <= 0) {
+                statusArea.textContent = '抽取數量必須大於 0！';
+                statusArea.style.color = 'var(--danger-color)';
+                return false;
+            }
+            if (count > (max - min + 1)) {
+                statusArea.textContent = '抽取數量不能超過號碼範圍！';
+                statusArea.style.color = 'var(--danger-color)';
+                return false;
+            }
+            statusArea.style.color = 'var(--primary-color)'; // Reset color if valid
+            return true;
+        }
+
+        function prepareAndStart() {
+            clearInterval(countdownInterval); // Clear any existing intervals
+            clearInterval(shufflingInterval);
+            resultArea.innerHTML = ''; // Clear previous results
+            statusArea.textContent = '';
+
+            if (!validateInputs()) {
+                return;
+            }
+            
+            actionButton.disabled = true;
+            let countdown = parseInt(countdownInput.value);
+
+            if (countdown === 0) { // If countdown is 0, skip countdown and shuffling
+                statusArea.textContent = '立即為您選號... 🎲';
+                setTimeout(drawNumbers, 200); // Short delay for UI update
+            } else {
+                statusArea.textContent = `開獎倒數：${countdown} 秒...`;
+                countdownInterval = setInterval(() => {
+                    countdown--;
+                    if (countdown > 0) {
+                        statusArea.textContent = `開獎倒數：${countdown} 秒...`;
+                    } else {
+                        clearInterval(countdownInterval);
+                        startShufflingAnimation();
+                    }
+                }, 1000);
+            }
+        }
+        
+        function startShufflingAnimation() {
+            statusArea.textContent = '正在洗牌中... 🌀';
+            resultArea.innerHTML = `<span class="shuffling-number">?</span>`; // Initial placeholder
+            
+            let shuffleCycles = 0;
+            const maxShuffleCycles = 20; // Controls duration of shuffling, e.g., 20 * 100ms = 2 seconds
+
+            shufflingInterval = setInterval(() => {
+                const min = parseInt(minInput.value);
+                const max = parseInt(maxInput.value);
+                if (isNaN(min) || isNaN(max) || min >= max) { // Basic check during shuffle
+                     resultArea.querySelector('.shuffling-number').textContent = '?';
+                } else {
+                    const tempRandom = Math.floor(Math.random() * (max - min + 1)) + min;
+                    resultArea.querySelector('.shuffling-number').textContent = tempRandom;
+                }
+                shuffleCycles++;
+                if (shuffleCycles >= maxShuffleCycles) {
+                    clearInterval(shufflingInterval);
+                    drawNumbers();
+                }
+            }, 100); // Update shuffling number every 100ms
+        }
+
+        function drawNumbers() {
+            statusArea.textContent = '幸運號碼揭曉！✨';
+            resultArea.innerHTML = ''; // Clear shuffling animation
+
+            if (!validateInputs()) { // Final validation before drawing
+                actionButton.disabled = false;
+                return;
+            }
+
+            const min = parseInt(minInput.value);
+            const max = parseInt(maxInput.value);
+            const count = parseInt(countInput.value);
+            const sort = sortCheckbox.checked;
+            
+            const numbers = new Set();
+            while (numbers.size < count) {
+                const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+                numbers.add(randomNumber);
+            }
+            
+            let numberArray = Array.from(numbers);
+            if (sort) {
+                numberArray.sort((a, b) => a - b);
+            }
+
+            const numbersContainer = document.createElement('div');
+            numbersContainer.className = 'result-numbers-container';
+            resultArea.appendChild(numbersContainer);
+
+            numberArray.forEach((num, index) => {
+                setTimeout(() => {
+                    const numberSpan = document.createElement('span');
+                    numberSpan.className = 'result-number';
+                    numberSpan.textContent = num;
+                    numbersContainer.appendChild(numberSpan);
+                }, index * 250); // Staggered appearance for each number
+            });
+            
+            actionButton.disabled = false;
+        }
+
+        // Initialize display
+        updateCountdownValueDisplay(countdownInput.value);
+        document.getElementById('randomNumberForm').addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent actual form submission
+            prepareAndStart();
+        });
+
+    </script>
+</body>
+</html>

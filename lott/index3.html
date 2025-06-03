@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>幸運摸彩機</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --primary-dark-color: #0056b3;
+            --secondary-color: #6c757d;
+            --success-color: #28a745;
+            --success-dark-color: #1e7e34;
+            --danger-color: #dc3545;
+            --warning-color: #ffc107;
+            --light-bg: #f8f9fa;
+            --white-color: #fff;
+            --text-color: #333;
+            --border-color: #dee2e6;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --number-tag-bg: #e9ecef;
+            --number-tag-text: #495057;
+            --drawn-number-bg: var(--primary-color);
+            --drawn-number-text: var(--white-color);
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px; /* Slightly wider for better layout */
+            margin: 20px auto;
+            background-color: var(--white-color);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+
+        h1, h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .area-section {
+            margin-bottom: 25px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: #fdfdfd; /* Slightly off-white */
+        }
+        
+        label {
+            font-weight: 500;
+            margin-right: 8px;
+        }
+
+        input[type="number"] {
+            padding: 8px 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            font-size: 1em;
+            width: 80px; /* Fixed width for number inputs */
+            text-align: center;
+            margin-right: 15px;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        input[type="number"]:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+            outline: none;
+        }
+
+        .button {
+            padding: 10px 18px;
+            color: var(--white-color);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            font-size: 1em;
+            font-weight: 500;
+        }
+        .button:hover:not(:disabled) {
+            opacity: 0.9;
+        }
+        .button:active:not(:disabled) {
+            transform: scale(0.98);
+        }
+        .button:disabled {
+            background-color: var(--secondary-color) !important;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
+        #initBtn { background-color: var(--primary-color); }
+        #drawBtn { background-color: var(--success-color); }
+
+        #waitingList {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px; /* Spacing between number tags */
+            max-height: 200px; /* Limit height and allow scroll */
+            overflow-y: auto;
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            border-radius: 5px;
+            background-color: var(--light-bg);
+        }
+
+        #waitingList li {
+            background-color: var(--number-tag-bg);
+            color: var(--number-tag-text);
+            padding: 4px 10px;
+            border-radius: 15px; /* Pill shape */
+            font-size: 0.9em;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        #waitingList li.drawn { /* Style for numbers being drawn (temporary) */
+            background-color: var(--warning-color);
+            color: var(--white-color);
+            transform: scale(1.2);
+        }
+
+
+        #resultList {
+            list-style-type: none;
+            padding: 0;
+        }
+        #resultList li {
+            background-color: var(--light-bg);
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 8px;
+            border-left: 4px solid var(--success-color);
+            font-size: 1.05em;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideInResult 0.4s forwards;
+        }
+        #resultList li:nth-child(odd) {
+            background-color: #f0f0f0; /* Slightly different for odd items */
+        }
+        @keyframes slideInResult {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        #resultList li strong { /* For "第X獎" */
+            color: var(--primary-dark-color);
+        }
+
+
+        #countdownDisplay { /* Was #countdown */
+            font-size: 3.5em;
+            text-align: center;
+            margin: 20px 0;
+            font-weight: 700;
+            color: var(--primary-color);
+            min-height: 1.2em; /* Prevent layout shift */
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        #countdownDisplay.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        #countdownDisplay.drawing-text {
+            font-size: 1.8em; /* Smaller for text like "抽獎中" */
+            color: var(--success-color);
+        }
+
+        #statusMessage {
+            text-align: center;
+            min-height: 1.5em;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        /* Confetti Styles */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+        .confetti-piece {
+            position: absolute;
+            width: 8px;
+            height: 16px;
+            background: var(--primary-color);
+            top: -20px;
+            opacity: 0;
+            animation: fall 3s linear infinite;
+        }
+        .confetti-piece:nth-child(2n) { background: var(--success-color); }
+        .confetti-piece:nth-child(3n) { background: var(--warning-color); width: 10px; height: 10px; border-radius: 50%;}
+        .confetti-piece:nth-child(4n) { background: var(--danger-color); }
+
+        @keyframes fall {
+            0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>幸運摸彩機</h1>
+
+        <div class="area-section input-area">
+            <h2>1. 設定抽獎號碼範圍</h2>
+            <label for="startNum">起始號碼：</label>
+            <input type="number" id="startNum" value="1" min="1">
+            <label for="endNum">結束號碼：</label>
+            <input type="number" id="endNum" value="50" min="1">
+            <button id="initBtn" class="button">產生待抽名單</button>
+        </div>
+
+        <div class="area-section waiting-area">
+            <h2>2. 待抽號碼池</h2>
+            <ul id="waitingList"></ul>
+            <div id="statusMessage"></div> <!-- For messages like "no numbers" or errors -->
+        </div>
+
+        <div class="area-section draw-setting">
+            <h2>3. 設定抽獎</h2>
+            <label for="drawNum">本次抽出數量：</label>
+            <input type="number" id="drawNum" value="1" min="1">
+            <button id="drawBtn" class="button">開始抽獎</button>
+        </div>
+        
+        <div id="countdownDisplay"></div>
+        
+        <div class="area-section result-area">
+            <h2>4. 抽獎結果歷史</h2>
+             <ul id="resultList"></ul>
+        </div>
+    </div>
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const startNumInput = document.getElementById('startNum');
+        const endNumInput = document.getElementById('endNum');
+        const initBtn = document.getElementById('initBtn');
+        const waitingListUl = document.getElementById('waitingList'); // Renamed for clarity
+        const drawNumInput = document.getElementById('drawNum');
+        const drawBtn = document.getElementById('drawBtn');
+        const resultListUl = document.getElementById('resultList'); // Renamed for clarity
+        const countdownDisplay = document.getElementById('countdownDisplay');
+        const statusMessage = document.getElementById('statusMessage');
+        const confettiContainer = document.getElementById('confettiContainer');
+
+        let waitingNumbers = [];
+        let drawHistory = []; // Stores objects: { awardNumber: X, numbers: [Y, Z] }
+        let currentAwardNumber = 0;
+
+        const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+        initBtn.addEventListener('click', async function() {
+            initBtn.disabled = true;
+            drawBtn.disabled = true; // Disable draw button until init is complete
+            statusMessage.textContent = '正在產生號碼列表...';
+
+            const startNum = parseInt(startNumInput.value);
+            const endNum = parseInt(endNumInput.value);
+
+            if (isNaN(startNum) || isNaN(endNum) || startNum < 0 || endNum < 0 || startNum > endNum) {
+                showStatus('請輸入有效的正整數號碼範圍！', 'error');
+                initBtn.disabled = false;
+                return;
+            }
+            if ((endNum - startNum + 1) > 2000) { // Limit to prevent browser freeze
+                showStatus('號碼範圍過大，請縮小範圍 (最多2000個號碼)。', 'error');
+                initBtn.disabled = false;
+                return;
+            }
+
+            await sleep(100); // Allow UI to update status message
+
+            waitingNumbers = Array.from({ length: endNum - startNum + 1 }, (_, i) => startNum + i);
+            renderWaitingList();
+            
+            drawHistory = []; // Clear history
+            currentAwardNumber = 0; // Reset award number
+            resultListUl.innerHTML = ''; 
+            countdownDisplay.textContent = '';
+            countdownDisplay.classList.remove('visible', 'drawing-text');
+            showStatus(`已產生 ${waitingNumbers.length} 個待抽號碼。`, 'success');
+            
+            initBtn.disabled = false;
+            drawBtn.disabled = waitingNumbers.length === 0; // Enable draw if numbers exist
+        });
+
+        function renderWaitingList() {
+            waitingListUl.innerHTML = ''; // Clear existing list
+            const fragment = document.createDocumentFragment();
+            waitingNumbers.forEach(number => {
+                const listItem = document.createElement('li');
+                listItem.textContent = number;
+                listItem.dataset.number = number; // For easy selection
+                fragment.appendChild(listItem);
+            });
+            waitingListUl.appendChild(fragment);
+        }
+
+        drawBtn.addEventListener('click', async function () {
+            const drawCount = parseInt(drawNumInput.value);
+
+            if (isNaN(drawCount) || drawCount <= 0) {
+                showStatus('請輸入有效的抽出數量！', 'error');
+                return;
+            }
+            if (waitingNumbers.length === 0) {
+                showStatus('待抽號碼池已空，請先產生號碼！', 'warning');
+                return;
+            }
+            if (drawCount > waitingNumbers.length) {
+                showStatus('抽出數量不能大於剩餘待抽號碼數量！', 'warning');
+                return;
+            }
+
+            drawBtn.disabled = true;
+            initBtn.disabled = true;
+            countdownDisplay.classList.remove('drawing-text');
+            countdownDisplay.classList.add('visible');
+            
+            for (let count = 3; count >= 0; count--) {
+                if (count > 0) {
+                    countdownDisplay.textContent = count;
+                } else {
+                    countdownDisplay.classList.add('drawing-text');
+                    countdownDisplay.textContent = '抽獎中... ✨';
+                    // Highlight numbers being drawn (visual effect)
+                    await highlightNumbersForDrawing(drawCount, 1500 / drawCount); // Animate for 1.5s total
+                }
+                await sleep(1000);
+            }
+            
+            countdownDisplay.classList.remove('visible', 'drawing-text');
+            countdownDisplay.textContent = '';
+
+            const drawnNumbers = drawAndRemoveNumbers(drawCount);
+            currentAwardNumber++;
+            const newResult = { awardNumber: currentAwardNumber, numbers: drawnNumbers };
+            drawHistory.unshift(newResult); 
+            renderResultList();
+            triggerConfetti();
+            showStatus(`第 ${currentAwardNumber} 獎已抽出！`, 'success');
+
+            drawBtn.disabled = waitingNumbers.length === 0;
+            initBtn.disabled = false;
+        });
+
+        async function highlightNumbersForDrawing(numToHighlight, durationPerHighlight) {
+            if (waitingNumbers.length === 0 || numToHighlight === 0) return;
+            
+            const listItems = Array.from(waitingListUl.querySelectorAll('li'));
+            for (let i = 0; i < numToHighlight * 3; i++) { // Simulate more shuffling than actual draws
+                 if (listItems.length === 0) break;
+                const randomLi = listItems[Math.floor(Math.random() * listItems.length)];
+                randomLi.classList.add('drawn');
+                await sleep(durationPerHighlight / 2); // Half time highlighted
+                randomLi.classList.remove('drawn');
+                await sleep(durationPerHighlight / 2); // Half time normal
+            }
+        }
+
+
+        function drawAndRemoveNumbers(drawCount) {
+            const drawnThisRound = [];
+            for (let i = 0; i < drawCount; i++) {
+                if (waitingNumbers.length === 0) break;
+                const randomIndex = Math.floor(Math.random() * waitingNumbers.length);
+                const drawnNumber = waitingNumbers.splice(randomIndex, 1)[0]; // Remove and get
+                drawnThisRound.push(drawnNumber);
+            }
+            renderWaitingList(); // Update UI
+            return drawnThisRound;
+        }
+
+        function renderResultList() {
+            resultListUl.innerHTML = ''; // Clear list before re-rendering
+            const fragment = document.createDocumentFragment();
+            drawHistory.forEach((resultItem, index) => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `<strong>第 ${resultItem.awardNumber} 獎：</strong> ${resultItem.numbers.join(", ")}`;
+                listItem.style.animationDelay = `${index * 0.1}s`; // Stagger animation
+                fragment.appendChild(listItem);
+            });
+            resultListUl.appendChild(fragment);
+        }
+
+        function showStatus(message, type = 'info') { // type can be 'info', 'success', 'warning', 'error'
+            statusMessage.textContent = message;
+            statusMessage.style.color = 'var(--text-color)'; // Default
+            if (type === 'success') statusMessage.style.color = 'var(--success-color)';
+            if (type === 'warning') statusMessage.style.color = 'var(--warning-color)';
+            if (type === 'error') statusMessage.style.color = 'var(--danger-color)';
+        }
+        
+        function triggerConfetti() {
+            confettiContainer.innerHTML = ''; // Clear previous
+            const confettiCount = 60;
+            const fragment = document.createDocumentFragment();
+            for (let i = 0; i < confettiCount; i++) {
+                const piece = document.createElement('div');
+                piece.className = 'confetti-piece';
+                piece.style.left = Math.random() * 100 + 'vw';
+                piece.style.animationDelay = Math.random() * 1 + 's'; // Stagger start times
+                const randomDuration = Math.random() * 2 + 2.5; // duration 2.5s to 4.5s
+                piece.style.animationDuration = randomDuration + 's';
+                fragment.appendChild(piece);
+            }
+            confettiContainer.appendChild(fragment);
+            setTimeout(() => confettiContainer.innerHTML = '', 5000); // Auto clear after 5s
+        }
+
+        // Initial state for draw button
+        drawBtn.disabled = true;
+
+        // onbeforeunload remains useful
+        window.onbeforeunload = function(event) {
+            if (drawHistory.length > 0) {
+                event.preventDefault();
+                event.returnValue = "您確定要離開此頁面嗎？所有已抽出的結果將會消失。";
+                return "您確定要離開此頁面嗎？所有已抽出的結果將會消失。";
+            }
+        };
+    });
+    </script>
+</body>
+</html>
