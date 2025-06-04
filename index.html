@@ -10,322 +10,317 @@
         :root {
             --font-primary: 'Noto Sans TC', sans-serif;
             --font-cursive: '標楷體', 'Ma Shan Zheng', cursive; /* KaiTi for Cursive */
+        --color-text-primary: #e0e0e0;
+        --color-text-secondary: #b0b0b0;
+        --color-text-accent: #FFffb9;
+        --color-text-on-accent-bg: #1a1a1a; /* For text on bright accent backgrounds */
+        --color-text-light: #ffffff;
+        --bg-main: rgba(0, 0, 0, 0.75); /* Main page container background */
+        --bg-content-box: rgba(255, 255, 255, 0.07); /* For search/links sections */
+        --bg-input-field: #2c3e50; /* Darker blue-gray for inputs */
+        --bg-input-field-focus: #34495e;
+        --bg-button: #007bff;
+        --bg-button-hover: #0056b3;
+        --bg-separator-accent: rgba(255, 255, 255, 0.1); /* Subtle accent for borders */
+        --border-color: #4a4a4a;
+        --border-color-focus: var(--color-text-accent);
+        --border-radius-small: 4px;
+        --border-radius-medium: 8px;
 
-            --color-text-primary: #e0e0e0;
-            --color-text-secondary: #b0b0b0;
-            --color-text-accent: #FFffb9;
-            --color-text-on-accent-bg: #1a1a1a; /* For text on bright accent backgrounds */
-            --color-text-light: #ffffff;
+        --shadow-soft: 0 2px 8px rgba(0,0,0,0.3);
+        --shadow-strong: 0 4px 15px rgba(0,0,0,0.5);
 
+        --spacing-xs: 0.25rem; /* 4px */
+        --spacing-s: 0.5rem;   /* 8px */
+        --spacing-m: 1rem;     /* 16px */
+        --spacing-l: 1.5rem;   /* 24px */
+        --spacing-xl: 2rem;    /* 32px */
 
-            --bg-main: rgba(0, 0, 0, 0.75); /* Main page container background */
-            --bg-content-box: rgba(255, 255, 255, 0.07); /* For search/links sections */
-            --bg-input-field: #2c3e50; /* Darker blue-gray for inputs */
-            --bg-input-field-focus: #34495e;
-            --bg-button: #007bff;
-            --bg-button-hover: #0056b3;
-            --bg-separator-accent: rgba(255, 255, 255, 0.1); /* Subtle accent for borders */
+        --transition-fast: 0.2s ease-out;
+    }
 
+    /* Reset and Basic Styling */
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
 
-            --border-color: #4a4a4a;
-            --border-color-focus: var(--color-text-accent);
-            --border-radius-small: 4px;
-            --border-radius-medium: 8px;
+    html {
+        font-size: 16px; /* Base font size for rem units */
+    }
 
-            --shadow-soft: 0 2px 8px rgba(0,0,0,0.3);
-            --shadow-strong: 0 4px 15px rgba(0,0,0,0.5);
+    body {
+        font-family: var(--font-primary);
+        background-image: url('images/daisy5.jpg');
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+        color: var(--color-text-primary);
+        line-height: 1.7; /* Slightly increased for readability */
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        padding: var(--spacing-m);
+    }
 
-            --spacing-xs: 0.25rem; /* 4px */
-            --spacing-s: 0.5rem;   /* 8px */
-            --spacing-m: 1rem;     /* 16px */
-            --spacing-l: 1.5rem;   /* 24px */
-            --spacing-xl: 2rem;    /* 32px */
+    .page-container {
+        max-width: 1100px; /* Slightly wider */
+        margin: var(--spacing-m) auto;
+        padding: var(--spacing-l);
+        background-color: var(--bg-main);
+        border-radius: var(--border-radius-medium);
+        box-shadow: var(--shadow-strong);
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+    }
 
-            --transition-fast: 0.2s ease-out;
-        }
+    main {
+        flex-grow: 1;
+    }
 
-        /* Reset and Basic Styling */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    a {
+        color: var(--color-text-accent);
+        text-decoration: none;
+        transition: color var(--transition-fast);
+    }
+    a:hover {
+        text-decoration: underline;
+        color: var(--color-text-light);
+    }
 
-        html {
-            font-size: 16px; /* Base font size for rem units */
-        }
-
-        body {
-            font-family: var(--font-primary);
-            background-image: url('images/daisy5.jpg');
-            background-size: cover;
-            background-attachment: fixed;
-            background-position: center;
-            color: var(--color-text-primary);
-            line-height: 1.7; /* Slightly increased for readability */
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            padding: var(--spacing-m);
-        }
-
-        .page-container {
-            max-width: 1100px; /* Slightly wider */
-            margin: var(--spacing-m) auto;
-            padding: var(--spacing-l);
-            background-color: var(--bg-main);
-            border-radius: var(--border-radius-medium);
-            box-shadow: var(--shadow-strong);
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        main {
-            flex-grow: 1;
-        }
-
-        a {
-            color: var(--color-text-accent);
-            text-decoration: none;
-            transition: color var(--transition-fast);
-        }
-        a:hover {
-            text-decoration: underline;
-            color: var(--color-text-light);
-        }
-
-        /* Typography */
-        h1, h2, h3, h4, h5, h6 {
-            color: var(--color-text-light);
-            margin-bottom: var(--spacing-m);
-            line-height: 1.3;
-        }
-        h3 { font-size: 1.5rem; }
-        h4 { font-size: 1.2rem; }
+    /* Typography */
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--color-text-light);
+        margin-bottom: var(--spacing-m);
+        line-height: 1.3;
+    }
+    h3 { font-size: 1.5rem; }
+    h4 { font-size: 1.2rem; }
 
 
-        /* Header */
-        .page-header {
-            text-align: center;
-            margin-bottom: var(--spacing-xl);
-        }
-        .greeting {
-            font-family: var(--font-cursive);
-            font-size: 1.3rem;
-            color: var(--color-text-light);
-        }
+    /* Header */
+    .page-header {
+        text-align: center;
+        margin-bottom: var(--spacing-xl);
+    }
+    .greeting {
+        font-family: var(--font-cursive);
+        font-size: 1.3rem;
+        color: var(--color-text-light);
+    }
 
-        /* Separator Image */
-        .separator-image {
-            display: block;
-            margin: var(--spacing-xl) auto;
-            width: 560px;
-            max-width: 90%;
-            height: auto;
-            opacity: 0.8;
-        }
+    /* Separator Image */
+    .separator-image {
+        display: block;
+        margin: var(--spacing-xl) auto;
+        width: 560px;
+        max-width: 90%;
+        height: auto;
+        opacity: 0.8;
+    }
 
-        /* Content Sections (Search, Links) */
-        .search-section, .links-section {
-            margin-bottom: var(--spacing-xl);
-            padding: var(--spacing-l);
-            background-color: var(--bg-content-box);
-            border-radius: var(--border-radius-medium);
-            box-shadow: var(--shadow-soft);
-        }
-        
-        .search-form-container {
-            margin-bottom: var(--spacing-l);
-            padding: var(--spacing-l);
-            background-color: rgba(0,0,0,0.2); /* Slightly different for internal grouping */
-            border-radius: var(--border-radius-small);
-        }
-        
-        .links-section h3, .search-form-container h3 { /* Shared style for section titles */
-            text-align: center;
-            margin-bottom: var(--spacing-l);
-            padding-bottom: var(--spacing-s);
-            border-bottom: 1px solid var(--bg-separator-accent);
-        }
+    /* Content Sections (Search, Links) */
+    .search-section, .links-section {
+        margin-bottom: var(--spacing-xl);
+        padding: var(--spacing-l);
+        background-color: var(--bg-content-box);
+        border-radius: var(--border-radius-medium);
+        box-shadow: var(--shadow-soft);
+    }
+    
+    .search-form-container {
+        margin-bottom: var(--spacing-l);
+        padding: var(--spacing-l);
+        background-color: rgba(0,0,0,0.2); /* Slightly different for internal grouping */
+        border-radius: var(--border-radius-small);
+    }
+    
+    .links-section h3, .search-form-container h3 { /* Shared style for section titles */
+        text-align: center;
+        margin-bottom: var(--spacing-l);
+        padding-bottom: var(--spacing-s);
+        border-bottom: 1px solid var(--bg-separator-accent);
+    }
 
-        /* Form Elements */
-        label {
-            margin-right: var(--spacing-s);
-            font-size: 0.9rem;
-            color: var(--color-text-secondary);
-        }
+    /* Form Elements */
+    label {
+        margin-right: var(--spacing-s);
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+    }
 
-        input[type="text"], select {
-            padding: var(--spacing-s) var(--spacing-m);
-            margin: var(--spacing-xs) var(--spacing-s) var(--spacing-xs) 0; /* Consistent small margin */
-            border: 1px solid var(--border-color);
-            background-color: var(--bg-input-field);
-            color: var(--color-text-primary);
-            border-radius: var(--border-radius-small);
-            font-size: 1rem;
-            font-family: var(--font-primary);
-            transition: border-color var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
-        }
-        input[type="text"] {
-            min-width: 200px; /* Base min-width */
-            flex-grow: 1; /* Allow text input to grow */
-        }
-         input[type="text"]:focus, select:focus {
-            border-color: var(--border-color-focus);
-            background-color: var(--bg-input-field-focus);
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(var(--color-text-accent), 0.3);
-        }
+    input[type="text"], select {
+        padding: var(--spacing-s) var(--spacing-m);
+        margin: var(--spacing-xs) var(--spacing-s) var(--spacing-xs) 0; /* Consistent small margin */
+        border: 1px solid var(--border-color);
+        background-color: var(--bg-input-field);
+        color: var(--color-text-primary);
+        border-radius: var(--border-radius-small);
+        font-size: 1rem;
+        font-family: var(--font-primary);
+        transition: border-color var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+    input[type="text"] {
+        min-width: 200px; /* Base min-width */
+        flex-grow: 1; /* Allow text input to grow */
+    }
+     input[type="text"]:focus, select:focus {
+        border-color: var(--border-color-focus);
+        background-color: var(--bg-input-field-focus);
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(var(--color-text-accent), 0.3);
+    }
 
-        button, input[type="submit"], input[type="button"] { /* General button styling */
-            padding: var(--spacing-s) var(--spacing-l);
-            margin: var(--spacing-xs) var(--spacing-s) var(--spacing-xs) 0;
-            border: none;
-            background-color: var(--bg-button);
-            color: var(--color-text-light);
-            border-radius: var(--border-radius-small);
-            font-size: 1rem;
-            font-family: var(--font-primary);
-            font-weight: 500;
-            cursor: pointer;
-            transition: background-color var(--transition-fast), transform var(--transition-fast);
+    button, input[type="submit"], input[type="button"] { /* General button styling */
+        padding: var(--spacing-s) var(--spacing-l);
+        margin: var(--spacing-xs) var(--spacing-s) var(--spacing-xs) 0;
+        border: none;
+        background-color: var(--bg-button);
+        color: var(--color-text-light);
+        border-radius: var(--border-radius-small);
+        font-size: 1rem;
+        font-family: var(--font-primary);
+        font-weight: 500;
+        cursor: pointer;
+        transition: background-color var(--transition-fast), transform var(--transition-fast);
+    }
+    button:hover, input[type="submit"]:hover, input[type="button"]:hover {
+        background-color: var(--bg-button-hover);
+        transform: translateY(-1px);
+    }
+    button:active, input[type="submit"]:active, input[type="button"]:active {
+        transform: translateY(0px);
+    }
+    
+    /* Specific form layouts for search */
+    #searchFormGoogle, #frmQueryBoxNcbi {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--spacing-s);
+    }
+    #searchFormGoogle label, #frmQueryBoxNcbi label {
+         white-space: nowrap;
+    }
+
+
+    /* Link Selectors Container (Dropdowns) */
+    #linkSelectorsContainer {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        gap: var(--spacing-m); /* Increased gap for better separation */
+    }
+
+    .selector-form {
+        flex: 1;
+        min-width: 0; /* Allows shrinking */
+    }
+    .selector-form select {
+        width: 100%;
+    }
+
+
+    /* Bottom Navigation */
+    .bottom-navigation {
+        text-align: center;
+        margin: var(--spacing-xl) 0;
+        padding-top: var(--spacing-l);
+        border-top: 1px solid var(--bg-separator-accent);
+    }
+    .bottom-navigation h4 {
+        margin-bottom: var(--spacing-s);
+        color: var(--color-text-light);
+    }
+    .bottom-navigation a {
+        margin: 0 var(--spacing-s);
+        font-size: 0.9rem;
+        display: inline-block; /* Better spacing control */
+        padding: var(--spacing-xs) var(--spacing-s);
+        border-radius: var(--border-radius-small);
+    }
+    .bottom-navigation a:hover {
+         background-color: var(--bg-content-box);
+         text-decoration: none;
+    }
+
+
+    /* Footer */
+    .page-footer {
+        text-align: center;
+        padding: var(--spacing-l);
+        margin-top: var(--spacing-xl);
+        background-color: rgba(0,0,0,0.5); /* Darker footer bg */
+        border-top: 1px solid var(--bg-separator-accent);
+        border-bottom-left-radius: var(--border-radius-medium); /* Match page container */
+        border-bottom-right-radius: var(--border-radius-medium);
+    }
+    .page-footer address {
+        font-style: normal;
+        font-size: 0.9rem;
+        color: var(--color-text-secondary);
+    }
+    .page-footer address a {
+        color: var(--color-text-accent);
+        font-weight: 500;
+    }
+
+    /* Snowflake Animation */
+    .snowflake {
+        position: absolute;
+        top: -50px;
+        pointer-events: none;
+        width: 20px; /* Base size, JS can override */
+        height: 20px;
+        opacity: 0.8;
+        animation: fall linear infinite;
+        will-change: transform; /* Performance hint */
+    }
+    @keyframes fall {
+        to {
+            transform: translateY(calc(100vh + 50px));
         }
-        button:hover, input[type="submit"]:hover, input[type="button"]:hover {
-            background-color: var(--bg-button-hover);
-            transform: translateY(-1px);
-        }
-        button:active, input[type="submit"]:active, input[type="button"]:active {
-            transform: translateY(0px);
-        }
-        
-        /* Specific form layouts for search */
-        #searchFormGoogle, #frmQueryBoxNcbi {
-            display: flex;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 900px) { /* Breakpoint for 4 dropdowns */
+        #linkSelectorsContainer {
             flex-wrap: wrap;
-            align-items: center;
             gap: var(--spacing-s);
         }
-        #searchFormGoogle label, #frmQueryBoxNcbi label {
-             white-space: nowrap;
+        .selector-form {
+            flex: 1 1 calc(50% - var(--spacing-s)); /* Two per row */
+            margin-bottom: var(--spacing-s);
         }
-
-
-        /* Link Selectors Container (Dropdowns) */
-        #linkSelectorsContainer {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            justify-content: space-between;
-            gap: var(--spacing-m); /* Increased gap for better separation */
+    }
+    @media (max-width: 600px) {
+        html { font-size: 14px; } /* Slightly smaller base font */
+        .page-container { padding: var(--spacing-m); }
+        
+        #searchFormGoogle, #frmQueryBoxNcbi {
+            flex-direction: column;
+            align-items: stretch;
         }
+        #searchFormGoogle > *, #frmQueryBoxNcbi > * { /* Make children take full width */
+             width: 100%;
+             margin-left: 0;
+             margin-right: 0;
+        }
+         input[type="text"] { min-width: auto; }
+
 
         .selector-form {
-            flex: 1;
-            min-width: 0; /* Allows shrinking */
-        }
-        .selector-form select {
-            width: 100%;
+            flex-basis: 100%; /* One per row */
         }
 
+        .bottom-navigation h4 { font-size: 1.1rem; }
+        .bottom-navigation a { font-size: 0.85rem; margin: 0 var(--spacing-xs); padding: var(--spacing-xs); }
+    }
 
-        /* Bottom Navigation */
-        .bottom-navigation {
-            text-align: center;
-            margin: var(--spacing-xl) 0;
-            padding-top: var(--spacing-l);
-            border-top: 1px solid var(--bg-separator-accent);
-        }
-        .bottom-navigation h4 {
-            margin-bottom: var(--spacing-s);
-            color: var(--color-text-light);
-        }
-        .bottom-navigation a {
-            margin: 0 var(--spacing-s);
-            font-size: 0.9rem;
-            display: inline-block; /* Better spacing control */
-            padding: var(--spacing-xs) var(--spacing-s);
-            border-radius: var(--border-radius-small);
-        }
-        .bottom-navigation a:hover {
-             background-color: var(--bg-content-box);
-             text-decoration: none;
-        }
-
-
-        /* Footer */
-        .page-footer {
-            text-align: center;
-            padding: var(--spacing-l);
-            margin-top: var(--spacing-xl);
-            background-color: rgba(0,0,0,0.5); /* Darker footer bg */
-            border-top: 1px solid var(--bg-separator-accent);
-            border-bottom-left-radius: var(--border-radius-medium); /* Match page container */
-            border-bottom-right-radius: var(--border-radius-medium);
-        }
-        .page-footer address {
-            font-style: normal;
-            font-size: 0.9rem;
-            color: var(--color-text-secondary);
-        }
-        .page-footer address a {
-            color: var(--color-text-accent);
-            font-weight: 500;
-        }
-
-        /* Snowflake Animation */
-        .snowflake {
-            position: absolute;
-            top: -50px;
-            pointer-events: none;
-            width: 20px; /* Base size, JS can override */
-            height: 20px;
-            opacity: 0.8;
-            animation: fall linear infinite;
-            will-change: transform; /* Performance hint */
-        }
-        @keyframes fall {
-            to {
-                transform: translateY(calc(100vh + 50px));
-            }
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 900px) { /* Breakpoint for 4 dropdowns */
-            #linkSelectorsContainer {
-                flex-wrap: wrap;
-                gap: var(--spacing-s);
-            }
-            .selector-form {
-                flex: 1 1 calc(50% - var(--spacing-s)); /* Two per row */
-                margin-bottom: var(--spacing-s);
-            }
-        }
-        @media (max-width: 600px) {
-            html { font-size: 14px; } /* Slightly smaller base font */
-            .page-container { padding: var(--spacing-m); }
-            
-            #searchFormGoogle, #frmQueryBoxNcbi {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            #searchFormGoogle > *, #frmQueryBoxNcbi > * { /* Make children take full width */
-                 width: 100%;
-                 margin-left: 0;
-                 margin-right: 0;
-            }
-             input[type="text"] { min-width: auto; }
-
-
-            .selector-form {
-                flex-basis: 100%; /* One per row */
-            }
-
-            .bottom-navigation h4 { font-size: 1.1rem; }
-            .bottom-navigation a { font-size: 0.85rem; margin: 0 var(--spacing-xs); padding: var(--spacing-xs); }
-        }
-
-    </style>
+</style>
 </head>
 <body>
 
