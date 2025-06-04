@@ -77,7 +77,7 @@
             border-radius: 6px;
         }
         
-        .search-form-container, .selector-form {
+        .search-form-container {
             margin-bottom: 20px;
             padding: 15px;
             background-color: rgba(255,255,255,0.1);
@@ -104,8 +104,8 @@
         input[type="text"] {
             min-width: 250px; /* Make text input wider */
         }
-        button {
-            background-color: #007bff; /* Modern blue */
+        button { /* This style is for other buttons like search, not the removed "Go" button */
+            background-color: #007bff;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
@@ -119,24 +119,22 @@
         /* Link Selectors Container */
         #linkSelectorsContainer {
             display: flex;
-            flex-wrap: wrap; /* Allow wrapping on small screens */
-            justify-content: space-around; /* Distribute space */
-            gap: 15px; /* Space between items */
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 15px;
         }
-        .selector-form {
-            flex: 1 1 280px; /* Grow, shrink, with a base width */
-            min-width: 250px; /* Minimum width before wrapping */
-            display: flex;
-            flex-direction: column;
-            align-items: stretch;
+        .selector-form { /* This class is still used by the form wrapping the select */
+            flex: 1 1 280px;
+            min-width: 250px;
+            display: flex; /* Kept for consistency, helps if you add other elements later */
+            flex-direction: column; /* Kept for consistency */
+            /* align-items: stretch; /* This might be useful to make select fill width if its parent has fixed width */
         }
         .selector-form select {
-            width: 100%; /* Make select take full width of its container */
-            margin-bottom: 10px;
+            width: 100%; /* Select takes full width of its .selector-form parent */
+            /* margin-bottom: 10px; /* Removed as there's no button below it now */
         }
-        .selector-form button {
-            width: 100%;
-        }
+        /* .selector-form button styles are removed as the button is gone */
 
 
         /* Bottom Navigation */
@@ -159,7 +157,7 @@
         .page-footer {
             text-align: center;
             padding: 20px;
-            background-color: rgba(0,0,0,0.3); /* Slightly different background for footer within container */
+            background-color: rgba(0,0,0,0.3);
             border-bottom-left-radius: 8px;
             border-bottom-right-radius: 8px;
         }
@@ -170,7 +168,7 @@
             color: #ccc;
         }
         .page-footer address a {
-            color: #FFD700; /* Gold for emphasis */
+            color: #FFD700;
         }
         .hand-icon {
             width: 45px;
@@ -178,9 +176,9 @@
             margin-right: 5px;
         }
 
-        /* Marquee Styling (from original, slightly adapted) */
+        /* Marquee Styling */
         .marquee-container {
-            width: 80%; /* Adjusted width */
+            width: 80%;
             margin: 20px auto;
             overflow: hidden;
             box-sizing: border-box;
@@ -193,7 +191,7 @@
             white-space: nowrap;
             animation: marquee 45s linear infinite;
             font-family: '標楷體', 'Ma Shan Zheng', cursive;
-            font-size: 1.1em; /* Adjusted size */
+            font-size: 1.1em;
             color: #ffffff;
         }
         .marquee:hover {
@@ -204,7 +202,7 @@
             100% { transform: translateX(-100%); }
         }
 
-        /* Snowflake Animation (from original) */
+        /* Snowflake Animation */
         .snowflake {
             position: absolute;
             top: -50px;
@@ -212,11 +210,11 @@
             width: 20px;
             height: 20px;
             opacity: 0.8;
-            animation: fall linear infinite; /* Using CSS keyframes for falling */
+            animation: fall linear infinite;
         }
         @keyframes fall {
             to {
-                transform: translateY(calc(100vh + 50px)); /* Ensure it falls completely off screen */
+                transform: translateY(calc(100vh + 50px));
             }
         }
     </style>
@@ -225,7 +223,6 @@
 
     <div class="page-container">
         <header class="page-header">
-          
             <div id="greeting" class="greeting"></div>
         </header>
 
@@ -288,7 +285,7 @@
             <section class="links-section">
                 <h3>快速連結</h3>
                 <div id="linkSelectorsContainer">
-                    <!-- Dropdowns will be inserted here by JavaScript -->
+                    <!-- Dropdown selectors will be inserted here by JavaScript -->
                 </div>
             </section>
 
@@ -311,39 +308,30 @@
 
         <footer class="page-footer">
             <address>
-                If you have any question, contact with me please. Email: <a href="mailto:subunit99@gmail.com">subunit99@gmail.com</a> Ver 9.0 
+                If you have any question, contact with me please. Email: <a href="mailto:subunit99@gmail.com">subunit99@gmail.com</a> Ver 9.0
             </address>
         </footer>
     </div>
 
     <!-- JavaScript -->
     <script>
-        // Snowflake generation (adapted from original)
+        // Snowflake generation
         (function createSnow() {
-            const snowsrc = "images/snow.gif"; // Make sure this path is correct
-            const numberOfSnowflakes = 15; // Increased for better effect
-            const snowContainer = document.body; // Snowflakes fall over the whole body
+            const snowsrc = "images/snow.gif";
+            const numberOfSnowflakes = 15;
+            const snowContainer = document.body;
 
             for (let i = 0; i < numberOfSnowflakes; i++) {
                 const snowflake = document.createElement("img");
                 snowflake.src = snowsrc;
                 snowflake.className = "snowflake";
-                
-                // Random horizontal start position
-                snowflake.style.left = `${Math.random() * 100}vw`; 
-                
-                // Random animation duration and delay for varied falling speeds and start times
-                snowflake.style.animationDuration = `${8 + Math.random() * 7}s`; // Slower, more varied fall
+                snowflake.style.left = `${Math.random() * 100}vw`;
+                snowflake.style.animationDuration = `${8 + Math.random() * 7}s`;
                 snowflake.style.animationDelay = `${Math.random() * 10}s`;
-                
-                // Random initial vertical offset (some start lower)
                 snowflake.style.top = `-${10 + Math.random() * 40}px`;
-
-                // Random size for snowflakes
-                const randomSize = 10 + Math.random() * 15; // Size between 10px and 25px
+                const randomSize = 10 + Math.random() * 15;
                 snowflake.style.width = `${randomSize}px`;
                 snowflake.style.height = `${randomSize}px`;
-
                 snowContainer.appendChild(snowflake);
             }
         })();
@@ -352,11 +340,9 @@
         (function showGreeting() {
             const greetingElement = document.getElementById("greeting");
             if (!greetingElement) return;
-
             const today = new Date();
             const hours = today.getHours();
             let message = "";
-
             if (hours <= 0) message = "『十二點多了!!明天不用上班/上學嗎??還不睡??』";
             else if (hours <= 1) message = "『凌晨一點多了，還不想睡嗎??那陪我剛好.』";
             else if (hours <= 2) message = "『就快三點啦，該是睡覺時候了!!還沒過癮!?』";
@@ -380,7 +366,6 @@
             else if (hours <= 20) message = "『八點多了，還不出門!!看來你又要陪我孤單一個晚上了!!』";
             else if (hours <= 22) message = "『九點、十點快睡著了，現在才來這!!真是的』";
             else if (hours <= 23) message = "『十一點幾，夜遊神出動了喲??別到處亂逛,小心踩到槍!!』";
-            
             greetingElement.textContent = `嗨!! ${message}`;
         })();
 
@@ -390,7 +375,6 @@
             const query = document.getElementById('queryGoogle').value;
             const searchType = document.getElementById('searchTypeGoogle').value;
             let url;
-
             if (searchType === 'translate') {
                 url = 'https://translate.google.com/?sl=auto&tl=zh-TW&text=' + encodeURIComponent(query);
             } else {
@@ -407,49 +391,47 @@
             const form = document.getElementById('frmQueryBoxNcbi');
             const termInput = document.getElementById('termNcbi');
             const clearBtn = document.getElementById('clearBtnNcbi');
-
             if (form && termInput && clearBtn) {
                 clearBtn.addEventListener('click', () => {
                     termInput.value = '';
                     termInput.focus();
                 });
-                // The form will submit via its action attribute normally.
             }
         })();
 
-        // Dynamic Link Selectors
+        // Dynamic Link Selectors (MODIFIED FOR DIRECT JUMP ON SELECT CHANGE)
         (function createLinkSelectors() {
             const linkSelectorsContainer = document.getElementById('linkSelectorsContainer');
             if (!linkSelectorsContainer) return;
 
-            function navigate(selectElement) {
+            function navigateToSelected(selectElement) {
                 const target = selectElement.value;
                 if (target && target !== "none") {
-                    window.open(target, '_blank'); // Open in new tab
+                    window.open(target, '_blank');
                 }
-                 selectElement.value = "none"; // Reset selector
+                selectElement.selectedIndex = 0; // Reset to the title/first option
             }
 
             function createSelector(items, title) {
                 const form = document.createElement('form');
                 form.classList.add('selector-form');
-                
+                form.addEventListener('submit', function(e) { e.preventDefault(); });
+
                 const select = document.createElement('select');
-                select.classList.add('selector');
+                select.classList.add('selector'); // You might not need this class if styling via .selector-form select
+
                 let optionsHTML = `<option value="none">${title}</option><option value="none">------------------------</option>`;
                 for (const label in items) {
                     optionsHTML += `<option value="${items[label]}">${label}</option>`;
                 }
                 optionsHTML += `<option value="none">------------------------</option>`;
                 select.innerHTML = optionsHTML;
-                
-                const button = document.createElement('button');
-                button.type = 'button';
-                button.textContent = 'Go';
-                button.addEventListener('click', () => navigate(select));
+
+                select.addEventListener('change', function() {
+                    navigateToSelected(this);
+                });
 
                 form.appendChild(select);
-                form.appendChild(button);
                 return form;
             }
 
@@ -471,10 +453,9 @@
                 "Diagrams": "https://app.diagrams.net/",
                 "Github": "https://github.com/",
                 "pdf24": "https://www.pdf24.org/en/",
-		"Telegraph": "https://telegra.ph/", 
-		"Fast": "https://fast.com/",   
-		"MyIP": "https://www.whatismyip.com.tw/tw/",   
-		"Fast": "https://fast.com/",   
+		        "Telegraph": "https://telegra.ph/",
+		        "Fast": "https://fast.com/",
+		        "MyIP": "https://www.whatismyip.com.tw/tw/",
                 "字體": "https://www.ziti88.com/"
             };
 
@@ -485,11 +466,11 @@
                 "藥品資料庫": "https://drug.healthinfo.tw/",
                 "勞動部薪資調查": "https://pswst.mol.gov.tw/psdn/Default.aspx",
                 "克隆窩": "https://www.uy5.net/",
-		"即時影像": "https://tw.live/",
-		"Openclipart": "https://openclipart.org/",
-		"Windy": "https://www.windy.com/24.147/120.784?clouds,23.863,120.784,9",
-		"Pexels": "https://www.pexels.com/zh-tw/",
-		"Videvo": "https://www.videvo.net/",
+		        "即時影像": "https://tw.live/",
+		        "Openclipart": "https://openclipart.org/",
+		        "Windy": "https://www.windy.com/24.147/120.784?clouds,23.863,120.784,9",
+		        "Pexels": "https://www.pexels.com/zh-tw/",
+		        "Videvo": "https://www.videvo.net/",
                 "Numbeo": "https://www.numbeo.com/cost-of-living/"
             };
 
@@ -499,7 +480,7 @@
                 { items: opendata, title: '開放資料庫' }
             ];
 
-            linkSelectorsContainer.innerHTML = ''; // Clear existing content (if any)
+            linkSelectorsContainer.innerHTML = '';
             categories.forEach(category => {
                 linkSelectorsContainer.appendChild(createSelector(category.items, category.title));
             });

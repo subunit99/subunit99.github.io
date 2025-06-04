@@ -1,0 +1,490 @@
+﻿<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雪落痕無</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <style>
+        /* Reset and Basic Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-image: url('images/daisy5.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: #ffffff;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for content */
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            flex-grow: 1; /* Allows footer to stick to bottom if content is short */
+        }
+
+        a {
+            color: #FFffb9;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .page-header img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        .greeting {
+            font-family: '標楷體', 'Ma Shan Zheng', cursive; /* KaiTi, fallback to Ma Shan Zheng */
+            font-size: 1.2em;
+            color: #f0f0f0;
+        }
+
+        /* Separator Image */
+        .separator-image {
+            display: block;
+            margin: 30px auto;
+            width: 560px;
+            max-width: 90%;
+            height: auto;
+        }
+
+        /* Forms Styling */
+        .search-section, .links-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+        }
+        
+        .search-form-container {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 6px;
+        }
+        
+        .search-form-container h3, .links-section h3 {
+            margin-bottom: 10px;
+            font-size: 1.4em;
+            color: #e0e0e0;
+            border-bottom: 1px solid #555;
+            padding-bottom: 5px;
+        }
+
+        input[type="text"], select, button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: 1px solid #555;
+            background-color: #2c2c2c;
+            color: #fff;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+        input[type="text"] {
+            min-width: 250px; /* Make text input wider */
+        }
+        button { /* This style is for other buttons like search, not the removed "Go" button */
+            background-color: #007bff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        label {
+            margin-right: 8px;
+        }
+
+        /* Link Selectors Container */
+        #linkSelectorsContainer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 15px;
+        }
+        .selector-form { /* This class is still used by the form wrapping the select */
+            flex: 1 1 280px;
+            min-width: 250px;
+            display: flex; /* Kept for consistency, helps if you add other elements later */
+            flex-direction: column; /* Kept for consistency */
+            /* align-items: stretch; /* This might be useful to make select fill width if its parent has fixed width */
+        }
+        .selector-form select {
+            width: 100%; /* Select takes full width of its .selector-form parent */
+            /* margin-bottom: 10px; /* Removed as there's no button below it now */
+        }
+        /* .selector-form button styles are removed as the button is gone */
+
+
+        /* Bottom Navigation */
+        .bottom-navigation {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .bottom-navigation h4 {
+            font-family: 'Noto Sans TC', sans-serif;
+            font-size: 1.1em;
+            margin: 15px 0 5px 0;
+            color: #ddd;
+        }
+        .bottom-navigation a {
+            margin: 0 5px;
+            font-size: 0.9em;
+        }
+
+        /* Footer */
+        .page-footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(0,0,0,0.3);
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+        .page-footer address {
+            font-style: normal;
+            font-size: 0.9em;
+            margin-top: 20px;
+            color: #ccc;
+        }
+        .page-footer address a {
+            color: #FFD700;
+        }
+        .hand-icon {
+            width: 45px;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        /* Marquee Styling */
+        .marquee-container {
+            width: 80%;
+            margin: 20px auto;
+            overflow: hidden;
+            box-sizing: border-box;
+            background-color: rgba(0,0,0,0.4);
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 45s linear infinite;
+            font-family: '標楷體', 'Ma Shan Zheng', cursive;
+            font-size: 1.1em;
+            color: #ffffff;
+        }
+        .marquee:hover {
+            animation-play-state: paused;
+        }
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Snowflake Animation */
+        .snowflake {
+            position: absolute;
+            top: -50px;
+            pointer-events: none;
+            width: 20px;
+            height: 20px;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(calc(100vh + 50px));
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-container">
+        <header class="page-header">
+            <div id="greeting" class="greeting"></div>
+        </header>
+
+        <main>
+            <img src="images/lin-tree.gif" class="separator-image" alt="分隔線">
+
+            <section class="search-section">
+                <div class="search-form-container">
+                    <h3>Google 搜尋</h3>
+                    <form id="searchFormGoogle" action="" method="get" target="_blank">
+                        <label for="queryGoogle">輸入關鍵字:</label>
+                        <input type="text" id="queryGoogle" size="35" name="q" required> @
+                        <select id="searchTypeGoogle" name="tbm">
+                            <option value="">網頁</option>
+                            <option value="translate">翻譯</option>
+                            <option value="vid">影片</option>
+                            <option value="isch">圖片</option>
+                        </select>
+                        <button type="submit">Google 查詢</button>
+                    </form>
+                </div>
+
+                <div class="search-form-container">
+                    <h3>NCBI 搜尋</h3>
+                    <form id="frmQueryBoxNcbi" action="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi" method="POST" class="search-form">
+                        <label for="termNcbi">Search Term:</label>
+                        <input id="termNcbi" name="term" type="text" size="30" placeholder="Enter search term">
+                        <span>@</span>
+                        <select id="dbNcbi" name="db">
+                            <option value="PubMed" selected>PubMed</option>
+                            <option value="protein">Protein</option>
+                            <option value="nucleotide">Nucleotide</option>
+                            <option value="structure">Structure</option>
+                            <option value="genome">Genome</option>
+                            <option value="books">Books</option>
+                            <option value="domains">3D Domains</option>
+                            <option value="cdd">Domains</option>
+                            <option value="gene">Gene</option>
+                            <option value="geo">GEO</option>
+                            <option value="gds">GEO DataSets</option>
+                            <option value="homologene">HomoloGene</option>
+                            <option value="journals">Journals</option>
+                            <option value="mesh">MeSH</option>
+                            <option value="ncbisearch">NCBI Web Site</option>
+                            <option value="omim">OMIM</option>
+                            <option value="pmc">PMC</option>
+                            <option value="popset">PopSet</option>
+                            <option value="snp">SNP</option>
+                            <option value="taxonomy">Taxonomy</option>
+                            <option value="unigene">UniGene</option>
+                            <option value="UniSts">UniSTS</option>
+                        </select>
+                        <button type="submit">Go</button>
+                        <button type="button" id="clearBtnNcbi">Clear</button>
+                        <input type="hidden" name="SUBMIT" value="y">
+                    </form>
+                </div>
+            </section>
+
+            <section class="links-section">
+                <h3>快速連結</h3>
+                <div id="linkSelectorsContainer">
+                    <!-- Dropdown selectors will be inserted here by JavaScript -->
+                </div>
+            </section>
+
+            <img src="images/lin-tree.gif" class="separator-image" alt="分隔線">
+
+            <nav class="bottom-navigation">
+                <h4>玄之又玄</h4>
+                [<a href="yi/index1.html">易理 I</a>]
+                [<a href="yi/index2.html">易理 II</a>]
+				[<a href="yi/index3.html">易理 III</a>]
+                [<a href="oracle/index1.html">六十甲子籤</a>]
+
+                <h4>工具</h4>
+                [<a href="lott/index1.html">選號</a>]
+				[<a href="lott/index2.html">選人</a>]
+				[<a href="lott/index3.html">摸彩</a>]
+				[<a href="calculate.html">計算機</a>]
+            </nav>
+        </main>
+
+        <footer class="page-footer">
+            <address>
+                If you have any question, contact with me please. Email: <a href="mailto:subunit99@gmail.com">subunit99@gmail.com</a> Ver 9.0
+            </address>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Snowflake generation
+        (function createSnow() {
+            const snowsrc = "images/snow.gif";
+            const numberOfSnowflakes = 15;
+            const snowContainer = document.body;
+
+            for (let i = 0; i < numberOfSnowflakes; i++) {
+                const snowflake = document.createElement("img");
+                snowflake.src = snowsrc;
+                snowflake.className = "snowflake";
+                snowflake.style.left = `${Math.random() * 100}vw`;
+                snowflake.style.animationDuration = `${8 + Math.random() * 7}s`;
+                snowflake.style.animationDelay = `${Math.random() * 10}s`;
+                snowflake.style.top = `-${10 + Math.random() * 40}px`;
+                const randomSize = 10 + Math.random() * 15;
+                snowflake.style.width = `${randomSize}px`;
+                snowflake.style.height = `${randomSize}px`;
+                snowContainer.appendChild(snowflake);
+            }
+        })();
+
+        // Time-based greeting
+        (function showGreeting() {
+            const greetingElement = document.getElementById("greeting");
+            if (!greetingElement) return;
+            const today = new Date();
+            const hours = today.getHours();
+            let message = "";
+            if (hours <= 0) message = "『十二點多了!!明天不用上班/上學嗎??還不睡??』";
+            else if (hours <= 1) message = "『凌晨一點多了，還不想睡嗎??那陪我剛好.』";
+            else if (hours <= 2) message = "『就快三點啦，該是睡覺時候了!!還沒過癮!?』";
+            else if (hours <= 3) message = "『三點多了，你還不覺得睏嗎??哈..zZＺＺ』";
+            else if (hours <= 4) message = "『四點多了，還來這玩，那麼喜歡我啊!!』";
+            else if (hours <= 5) message = "『五點幾了，想通宵呀??保重龍體..!!』";
+            else if (hours <= 6) message = "『早晨六點了，剛起身還是未睡呀??』";
+            else if (hours <= 7) message = "『早安!!吃了早餐沒??一天之計在於晨!!』";
+            else if (hours <= 8) message = "『八點幾啦!!還來這玩，今天不用上班/上學嗎??』";
+            else if (hours <= 9) message = "『歡迎光臨!!想買早餐??你是否找錯地方呀??』";
+            else if (hours <= 10) message = "『十點多些，打混啊呀??現在來這!!』";
+            else if (hours <= 11) message = "『十一點幾，還沒吃飯時間吧!!就來打混...』";
+            else if (hours <= 12) message = "『十二點幾啦!!開飯沒??專心吃飯..別吃到蟑螂都不知道!!』";
+            else if (hours <= 13) message = "『一點多了!!吃飽飯沒??想睡午覺嗎??』";
+            else if (hours <= 14) message = "『兩點幾，下午茶時間還沒到..別打混喲!!』";
+            else if (hours <= 15) message = "『三點多了!!去吃個下午茶吧,記得帶我一起去!!』";
+            else if (hours <= 16) message = "『四點多了!!正是偷懶的好時候啊!!』";
+            else if (hours <= 17) message = "『五點鐘!!快下班了，晚上要去那約會啊??』";
+            else if (hours <= 18) message = "『快七點了!!不去約會..還在這??認真的小孩!!』";
+            else if (hours <= 19) message = "『七點多，吃飽了沒??吃飽記得收拾碗筷..別偷懶喲!!』";
+            else if (hours <= 20) message = "『八點多了，還不出門!!看來你又要陪我孤單一個晚上了!!』";
+            else if (hours <= 22) message = "『九點、十點快睡著了，現在才來這!!真是的』";
+            else if (hours <= 23) message = "『十一點幾，夜遊神出動了喲??別到處亂逛,小心踩到槍!!』";
+            greetingElement.textContent = `嗨!! ${message}`;
+        })();
+
+        // Google Search Form
+        document.getElementById('searchFormGoogle').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const query = document.getElementById('queryGoogle').value;
+            const searchType = document.getElementById('searchTypeGoogle').value;
+            let url;
+            if (searchType === 'translate') {
+                url = 'https://translate.google.com/?sl=auto&tl=zh-TW&text=' + encodeURIComponent(query);
+            } else {
+                url = 'https://www.google.com/search?q=' + encodeURIComponent(query);
+                if (searchType) {
+                    url += '&tbm=' + searchType;
+                }
+            }
+            window.open(url, '_blank');
+        });
+
+        // NCBI Search Form
+        (function setupNcbiSearch() {
+            const form = document.getElementById('frmQueryBoxNcbi');
+            const termInput = document.getElementById('termNcbi');
+            const clearBtn = document.getElementById('clearBtnNcbi');
+            if (form && termInput && clearBtn) {
+                clearBtn.addEventListener('click', () => {
+                    termInput.value = '';
+                    termInput.focus();
+                });
+            }
+        })();
+
+        // Dynamic Link Selectors (MODIFIED FOR DIRECT JUMP ON SELECT CHANGE)
+        (function createLinkSelectors() {
+            const linkSelectorsContainer = document.getElementById('linkSelectorsContainer');
+            if (!linkSelectorsContainer) return;
+
+            function navigateToSelected(selectElement) {
+                const target = selectElement.value;
+                if (target && target !== "none") {
+                    window.open(target, '_blank');
+                }
+                selectElement.selectedIndex = 0; // Reset to the title/first option
+            }
+
+            function createSelector(items, title) {
+                const form = document.createElement('form');
+                form.classList.add('selector-form');
+                form.addEventListener('submit', function(e) { e.preventDefault(); });
+
+                const select = document.createElement('select');
+                select.classList.add('selector'); // You might not need this class if styling via .selector-form select
+
+                let optionsHTML = `<option value="none">${title}</option><option value="none">------------------------</option>`;
+                for (const label in items) {
+                    optionsHTML += `<option value="${items[label]}">${label}</option>`;
+                }
+                optionsHTML += `<option value="none">------------------------</option>`;
+                select.innerHTML = optionsHTML;
+
+                select.addEventListener('change', function() {
+                    navigateToSelected(this);
+                });
+
+                form.appendChild(select);
+                return form;
+            }
+
+            const aiapp = {
+                "AI studio": "https://aistudio.google.com/prompts/new_chat",
+                "NotebookLM": "https://notebooklm.google.com/",
+                "Felo": "https://felo.ai/zh-Hant/search",
+                "Grok": "https://x.com/i/flow/login?redirect_after_login=%2Fi%2Fgrok",
+                "Copilot": "https://copilot.microsoft.com/chats/",
+                "Chatgpt": "https://chatgpt.com/",
+                "Soundraw": "https://soundraw.io/edit_music",
+                "Deepseek": "https://chat.deepseek.com/sign_in",
+                "Napkin": "https://www.napkin.ai/",
+            };
+
+            const tools = {
+                "Canva": "https://www.canva.com/zh_tw/",
+                "Photopea": "https://www.photopea.com/",
+                "Diagrams": "https://app.diagrams.net/",
+                "Github": "https://github.com/",
+                "pdf24": "https://www.pdf24.org/en/",
+		        "Telegraph": "https://telegra.ph/",
+		        "Fast": "https://fast.com/",
+		        "MyIP": "https://www.whatismyip.com.tw/tw/",
+                "字體": "https://www.ziti88.com/"
+            };
+
+            const opendata = {
+                "大專資訊公開平台": "https://udb.moe.edu.tw/udata/ReportCategories",
+                "教育統計資料": "https://depart.moe.edu.tw/ED4500/Content_List.aspx?n=273B458338AE810B",
+                "互動大專資料": "http://webphoto.seeder.net/",
+                "藥品資料庫": "https://drug.healthinfo.tw/",
+                "勞動部薪資調查": "https://pswst.mol.gov.tw/psdn/Default.aspx",
+                "克隆窩": "https://www.uy5.net/",
+		        "即時影像": "https://tw.live/",
+		        "Openclipart": "https://openclipart.org/",
+		        "Windy": "https://www.windy.com/24.147/120.784?clouds,23.863,120.784,9",
+		        "Pexels": "https://www.pexels.com/zh-tw/",
+		        "Videvo": "https://www.videvo.net/",
+                "Numbeo": "https://www.numbeo.com/cost-of-living/"
+            };
+
+            const categories = [
+                { items: aiapp, title: 'AI 應用' },
+                { items: tools, title: '線上編輯' },
+                { items: opendata, title: '開放資料庫' }
+            ];
+
+            linkSelectorsContainer.innerHTML = '';
+            categories.forEach(category => {
+                linkSelectorsContainer.appendChild(createSelector(category.items, category.title));
+            });
+        })();
+    </script>
+</body>
+</html>
