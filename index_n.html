@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雪落痕無 - 優化版</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Custom Properties (Variables) */
+        :root {
+            --font-primary: 'Noto Sans TC', sans-serif;
+            --font-cursive: '標楷體', 'Ma Shan Zheng', cursive; /* KaiTi for Cursive */
+
+            --color-text-primary: #e0e0e0;
+            --color-text-secondary: #b0b0b0;
+            --color-text-accent: #FFffb9;
+            --color-text-on-accent-bg: #1a1a1a; /* For text on bright accent backgrounds */
+            --color-text-light: #ffffff;
+
+
+            --bg-main: rgba(0, 0, 0, 0.75); /* Main page container background */
+            --bg-content-box: rgba(255, 255, 255, 0.07); /* For search/links sections */
+            --bg-input-field: #2c3e50; /* Darker blue-gray for inputs */
+            --bg-input-field-focus: #34495e;
+            --bg-button: #007bff;
+            --bg-button-hover: #0056b3;
+            --bg-separator-accent: rgba(255, 255, 255, 0.1); /* Subtle accent for borders */
+
+
+            --border-color: #4a4a4a;
+            --border-color-focus: var(--color-text-accent);
+            --border-radius-small: 4px;
+            --border-radius-medium: 8px;
+
+            --shadow-soft: 0 2px 8px rgba(0,0,0,0.3);
+            --shadow-strong: 0 4px 15px rgba(0,0,0,0.5);
+
+            --spacing-xs: 0.25rem; /* 4px */
+            --spacing-s: 0.5rem;   /* 8px */
+            --spacing-m: 1rem;     /* 16px */
+            --spacing-l: 1.5rem;   /* 24px */
+            --spacing-xl: 2rem;    /* 32px */
+
+            --transition-fast: 0.2s ease-out;
+        }
+
+        /* Reset and Basic Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            font-size: 16px; /* Base font size for rem units */
+        }
+
+        body {
+            font-family: var(--font-primary);
+            background-image: url('images/daisy5.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: var(--color-text-primary);
+            line-height: 1.7; /* Slightly increased for readability */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: var(--spacing-m);
+        }
+
+        .page-container {
+            max-width: 1100px; /* Slightly wider */
+            margin: var(--spacing-m) auto;
+            padding: var(--spacing-l);
+            background-color: var(--bg-main);
+            border-radius: var(--border-radius-medium);
+            box-shadow: var(--shadow-strong);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        main {
+            flex-grow: 1;
+        }
+
+        a {
+            color: var(--color-text-accent);
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+        a:hover {
+            text-decoration: underline;
+            color: var(--color-text-light);
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            color: var(--color-text-light);
+            margin-bottom: var(--spacing-m);
+            line-height: 1.3;
+        }
+        h3 { font-size: 1.5rem; }
+        h4 { font-size: 1.2rem; }
+
+
+        /* Header */
+        .page-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+        .greeting {
+            font-family: var(--font-cursive);
+            font-size: 1.3rem;
+            color: var(--color-text-light);
+        }
+
+        /* Separator Image */
+        .separator-image {
+            display: block;
+            margin: var(--spacing-xl) auto;
+            width: 560px;
+            max-width: 90%;
+            height: auto;
+            opacity: 0.8;
+        }
+
+        /* Content Sections (Search, Links) */
+        .search-section, .links-section {
+            margin-bottom: var(--spacing-xl);
+            padding: var(--spacing-l);
+            background-color: var(--bg-content-box);
+            border-radius: var(--border-radius-medium);
+            box-shadow: var(--shadow-soft);
+        }
+        
+        .search-form-container {
+            margin-bottom: var(--spacing-l);
+            padding: var(--spacing-l);
+            background-color: rgba(0,0,0,0.2); /* Slightly different for internal grouping */
+            border-radius: var(--border-radius-small);
+        }
+        
+        .links-section h3, .search-form-container h3 { /* Shared style for section titles */
+            text-align: center;
+            margin-bottom: var(--spacing-l);
+            padding-bottom: var(--spacing-s);
+            border-bottom: 1px solid var(--bg-separator-accent);
+        }
+
+        /* Form Elements */
+        label {
+            margin-right: var(--spacing-s);
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+        }
+
+        input[type="text"], select {
+            padding: var(--spacing-s) var(--spacing-m);
+            margin: var(--spacing-xs) var(--spacing-s) var(--spacing-xs) 0; /* Consistent small margin */
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-input-field);
+            color: var(--color-text-primary);
+            border-radius: var(--border-radius-small);
+            font-size: 1rem;
+            font-family: var(--font-primary);
+            transition: border-color var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+        }
+        input[type="text"] {
+            min-width: 200px; /* Base min-width */
+            flex-grow: 1; /* Allow text input to grow */
+        }
+         input[type="text"]:focus, select:focus {
+            border-color: var(--border-color-focus);
+            background-color: var(--bg-input-field-focus);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(var(--color-text-accent), 0.3);
+        }
+
+        button, input[type="submit"], input[type="button"] { /* General button styling */
+            padding: var(--spacing-s) var(--spacing-l);
+            margin: var(--spacing-xs) var(--spacing-s) var(--spacing-xs) 0;
+            border: none;
+            background-color: var(--bg-button);
+            color: var(--color-text-light);
+            border-radius: var(--border-radius-small);
+            font-size: 1rem;
+            font-family: var(--font-primary);
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color var(--transition-fast), transform var(--transition-fast);
+        }
+        button:hover, input[type="submit"]:hover, input[type="button"]:hover {
+            background-color: var(--bg-button-hover);
+            transform: translateY(-1px);
+        }
+        button:active, input[type="submit"]:active, input[type="button"]:active {
+            transform: translateY(0px);
+        }
+        
+        /* Specific form layouts for search */
+        #searchFormGoogle, #frmQueryBoxNcbi {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: var(--spacing-s);
+        }
+        #searchFormGoogle label, #frmQueryBoxNcbi label {
+             white-space: nowrap;
+        }
+
+
+        /* Link Selectors Container (Dropdowns) */
+        #linkSelectorsContainer {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            gap: var(--spacing-m); /* Increased gap for better separation */
+        }
+
+        .selector-form {
+            flex: 1;
+            min-width: 0; /* Allows shrinking */
+        }
+        .selector-form select {
+            width: 100%;
+        }
+
+
+        /* Bottom Navigation */
+        .bottom-navigation {
+            text-align: center;
+            margin: var(--spacing-xl) 0;
+            padding-top: var(--spacing-l);
+            border-top: 1px solid var(--bg-separator-accent);
+        }
+        .bottom-navigation h4 {
+            margin-bottom: var(--spacing-s);
+            color: var(--color-text-light);
+        }
+        .bottom-navigation a {
+            margin: 0 var(--spacing-s);
+            font-size: 0.9rem;
+            display: inline-block; /* Better spacing control */
+            padding: var(--spacing-xs) var(--spacing-s);
+            border-radius: var(--border-radius-small);
+        }
+        .bottom-navigation a:hover {
+             background-color: var(--bg-content-box);
+             text-decoration: none;
+        }
+
+
+        /* Footer */
+        .page-footer {
+            text-align: center;
+            padding: var(--spacing-l);
+            margin-top: var(--spacing-xl);
+            background-color: rgba(0,0,0,0.5); /* Darker footer bg */
+            border-top: 1px solid var(--bg-separator-accent);
+            border-bottom-left-radius: var(--border-radius-medium); /* Match page container */
+            border-bottom-right-radius: var(--border-radius-medium);
+        }
+        .page-footer address {
+            font-style: normal;
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+        }
+        .page-footer address a {
+            color: var(--color-text-accent);
+            font-weight: 500;
+        }
+
+        /* Snowflake Animation */
+        .snowflake {
+            position: absolute;
+            top: -50px;
+            pointer-events: none;
+            width: 20px; /* Base size, JS can override */
+            height: 20px;
+            opacity: 0.8;
+            animation: fall linear infinite;
+            will-change: transform; /* Performance hint */
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(calc(100vh + 50px));
+            }
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 900px) { /* Breakpoint for 4 dropdowns */
+            #linkSelectorsContainer {
+                flex-wrap: wrap;
+                gap: var(--spacing-s);
+            }
+            .selector-form {
+                flex: 1 1 calc(50% - var(--spacing-s)); /* Two per row */
+                margin-bottom: var(--spacing-s);
+            }
+        }
+        @media (max-width: 600px) {
+            html { font-size: 14px; } /* Slightly smaller base font */
+            .page-container { padding: var(--spacing-m); }
+            
+            #searchFormGoogle, #frmQueryBoxNcbi {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            #searchFormGoogle > *, #frmQueryBoxNcbi > * { /* Make children take full width */
+                 width: 100%;
+                 margin-left: 0;
+                 margin-right: 0;
+            }
+             input[type="text"] { min-width: auto; }
+
+
+            .selector-form {
+                flex-basis: 100%; /* One per row */
+            }
+
+            .bottom-navigation h4 { font-size: 1.1rem; }
+            .bottom-navigation a { font-size: 0.85rem; margin: 0 var(--spacing-xs); padding: var(--spacing-xs); }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="page-container">
+        <header class="page-header">
+            <div id="greeting" class="greeting"></div>
+        </header>
+
+        <main>
+            <img src="images/lin-tree.gif" class="separator-image" alt="分隔線">
+
+            <section class="search-section">
+                <div class="search-form-container">
+                    <h3>Google 搜尋</h3>
+                    <form id="searchFormGoogle"> <!-- Removed action/method as JS handles it -->
+                        <label for="queryGoogle">輸入關鍵字:</label>
+                        <input type="text" id="queryGoogle" name="q" required>
+                        <select id="searchTypeGoogle" name="tbm">
+                            <option value="">網頁</option>
+                            <option value="translate">翻譯</option>
+                            <option value="vid">影片</option>
+                            <option value="isch">圖片</option>
+                        </select>
+                        <button type="submit">Google 查詢</button>
+                    </form>
+                </div>
+
+                <div class="search-form-container">
+                    <h3>NCBI 搜尋</h3>
+                    <form id="frmQueryBoxNcbi" action="http://www.ncbi.nlm.nih.gov/entrez/query.fcgi" method="POST" target="_blank"> <!-- Target blank for NCBI -->
+                        <label for="termNcbi">Search Term:</label>
+                        <input id="termNcbi" name="term" type="text" placeholder="Enter search term" required>
+                        <select id="dbNcbi" name="db">
+                            <option value="PubMed" selected>PubMed</option>
+                            <option value="protein">Protein</option>
+                            <option value="nucleotide">Nucleotide</option>
+                            <option value="structure">Structure</option>
+                            <option value="genome">Genome</option>
+                            <option value="books">Books</option>
+                            <option value="domains">3D Domains</option>
+                            <option value="cdd">Domains</option>
+                            <option value="gene">Gene</option>
+                            <option value="geo">GEO</option>
+                            <option value="gds">GEO DataSets</option>
+                            <option value="homologene">HomoloGene</option>
+                            <option value="journals">Journals</option>
+                            <option value="mesh">MeSH</option>
+                            <option value="ncbisearch">NCBI Web Site</option>
+                            <option value="omim">OMIM</option>
+                            <option value="pmc">PMC</option>
+                            <option value="popset">PopSet</option>
+                            <option value="snp">SNP</option>
+                            <option value="taxonomy">Taxonomy</option>
+                            <option value="unigene">UniGene</option>
+                            <option value="UniSts">UniSTS</option>
+                        </select>
+                        <button type="submit">NCBI Go</button> <!-- Renamed for clarity -->
+                        <button type="button" id="clearBtnNcbi">Clear</button>
+                        <input type="hidden" name="SUBMIT" value="y">
+                    </form>
+                </div>
+            </section>
+
+            <section class="links-section">
+                <h3>快速連結</h3>
+                <div id="linkSelectorsContainer">
+                    <!-- Dropdown selectors will be inserted here by JavaScript -->
+                </div>
+            </section>
+
+            <img src="images/lin-tree.gif" class="separator-image" alt="分隔線">
+        </main>
+
+        <footer class="page-footer">
+            <address>
+                If you have any question, contact with me please. Email: <a href="mailto:subunit99@gmail.com">subunit99@gmail.com</a> Ver 10.0
+            </address>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Snowflake generation
+        (function createSnow() {
+            const snowsrc = "images/snow.gif"; // Ensure this path is correct
+            const numberOfSnowflakes = 15;
+            const snowContainer = document.body;
+
+            for (let i = 0; i < numberOfSnowflakes; i++) {
+                const snowflake = document.createElement("img");
+                snowflake.src = snowsrc;
+                snowflake.className = "snowflake";
+                
+                const randomDelay = Math.random() * 10; // 0 to 10s
+                const randomDuration = 8 + Math.random() * 7; // 8 to 15s
+                const randomXStart = Math.random() * 100; // 0 to 100vw
+                const randomYStart = -(10 + Math.random() * 40); // -10 to -50px
+                const randomSize = 10 + Math.random() * 15; // 10px to 25px
+
+                snowflake.style.left = `${randomXStart}vw`;
+                snowflake.style.animationDelay = `${randomDelay}s`;
+                snowflake.style.animationDuration = `${randomDuration}s`;
+                snowflake.style.top = `${randomYStart}px`;
+                snowflake.style.width = `${randomSize}px`;
+                snowflake.style.height = `${randomSize}px`;
+                
+                snowContainer.appendChild(snowflake);
+            }
+        })();
+
+        // Time-based greeting (俏皮版 + 隨機暱稱)
+        (function showGreeting() {
+            const greetingElement = document.getElementById("greeting");
+            if (!greetingElement) return;
+
+            // 預設的俏皮暱稱列表
+            const nicknames = [
+                "小夥伴", "夜貓子","探險家", "夢想家",
+                "大忙人", "好奇寶寶", "閃亮的星", "獨行俠", "思考者",
+                "數位遊民", "靈感獵手", "時間旅行者", "快樂小王子", "智慧小仙女"
+            ];
+
+            // 隨機選擇一個暱稱的函數
+            function getRandomNickname() {
+                const randomIndex = Math.floor(Math.random() * nicknames.length);
+                return nicknames[randomIndex];
+            }
+
+            // 動態獲取或隨機選擇暱稱
+            let visitorName = getRandomNickname();
+
+            const today = new Date();
+            const hours = today.getHours();
+            let message = "";
+
+            // 問候語（使用 ${visitorName} 插入隨機暱稱）
+            if (hours === 0) message = `哇 ${visitorName}！午夜零點的鐘聲敲響啦，仙度瑞拉的魔法要消失囉！還不快快入夢鄉？`;
+            else if (hours === 1) message = `凌晨一點，月亮姐姐都在打哈欠了，${visitorName} 要不要也考慮跟周公下盤棋？`;
+            else if (hours === 2) message = `兩點啦！聽說這時候小精靈會出來活動，${visitorName} 是不是也想加入他們的派對？不過，明天可能會變熊貓眼喔！`;
+            else if (hours === 3) message = `三點了還醒著，${visitorName} 你是想修仙嗎？靈感大神或許會眷顧你，但也別忘了身體是革命的本錢！`;
+            else if (hours === 4) message = `晨曦微露的四點，${visitorName} 是早起的鳥兒還是熬夜的冠軍？無論如何，新的一天快要開始打招呼囉！`;
+            else if (hours === 5) message = `五點，天快亮了！${visitorName}，聞到清晨的芬芳了嗎？還是準備迎接夢裡的早餐？`;
+            else if (hours === 6) message = `早安晨之美！六點的陽光灑滿窗台，${visitorName}，今天也要元氣滿滿喔！`;
+            else if (hours === 7) message = `七點啦，早餐吃飽飽，腦袋才能轉得好！${visitorName}，今天想來點什麼口味的活力？`;
+            else if (hours === 8) message = `八點鐘，上班上學的戰鼓敲響！${visitorName}，衝呀！別忘了帶上你的好心情！`;
+            else if (hours === 9) message = `九點到，工作學習模式 on！${visitorName}，摸魚是可恥但有用的... 呃，我是說專心致志，事半功倍！`;
+            else if (hours === 10) message = `十點，是時候來杯茶/咖啡提提神了，${visitorName}！為自己充充電，下午再戰三百回合！`;
+            else if (hours === 11) message = `十一點，午餐的香味是不是已經飄過來了？${visitorName}，再堅持一下，美食在向你招手！`;
+            else if (hours === 12) message = `噹噹噹！午餐時間到！${visitorName}，放下手中的活，好好犒勞一下自己的胃吧！下午才有力氣繼續奮鬥！`;
+            else if (hours === 13) message = `下午一點，吃飽喝足，是不是有點昏昏欲睡？${visitorName}，偷偷打個盹，或者起來伸個懶腰，都是極好的！`;
+            else if (hours === 14) message = `兩點一刻，下午茶的靈魂在召喚！${visitorName}，來塊小點心，生活多點甜！`;
+            else if (hours === 15) message = `三點了，${visitorName}！據說這是大腦最活躍的時段之一（也可能是最想摸魚的時段）。`;
+            else if (hours === 16) message = `四點，夕陽開始悄悄探頭，${visitorName}，今天的小目標達成了嗎？`;
+            else if (hours === 17) message = `五點鐘，放學下班的鐘聲近了！${visitorName}，準備好迎接自由的晚風了嗎？`;
+            else if (hours === 18) message = `傍晚六點，華燈初上，${visitorName}，晚餐想吃點什麼特別的犒賞自己？`;
+            else if (hours === 19) message = `七點，夜生活才剛開始呢！${visitorName}，是要宅家追劇，還是出門放風？`;
+            else if (hours === 20) message = `八點黃金檔，${visitorName}！放鬆一下，看看有趣的節目，或者讀本好書，都是不錯的選擇。`;
+            else if (hours === 21) message = `九點，夜漸深，${visitorName}。如果明天有要事，是時候準備進入夢鄉預備模式了。`;
+            else if (hours === 22) message = `十點啦，${visitorName}！月亮都爬得老高了，再不睡，美容覺可就溜走囉！`;
+            else if (hours === 23) message = `深夜十一點，${visitorName} 還在網上衝浪呀？別忘了讓眼睛休息一下，準備迎接美好的夢境！`;
+            
+            greetingElement.textContent = `嗨!! ${message}`;
+        })();
+
+        // Google Search Form (JS already handles this, removed redundant HTML attributes)
+        document.getElementById('searchFormGoogle').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const query = document.getElementById('queryGoogle').value;
+            const searchType = document.getElementById('searchTypeGoogle').value;
+            let url;
+            if (searchType === 'translate') {
+                url = `https://translate.google.com/?sl=auto&tl=zh-TW&text=${encodeURIComponent(query)}`;
+            } else {
+                url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+                if (searchType) {
+                    url += `&tbm=${searchType}`;
+                }
+            }
+            window.open(url, '_blank');
+        });
+
+        // NCBI Search Form - Clear Button
+        (function setupNcbiSearch() {
+            const termInput = document.getElementById('termNcbi');
+            const clearBtn = document.getElementById('clearBtnNcbi');
+            if (termInput && clearBtn) {
+                clearBtn.addEventListener('click', () => {
+                    termInput.value = '';
+                    termInput.focus();
+                });
+            }
+        })(); // NCBI form submission is handled by HTML action/method
+
+        // Dynamic Link Selectors
+        (function createLinkSelectors() {
+            const linkSelectorsContainer = document.getElementById('linkSelectorsContainer');
+            if (!linkSelectorsContainer) return;
+
+            function navigateToSelected(selectElement) {
+                const target = selectElement.value;
+                if (target && target !== "none") {
+                    window.open(target, '_blank');
+                }
+                selectElement.selectedIndex = 0; // Reset to the title
+            }
+
+            function createSelector(items, title) {
+                const form = document.createElement('form');
+                form.classList.add('selector-form');
+                form.addEventListener('submit', (e) => e.preventDefault()); // Prevent actual form submission
+
+                const select = document.createElement('select');
+                let optionsHTML = `<option value="none" disabled selected>${title}</option>`; // Make title disabled and selected by default
+                optionsHTML += `<option value="none" disabled>------------------------</option>`; // Separator
+                for (const label in items) {
+                    optionsHTML += `<option value="${items[label]}">${label}</option>`;
+                }
+                // optionsHTML += `<option value="none" disabled>------------------------</option>`; // Optional bottom separator
+                select.innerHTML = optionsHTML;
+
+                select.addEventListener('change', function() {
+                    navigateToSelected(this);
+                });
+
+                form.appendChild(select);
+                return form;
+            }
+
+            const aiapp = {
+                "AI studio": "https://aistudio.google.com/prompts/new_chat",
+                "NotebookLM": "https://notebooklm.google.com/",
+                "Felo": "https://felo.ai/zh-Hant/search",
+                "Grok": "https://x.com/i/flow/login?redirect_after_login=%2Fi%2Fgrok",
+                "Copilot": "https://copilot.microsoft.com/chats/",
+                "Chatgpt": "https://chatgpt.com/",
+                "Soundraw": "https://soundraw.io/edit_music",
+                "Deepseek": "https://chat.deepseek.com/sign_in",
+                "Napkin": "https://www.napkin.ai/",
+            };
+
+            const tools = {
+                "Canva": "https://www.canva.com/zh_tw/",
+                "Photopea": "https://www.photopea.com/",
+                "Diagrams": "https://app.diagrams.net/",
+                "Github": "https://github.com/",
+                "pdf24": "https://www.pdf24.org/en/",
+		        "Telegraph": "https://telegra.ph/",
+		        "Fast": "https://fast.com/",
+		        "MyIP": "https://www.whatismyip.com.tw/tw/",
+                "字體": "https://www.ziti88.com/"
+            };
+
+            const opendata = {
+                "大專資訊公開平台": "https://udb.moe.edu.tw/udata/ReportCategories",
+                "教育統計資料": "https://depart.moe.edu.tw/ED4500/Content_List.aspx?n=273B458338AE810B",
+                "互動大專資料": "http://webphoto.seeder.net/",
+                "藥品資料庫": "https://drug.healthinfo.tw/",
+                "勞動部薪資調查": "https://pswst.mol.gov.tw/psdn/Default.aspx",
+                "克隆窩": "https://www.uy5.net/",
+		        "即時影像": "https://tw.live/",
+		        "Openclipart": "https://openclipart.org/",
+		        "Windy": "https://www.windy.com/24.147/120.784?clouds,23.863,120.784,9",
+		        "Pexels": "https://www.pexels.com/zh-tw/",
+		        "Videvo": "https://www.videvo.net/",
+                "Numbeo": "https://www.numbeo.com/cost-of-living/"
+            };
+			
+			const toolbox = {
+                "易理 I": "yi/index1.html",
+                "易理 II": "yi/index2.html",
+                "易理 III": "yi/index3.html",
+                "六十甲子籤": "oracle/index1.html",
+                "選號": "lott/index1.html",
+                "選人": "lott/index2.html",
+		        "摸彩": "lott/index3.html",
+		        "計算機": "calculate.html"
+            };
+
+            const categories = [
+                { items: aiapp, title: 'AI 應用' },
+                { items: tools, title: '線上編輯' },
+                { items: opendata, title: '開放資料庫' },
+                { items: toolbox, title: '工具箱' }
+            ];
+
+            linkSelectorsContainer.innerHTML = ''; // Clear previous (if any)
+            categories.forEach(category => {
+                linkSelectorsContainer.appendChild(createSelector(category.items, category.title));
+            });
+        })();
+    </script>
+</body>
+</html>
