@@ -1,126 +1,338 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="utf-8"> 
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>六十甲子靈籤</title>
+    <title>六十甲子線上靈籤</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS 樣式開始 -->
     <style>
+        /* --- 整體與排版 --- */
         body {
-            font-family: 'Arial', '標楷體', sans-serif;
+            font-family: 'Noto Serif TC', serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #000;
-            color: #fff;
+            min-height: 100vh;
+            background-color: #000020; /* 暗色背景 */
+            background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%239C92AC" fill-opacity="0.05"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+            color: #f0e8ff; /* 米白/宣紙色 */
             margin: 0;
-        }
-        .game-container {
-            background: #fafffa;
-            color: #000;
             padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .main-container {
+            display: flex;
+            flex-wrap: wrap; /* 在小螢幕時換行 */
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .image-container {
+            flex: 1 1 400px; /* Flexbox 佈局 */
+            max-width: 480px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
         }
-        button {
-            margin: 10px 0;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background: #ffff00; /* Yellow for links/buttons */
-            border: none;
-            color: #000;
+
+        /* --- 擲茭主面板 --- */
+        .oracle-container {
+            flex: 1 1 400px; /* Flexbox 佈局 */
+            background: rgba(255, 255, 255, 0.95); /* 半透明的米黃色 */
+            color: #4a2c2a; /* 深棕色文字 */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.3); /* 金色光暈 */
+            border: 2px solid #c9a469; /* 金色邊框 */
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
+
+        .title {
+            font-size: 2.5em;
+            color: #8B0000; /* 暗紅色標題 */
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        /* --- 動畫區域 --- */
+        .bwa-bwei-area {
+            height: 100px;
+            width: 100%;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .bwa-bwei-wrapper {
+            position: relative;
+            width: 120px;
+            height: 50px;
+        }
+
+        .bwa-bwei-wrapper img {
+            width: 50px;
+            position: absolute;
+            transition: transform 0.3s ease;
+        }
+
+        #bwaBwei1 { left: 0; }
+        #bwaBwei2 { right: 0; }
+
+        /* 擲出動畫 */
+        .bwa-bwei-wrapper.tossing #bwaBwei1 {
+            animation: toss-1 1.5s ease-out forwards;
+        }
+        .bwa-bwei-wrapper.tossing #bwaBwei2 {
+            animation: toss-2 1.5s ease-out forwards;
+        }
+
+        @keyframes toss-1 {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-30px, -60px) rotate(720deg); }
+            100% { transform: translate(0, 0) rotate(1080deg); }
+        }
+
+        @keyframes toss-2 {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(30px, -60px) rotate(-720deg); }
+            100% { transform: translate(0, 0) rotate(-1080deg); }
+        }
+
+
+        /* --- 結果與訊息 --- */
         .result {
-            font-size: 2em;
-            margin: 20px 0;
-			color: #cc0000;
+            font-size: 2.5em;
+            font-weight: bold;
+            min-height: 1.2em;
+            color: #b22222; /* 火磚色 */
+            margin: 10px 0;
+            transition: opacity 0.5s;
         }
+
         .message {
-            font-size: 1em;
-            color: #cc0000;
+            font-size: 1.1em;
+            color: #5C4033; /* 咖啡色 */
+            min-height: 3em; /* 避免跳動 */
+            padding: 0 10px;
         }
+
+        /* --- 按鈕與連結 --- */
+        #tossButton {
+            margin: 20px 0;
+            padding: 12px 30px;
+            font-size: 1.2em;
+            font-family: 'Noto Serif TC', serif;
+            cursor: pointer;
+            background: linear-gradient(145deg, #ffd700, #f0c000); /* 金色漸層 */
+            border: 1px solid #b8860b; /* 暗金邊框 */
+            color: #4a2c2a;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        #tossButton:hover:not(:disabled) {
+            background: linear-gradient(145deg, #ffe033, #ffc90d);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+        }
+
+        #tossButton:disabled {
+            background: #cccccc;
+            color: #666666;
+            cursor: not-allowed;
+            border-color: #999999;
+        }
+
         .countdown {
             margin-top: 10px;
+            font-size: 1em;
+            color: #8B0000;
             display: none;
         }
+
         .home-link {
             display: block;
             margin-top: 20px;
             text-decoration: none;
-            color: #001100;
-            font-family: '標楷體', serif;
-            font-size: 14px;
+            color: #4a2c2a;
+            font-size: 1em;
+            transition: color 0.3s;
         }
-		.ti1 {
-            font-size: 24px;
-			color: #001100;
-			}
+        .home-link:hover {
+            color: #8B0000;
+            text-decoration: underline;
+        }
+
+        /* --- RWD 響應式設計 --- */
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .image-container {
+                max-width: 80%;
+            }
+            .oracle-container {
+                padding: 20px;
+            }
+            .title {
+                font-size: 2em;
+            }
+            .result {
+                font-size: 2em;
+            }
+        }
     </style>
+    <!-- CSS 樣式結束 -->
 </head>
 <body>
-  <table border="0" width="90%"><tr><td><img src="img/KunYin2.png" alt="求神圖片" width="480" style="left: 10; ">
-   </td><td width="60%">  
-	<div class="game-container" align="center">
-        <div class="ti1">六十甲子靈籤</div>
-        <div class="result" id="result">心誠則靈</div>
-        <button id="tossButton">擲茭</button>
-        <div class="message" id="message"></div>
-        <div class="countdown" id="countdown"></div>
-        <a href="../index.html" class="home-link">回首頁</a>
-    </div>
-</td></tr></table>
+
+    <main class="main-container">
+        <div class="image-container">
+            <!-- 確保圖片路徑正確 -->
+            <img src="img/KunYin2.png" alt="慈悲觀音像">
+        </div>
+
+        <div class="oracle-container">
+            <h1 class="title">六十甲子靈籤</h1>
+            
+            <div class="bwa-bwei-area">
+                <!-- 擲茭動畫將會在此發生 -->
+                <div class="bwa-bwei-wrapper" id="bwaBweiWrapper">
+                    <!-- 確保茭杯圖片路徑正確 -->
+                    <img id="bwaBwei1" src="img/bwa-bwei-yang1.png" alt="茭杯一">
+                    <img id="bwaBwei2" src="img/bwa-bwei-yin1.png" alt="茭杯二">
+                </div>
+            </div>
+
+            <div class="result" id="result">心誠則靈</div>
+            <div class="message" id="message">請誠心默念您所求之事，然後擲茭。</div>
+            
+            <button id="tossButton">誠心擲茭</button>
+            
+            <div class="countdown" id="countdown"></div>
+            
+            <a href="../index.html" class="home-link">返回首頁</a>
+        </div>
+    </main>
+    
+    <!-- 音效（可選），確保音效檔路徑正確 -->
+    <audio id="tossSound" src="toss-sound.mp3" preload="auto"></audio>
+
+    <!-- JavaScript 腳本開始 -->
     <script>
-        document.getElementById('tossButton').addEventListener('click', function() {
-            const result = Math.floor(Math.random() * 4) + 1; // 1 to 4
-            let outcome = '', message = '';
-            
-            switch(result) {
-                case 1: // 聖筊
-                    outcome = '聖筊';
-                    message = '獲神明同意賜與籤詩，梢等3秒給您拿籤詩去。';
-                    countdownThenRedirect();
-                    break;
-                case 2: // 聖筊
-                    outcome = '聖筊';
-                    message = '獲神明同意賜與籤詩，梢等3秒給您拿籤詩去。';
-                    countdownThenRedirect();
-                    break;
-				case 3: // 笑筊
-                    outcome = '笑筊';
-                    message = '慈眉一笑、對您的問題不解，可以重新擲茭請示。';
-                    break;
-                case 4: // 陰筊
-                    outcome = '陰筊';
-                    message = '今天不宜問事，一瓣心香已敬焚。佛教徒以燃香供養三寶，對於未燃香而其心相同者，稱為「心香」。「一瓣心香」，心悅誠服，有似於焚香供佛般的誠敬。';
-                    break;
-            }
-            
-            document.getElementById('result').textContent = outcome;
-            document.getElementById('message').textContent = message;
-        });
-
-        function countdownThenRedirect() {
-            let seconds = 3;
+        document.addEventListener('DOMContentLoaded', () => {
+            // 獲取所有需要的 DOM 元素
+            const tossButton = document.getElementById('tossButton');
+            const resultElement = document.getElementById('result');
+            const messageElement = document.getElementById('message');
             const countdownElement = document.getElementById('countdown');
-            countdownElement.style.display = 'block';
-            
-            const countdownInterval = setInterval(() => {
-                countdownElement.textContent = `倒數 ${seconds} 秒...`;
-                seconds--;
-                
-                if (seconds < 0) {
-                    clearInterval(countdownInterval);
-                    countdownElement.style.display = 'none';
-                    redirectToStick();
-                }
-            }, 1000);
-        }
+            const bwaBweiWrapper = document.getElementById('bwaBweiWrapper');
+            const bwaBwei1 = document.getElementById('bwaBwei1');
+            const bwaBwei2 = document.getElementById('bwaBwei2');
+            const tossSound = document.getElementById('tossSound');
 
-        function redirectToStick() {
-            const index = Math.floor(Math.random() * 60 + 1);
-            window.location.href = `html/god${index}.html`; // Directly redirect to the randomly selected page
-        }
+            // 擲茭事件監聽
+            tossButton.addEventListener('click', function() {
+                // 1. 準備階段
+                tossButton.disabled = true;
+                resultElement.textContent = '';
+                messageElement.textContent = '神明查示中...';
+                countdownElement.style.display = 'none';
+                
+                // 播放音效（如果存在）
+                if (tossSound) {
+                    tossSound.currentTime = 0;
+                    tossSound.play().catch(e => console.error("音效播放失敗:", e));
+                }
+
+                // 2. 執行動畫
+                bwaBweiWrapper.classList.add('tossing');
+
+                // 3. 動畫結束後顯示結果 (動畫時間為 1.5s)
+                setTimeout(() => {
+                    // 清除動畫 class
+                    bwaBweiWrapper.classList.remove('tossing');
+                    
+                    // 決定結果
+                    const randomResult = Math.floor(Math.random() * 4); // 0, 1, 2, 3
+                    let outcome = '', message = '';
+                    
+                    // 50% 聖筊, 25% 笑筊, 25% 陰筊
+                    switch(randomResult) {
+                        case 0: // 笑筊
+                            outcome = '笑筊';
+                            message = '慈眉一笑、對您的問題不解，可以重新擲茭請示。';
+                            bwaBwei1.src = 'img/bwa-bwei-yang1.png';
+                            bwaBwei2.src = 'img/bwa-bwei-yang2.png';
+                            tossButton.disabled = false; // 可以再次擲茭
+                            break;
+                        case 1: // 陰筊
+                            outcome = '陰筊';
+                            message = '今天不宜問事，一瓣心香已敬焚。佛教徒以燃香供養三寶，對於未燃香而其心相同者，稱為「心香」。「一瓣心香」，心悅誠服，有似於焚香供佛般的誠敬。';
+                            bwaBwei1.src = 'img/bwa-bwei-yin2.png';
+                            bwaBwei2.src = 'img/bwa-bwei-yin1.png';
+                            tossButton.disabled = false; // 可以再次擲茭
+                            break;
+                        default: // 聖筊 (case 2 和 3)
+                            outcome = '聖筊';
+                            message = '獲神明同意賜與籤詩，梢等3秒給您拿籤詩去。';
+                            bwaBwei1.src = 'img/bwa-bwei-yang1.png';
+                            bwaBwei2.src = 'img/bwa-bwei-yin1.png';
+                            countdownThenRedirect();
+                            break;
+                    }
+                    
+                    // 更新畫面顯示
+                    resultElement.textContent = outcome;
+                    messageElement.textContent = message;
+
+                }, 1500); // 等待 CSS 動畫結束
+            });
+
+            function countdownThenRedirect() {
+                let seconds = 3;
+                countdownElement.style.display = 'block';
+                
+                const countdownInterval = setInterval(() => {
+                    countdownElement.textContent = `倒數 ${seconds} 秒後取籤`;
+                    seconds--;
+                    
+                    if (seconds < 0) {
+                        clearInterval(countdownInterval);
+                        redirectToStick();
+                    }
+                }, 1000);
+            }
+
+            function redirectToStick() {
+                // 隨機導向 1 到 60 號籤詩頁面
+                const index = Math.floor(Math.random() * 60 + 1);
+                // 假設您的籤詩頁面在 'html' 資料夾下
+                window.location.href = `html/god${index}.html`;
+            }
+        });
     </script>
+    <!-- JavaScript 腳本結束 -->
 </body>
 </html>
